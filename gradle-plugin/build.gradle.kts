@@ -21,30 +21,30 @@ dependencies {
 }
 
 buildConfig {
-    packageName(project.group.toString())
+    packageName("boberc.gradle")
 
-    buildConfigField("String", "KOTLIN_PLUGIN_ID", "\"${rootProject.group}\"")
+    buildConfigField("String", "KOTLIN_PLUGIN_ID", "\"boberc\"")
 
     val pluginProject = project(":compiler-plugin")
     buildConfigField("String", "KOTLIN_PLUGIN_GROUP", "\"${pluginProject.group}\"")
     buildConfigField("String", "KOTLIN_PLUGIN_NAME", "\"${pluginProject.name}\"")
     buildConfigField("String", "KOTLIN_PLUGIN_VERSION", "\"${pluginProject.version}\"")
 
-    val annotationsProject = project(":plugin-annotations")
+    val runtimeProject = project(":boberc-runtime")
     buildConfigField(
         type = "String",
-        name = "ANNOTATIONS_LIBRARY_COORDINATES",
-        expression = "\"${annotationsProject.group}:${annotationsProject.name}:${annotationsProject.version}\""
+        name = "RUNTIME_LIBRARY_COORDINATES",
+        expression = "\"${runtimeProject.group}:${runtimeProject.name}:${runtimeProject.version}\""
     )
 }
 
 gradlePlugin {
     plugins {
-        create("SimplePlugin") {
-            id = rootProject.group.toString()
-            displayName = "SimplePlugin"
-            description = "SimplePlugin"
-            implementationClass = "org.jetbrains.kotlin.compiler.plugin.template.SimpleGradlePlugin"
+        create("Boberc") {
+            id = "boberc"
+            displayName = "boberc"
+            description = "Write Kotlin compiler plugins with plain Kotlin templates"
+            implementationClass = "boberc.gradle.BobercGradlePlugin"
         }
     }
 }

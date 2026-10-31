@@ -1,0 +1,230 @@
+FILE fqName:<root> fileName:/captureShape.kt
+  PROPERTY name:EXPECTED_CODEC visibility:private modality:FINAL [val]
+    FIELD PROPERTY_BACKING_FIELD name:EXPECTED_CODEC type:kotlin.String visibility:private [final,static]
+      EXPRESSION_BODY
+        CALL 'public final fun trim (<this>: kotlin.String): kotlin.String declared in kotlin.text' type=kotlin.String origin=null
+          ARG <this>: CONST String type=kotlin.String value="\n(shape 8 \"CodecShape\" CLASS PRIVATE false\n  ((typeParam \"T\" INVARIANT false ()))\n  ((named \"com.example.Codec\" (invariant (typeParam 0))))\n  ((ctor PUBLIC true ()))\n  (\n    (property \"name\" PUBLIC ABSTRACT true (class \"kotlin/String\") false)\n    (function \"encode\" PUBLIC ABSTRACT true false false false _\n      (\n        (param \"value\" (typeParam 0) false _ false false _)\n        (param \"out\" (class \"java/lang/StringBuilder\") false _ false false _))\n      (class \"kotlin/Unit\"))\n    (property \"hits\" PUBLIC ABSTRACT false (class \"kotlin/Int\") true)\n    (function \"helper\" PUBLIC OPEN false false false false _\n      (\n        (param \"values\"\n          (class \"kotlin/Array\" (out (typeParam 0)))\n          false\n          (typeParam 0)\n          false\n          false\n          _))\n      (class? \"kotlin/collections/List\" (invariant (typeParam 0))))\n    (function \"native\" PRIVATE FINAL false false false true _\n      (\n        (param \"pointer\" (class \"kotlin/Long\") false _ false false _)\n        (param \"rest\" (class \"boberc/ParameterSplice\") true _ false false _))\n      (typeParam 0))))\n"
+    FUN DEFAULT_PROPERTY_ACCESSOR name:<get-EXPECTED_CODEC> visibility:private modality:FINAL returnType:kotlin.String
+      correspondingProperty: PROPERTY name:EXPECTED_CODEC visibility:private modality:FINAL [val]
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='private final fun <get-EXPECTED_CODEC> (): kotlin.String declared in <root>'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:EXPECTED_CODEC type:kotlin.String visibility:private [final,static]' type=kotlin.String origin=null
+  PROPERTY name:EXPECTED_HINT visibility:private modality:FINAL [val]
+    FIELD PROPERTY_BACKING_FIELD name:EXPECTED_HINT type:kotlin.String visibility:private [final,static]
+      EXPRESSION_BODY
+        CALL 'public final fun trim (<this>: kotlin.String): kotlin.String declared in kotlin.text' type=kotlin.String origin=null
+          ARG <this>: CONST String type=kotlin.String value="\n(shape 8 \"HintShape\" INTERFACE PUBLIC false\n  ((typeParam \"M\" INVARIANT false ()))\n  ()\n  ()\n  (\n    (function \"module\" PUBLIC ABSTRACT false false false false _ () (typeParam 0))\n    (property \"self\" PUBLIC ABSTRACT false (this) false)))\n"
+    FUN DEFAULT_PROPERTY_ACCESSOR name:<get-EXPECTED_HINT> visibility:private modality:FINAL returnType:kotlin.String
+      correspondingProperty: PROPERTY name:EXPECTED_HINT visibility:private modality:FINAL [val]
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='private final fun <get-EXPECTED_HINT> (): kotlin.String declared in <root>'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:EXPECTED_HINT type:kotlin.String visibility:private [final,static]' type=kotlin.String origin=null
+  PROPERTY name:EXPECTED_COMPANION visibility:private modality:FINAL [val]
+    FIELD PROPERTY_BACKING_FIELD name:EXPECTED_COMPANION type:kotlin.String visibility:private [final,static]
+      EXPRESSION_BODY
+        CALL 'public final fun trim (<this>: kotlin.String): kotlin.String declared in kotlin.text' type=kotlin.String origin=null
+          ARG <this>: CONST String type=kotlin.String value="\n(shape 8 \"CompanionShape\" CLASS PRIVATE false\n  ((typeParam \"T\" INVARIANT false ()))\n  ()\n  ((ctor PRIVATE true ((param \"seed\" (class \"kotlin/Int\") false _ false false _))))\n  (\n    (property \"codec\" PUBLIC ABSTRACT false\n      (named \"com.example.Codec\" (invariant (typeParam 0)))\n      false)))\n"
+    FUN DEFAULT_PROPERTY_ACCESSOR name:<get-EXPECTED_COMPANION> visibility:private modality:FINAL returnType:kotlin.String
+      correspondingProperty: PROPERTY name:EXPECTED_COMPANION visibility:private modality:FINAL [val]
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='private final fun <get-EXPECTED_COMPANION> (): kotlin.String declared in <root>'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:EXPECTED_COMPANION type:kotlin.String visibility:private [final,static]' type=kotlin.String origin=null
+  CLASS CLASS name:CodecShape modality:ABSTRACT visibility:private superTypes:[<root>.CodecMirror<T of <root>.CodecShape>]
+    annotations:
+      Shape
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.CodecShape<T of <root>.CodecShape>
+    TYPE_PARAMETER name:T index:0 variance: superTypes:[kotlin.Any?] reified:false
+    CONSTRUCTOR visibility:public returnType:<root>.CodecShape<T of <root>.CodecShape> [primary]
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:CodecShape modality:ABSTRACT visibility:private superTypes:[<root>.CodecMirror<T of <root>.CodecShape>]' type=kotlin.Unit
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.CodecMirror
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in <root>.CodecMirror
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in <root>.CodecMirror
+    FUN name:encode visibility:public modality:ABSTRACT returnType:kotlin.Unit
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.CodecShape<T of <root>.CodecShape>
+      VALUE_PARAMETER kind:Regular name:value index:1 type:T of <root>.CodecShape
+      VALUE_PARAMETER kind:Regular name:out index:2 type:java.lang.StringBuilder
+      overridden:
+        public abstract fun encode (value: T of <root>.CodecMirror, out: java.lang.StringBuilder): kotlin.Unit declared in <root>.CodecMirror
+    FUN name:helper visibility:public modality:OPEN returnType:kotlin.collections.List<T of <root>.CodecShape>?
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.CodecShape<T of <root>.CodecShape>
+      VALUE_PARAMETER kind:Regular name:values index:1 type:kotlin.Array<out T of <root>.CodecShape> varargElementType:T of <root>.CodecShape [vararg]
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun helper (vararg values: T of <root>.CodecShape): kotlin.collections.List<T of <root>.CodecShape>? declared in <root>.CodecShape'
+          CONST Null type=kotlin.Nothing? value=null
+    FUN name:native visibility:private modality:FINAL returnType:T of <root>.CodecShape [external]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.CodecShape<T of <root>.CodecShape>
+      VALUE_PARAMETER kind:Regular name:pointer index:1 type:kotlin.Long
+      VALUE_PARAMETER kind:Regular name:rest index:2 type:kotlin.Array<out boberc.ParameterSplice> varargElementType:boberc.ParameterSplice [vararg]
+    PROPERTY name:hits visibility:public modality:ABSTRACT [var]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-hits> visibility:public modality:ABSTRACT returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.CodecShape<T of <root>.CodecShape>
+        correspondingProperty: PROPERTY name:hits visibility:public modality:ABSTRACT [var]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<set-hits> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.CodecShape<T of <root>.CodecShape>
+        VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Int
+        correspondingProperty: PROPERTY name:hits visibility:public modality:ABSTRACT [var]
+    PROPERTY name:name visibility:public modality:ABSTRACT [val]
+      overridden:
+        public abstract name: kotlin.String declared in <root>.CodecMirror
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-name> visibility:public modality:ABSTRACT returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.CodecShape<T of <root>.CodecShape>
+        correspondingProperty: PROPERTY name:name visibility:public modality:ABSTRACT [val]
+        overridden:
+          public abstract fun <get-name> (): kotlin.String declared in <root>.CodecMirror
+  CLASS CLASS name:CompanionShape modality:ABSTRACT visibility:private superTypes:[kotlin.Any]
+    annotations:
+      Shape
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.CompanionShape<T of <root>.CompanionShape>
+    TYPE_PARAMETER name:T index:0 variance: superTypes:[kotlin.Any?] reified:false
+    CONSTRUCTOR visibility:private returnType:<root>.CompanionShape<T of <root>.CompanionShape> [primary]
+      VALUE_PARAMETER kind:Regular name:seed index:0 type:kotlin.Int
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:CompanionShape modality:ABSTRACT visibility:private superTypes:[kotlin.Any]' type=kotlin.Unit
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:codec visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-codec> visibility:public modality:ABSTRACT returnType:<root>.CodecMirror<T of <root>.CompanionShape>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.CompanionShape<T of <root>.CompanionShape>
+        correspondingProperty: PROPERTY name:codec visibility:public modality:ABSTRACT [val]
+  CLASS INTERFACE name:CodecMirror modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Mirror(fqName = "com.example.Codec")
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.CodecMirror<T of <root>.CodecMirror>
+    TYPE_PARAMETER name:T index:0 variance: superTypes:[kotlin.Any?] reified:false
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    FUN name:encode visibility:public modality:ABSTRACT returnType:kotlin.Unit
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.CodecMirror<T of <root>.CodecMirror>
+      VALUE_PARAMETER kind:Regular name:value index:1 type:T of <root>.CodecMirror
+      VALUE_PARAMETER kind:Regular name:out index:2 type:java.lang.StringBuilder
+    PROPERTY name:name visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-name> visibility:public modality:ABSTRACT returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.CodecMirror<T of <root>.CodecMirror>
+        correspondingProperty: PROPERTY name:name visibility:public modality:ABSTRACT [val]
+  CLASS INTERFACE name:HintShape modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Shape
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.HintShape<M of <root>.HintShape>
+    TYPE_PARAMETER name:M index:0 variance: superTypes:[kotlin.Any?] reified:false
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    FUN name:module visibility:public modality:ABSTRACT returnType:M of <root>.HintShape
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.HintShape<M of <root>.HintShape>
+    PROPERTY name:self visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-self> visibility:public modality:ABSTRACT returnType:boberc.This
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.HintShape<M of <root>.HintShape>
+        correspondingProperty: PROPERTY name:self visibility:public modality:ABSTRACT [val]
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:codec type:boberc.model.ClassShape [val]
+        CALL 'public final fun decodeClassShape (vararg parts: kotlin.String): boberc.model.ClassShape declared in boberc.internal' type=boberc.model.ClassShape origin=null
+          ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(shape 8 \"CodecShape\" CLASS PRIVATE false ((typeParam \"T\" INVARIANT false ())) ((named \"com.example.Codec\" (invariant (typeParam 0)))) ((ctor PUBLIC true ())) ((property \"name\" PUBLIC ABSTRACT true (class \"kotlin/String\") false) (function \"encode\" PUBLIC ABSTRACT true false false false _ ((param \"value\" (typeParam 0) false _ false false _) (param \"out\" (class \"java/lang/StringBuilder\") false _ false false _)) (class \"kotlin/Unit\")) (property \"hits\" PUBLIC ABSTRACT false (class \"kotlin/Int\") true) (function \"helper\" PUBLIC OPEN false false false false _ ((param \"values\" (class \"kotlin/Array\" (out (typeParam 0))) false (typeParam 0) false false _)) (class? \"kotlin/collections/List\" (invariant (typeParam 0)))) (function \"native\" PRIVATE FINAL false false false true _ ((param \"pointer\" (class \"kotlin/Long\") false _ false false _) (param \"rest\" (class \"boberc/ParameterSplice\") true _ false false _)) (typeParam 0))))"
+      VAR name:hint type:boberc.model.ClassShape [val]
+        CALL 'public final fun decodeClassShape (vararg parts: kotlin.String): boberc.model.ClassShape declared in boberc.internal' type=boberc.model.ClassShape origin=null
+          ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(shape 8 \"HintShape\" INTERFACE PUBLIC false ((typeParam \"M\" INVARIANT false ())) () () ((function \"module\" PUBLIC ABSTRACT false false false false _ () (typeParam 0)) (property \"self\" PUBLIC ABSTRACT false (this) false)))"
+      VAR name:companion type:boberc.model.ClassShape [val]
+        CALL 'public final fun decodeClassShape (vararg parts: kotlin.String): boberc.model.ClassShape declared in boberc.internal' type=boberc.model.ClassShape origin=null
+          ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(shape 8 \"CompanionShape\" CLASS PRIVATE false ((typeParam \"T\" INVARIANT false ())) () ((ctor PRIVATE true ((param \"seed\" (class \"kotlin/Int\") false _ false false _)))) ((property \"codec\" PUBLIC ABSTRACT false (named \"com.example.Codec\" (invariant (typeParam 0))) false)))"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-memberNames> (): kotlin.collections.List<kotlin.String> declared in boberc.model.ClassShape' type=kotlin.collections.List<kotlin.String> origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val codec: boberc.model.ClassShape declared in <root>.box' type=boberc.model.ClassShape origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                  CONST String type=kotlin.String value="name"
+                  CONST String type=kotlin.String value="encode"
+                  CONST String type=kotlin.String value="hits"
+                  CONST String type=kotlin.String value="helper"
+                  CONST String type=kotlin.String value="native"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: members "
+              CALL 'public final fun <get-memberNames> (): kotlin.collections.List<kotlin.String> declared in boberc.model.ClassShape' type=kotlin.collections.List<kotlin.String> origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val codec: boberc.model.ClassShape declared in <root>.box' type=boberc.model.ClassShape origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        WHEN type=kotlin.String origin=WHEN
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: CALL 'public final fun render (): kotlin.String declared in boberc.model.ClassShape' type=kotlin.String origin=null
+                  ARG <this>: GET_VAR 'val codec: boberc.model.ClassShape declared in <root>.box' type=boberc.model.ClassShape origin=null
+                ARG arg1: CALL 'private final fun <get-EXPECTED_CODEC> (): kotlin.String declared in <root>' type=kotlin.String origin=GET_PROPERTY
+            then: STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail, codec rendered:\n"
+              CALL 'public final fun render (): kotlin.String declared in boberc.model.ClassShape' type=kotlin.String origin=null
+                ARG <this>: GET_VAR 'val codec: boberc.model.ClassShape declared in <root>.box' type=boberc.model.ClassShape origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: CALL 'public final fun render (): kotlin.String declared in boberc.model.ClassShape' type=kotlin.String origin=null
+                  ARG <this>: GET_VAR 'val hint: boberc.model.ClassShape declared in <root>.box' type=boberc.model.ClassShape origin=null
+                ARG arg1: CALL 'private final fun <get-EXPECTED_HINT> (): kotlin.String declared in <root>' type=kotlin.String origin=GET_PROPERTY
+            then: STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail, hint rendered:\n"
+              CALL 'public final fun render (): kotlin.String declared in boberc.model.ClassShape' type=kotlin.String origin=null
+                ARG <this>: GET_VAR 'val hint: boberc.model.ClassShape declared in <root>.box' type=boberc.model.ClassShape origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: CALL 'public final fun render (): kotlin.String declared in boberc.model.ClassShape' type=kotlin.String origin=null
+                  ARG <this>: GET_VAR 'val companion: boberc.model.ClassShape declared in <root>.box' type=boberc.model.ClassShape origin=null
+                ARG arg1: CALL 'private final fun <get-EXPECTED_COMPANION> (): kotlin.String declared in <root>' type=kotlin.String origin=GET_PROPERTY
+            then: STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail, companion rendered:\n"
+              CALL 'public final fun render (): kotlin.String declared in boberc.model.ClassShape' type=kotlin.String origin=null
+                ARG <this>: GET_VAR 'val companion: boberc.model.ClassShape declared in <root>.box' type=boberc.model.ClassShape origin=null
+          BRANCH
+            if: CONST Boolean type=kotlin.Boolean value=true
+            then: CONST String type=kotlin.String value="OK"

@@ -1,0 +1,131 @@
+FILE: main.kt
+    package test
+
+    public final class Point : R|kotlin/Any| {
+        public constructor(x: R|kotlin/Int|, y: R|kotlin/Int|): R|test/Point| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val x: R|kotlin/Int| = R|<local>/x|
+            public get(): R|kotlin/Int|
+
+        public final val y: R|kotlin/Int| = R|<local>/y|
+            public get(): R|kotlin/Int|
+
+    }
+    public final object Registry : R|kotlin/Any| {
+        private constructor(): R|test/Registry| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = String(registry)
+            public get(): R|kotlin/String|
+
+    }
+    public final fun helper(a: R|kotlin/Int|): R|kotlin/Int| {
+        ^helper R|<local>/a|.R|kotlin/Int.plus|(Int(100))
+    }
+    public final val greeting: R|kotlin/String| = String(hi)
+        public get(): R|kotlin/String|
+    public final class X : R|kotlin/Any| {
+        public constructor(): R|test/X| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val x: R|kotlin/Int| = Int(10)
+            public get(): R|kotlin/Int|
+
+        private final val secret: R|kotlin/String| = String(s3cr3t)
+            private get(): R|kotlin/String|
+
+        public final var counter: R|kotlin/Int| = Int(0)
+            public get(): R|kotlin/Int|
+            public set(value: R|kotlin/Int|): R|kotlin/Unit|
+
+        public final fun twice(n: R|kotlin/Int|): R|kotlin/Int| {
+            ^twice R|<local>/n|.R|kotlin/Int.times|(Int(2))
+        }
+
+        public final fun toReplace(): R|kotlin/String| {
+            ^toReplace String(original)
+        }
+
+        public final fun viaMirror(): R|kotlin/Int| {
+            ^viaMirror Int(0)
+        }
+
+        public final fun pointSum(point: R|test/Point|): R|kotlin/Int| {
+            ^pointSum Int(0)
+        }
+
+        public final fun makePoint(y: R|kotlin/Int|): R|test/Point|
+
+        public final fun registryName(): R|kotlin/String|
+
+        public final fun pointProperties(): R|kotlin/String|
+
+    }
+    public final class Account : R|kotlin/Any| {
+        public constructor(id: R|kotlin/Int|, owner: R|kotlin/String|): R|test/Account| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val id: R|kotlin/Int| = R|<local>/id|
+            public get(): R|kotlin/Int|
+
+        public final val owner: R|kotlin/String| = R|<local>/owner|
+            public get(): R|kotlin/String|
+
+        public final fun describe(): R|kotlin/String| {
+            ^describe String(original)
+        }
+
+    }
+    public final class NoId : R|kotlin/Any| {
+        public constructor(owner: R|kotlin/String|): R|test/NoId| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val owner: R|kotlin/String| = R|<local>/owner|
+            public get(): R|kotlin/String|
+
+        public final fun describe(): R|kotlin/String| {
+            ^describe String(original)
+        }
+
+    }
+    private final fun check(actual: R|kotlin/Any?|, expected: R|kotlin/Any?|): R|kotlin/String?| {
+        ^check when () {
+            ==(R|<local>/actual|, R|<local>/expected|) ->  {
+                Null(null)
+            }
+            else ->  {
+                <strcat>(String(expected <), R|<local>/expected|, String(> but was <), R|<local>/actual|, String(>))
+            }
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval x: R|test/X| = R|test/X.X|()
+        lval failures: R|kotlin/collections/List<kotlin/String>| = R|kotlin/collections/listOfNotNull|<R|kotlin/String|>(vararg(R|test/check|(R|<local>/x|.R|test/X.toReplace|(), String(x=10 secret=s3cr3t twice=20 counter=1 point.y=32 isPoint=true isX=false registry=registry helper=110 greeting=hi)), R|test/check|(R|<local>/x|.R|test/X.counter|, Int(1)), R|test/check|(R|<local>/x|.R|test/X.toReplace|().R|kotlin/text/contains|(String(counter=2)), Boolean(true)), R|test/check|(R|<local>/x|.R|test/X.viaMirror|(), Int(32)), R|test/check|(R|<local>/x|.R|test/X.pointSum|(R|test/Point.Point|(Int(3), Int(4))), Int(7)), R|test/check|(R|<local>/x|.R|test/X.makePoint|(Int(5)).R|kotlin/let|<R|test/Point|, R|kotlin/String|>(<L> = let@fun <anonymous>(it: R|test/Point|): R|kotlin/String| <inline=Inline, kind=EXACTLY_ONCE>  {
+            ^ <strcat>(R|<local>/it|.R|test/Point.x|, String(,), R|<local>/it|.R|test/Point.y|)
+        }
+        ), String(10,5)), R|test/check|(R|<local>/x|.R|test/X.pointProperties|(), String(Point(x, y))), R|test/check|(R|<local>/x|.R|test/X.registryName|(), String(registry)), R|test/check|(R|test/Account.Account|(Int(7), String(ann)).R|test/Account.describe|(), String(Account(id, owner): id=7)), R|test/check|(R|test/NoId.NoId|(String(bob)).R|test/NoId.describe|(), String(original))))
+        ^box when () {
+            R|<local>/failures|.R|SubstitutionOverride<kotlin/collections/List.isEmpty: R|kotlin/Boolean|>|() ->  {
+                String(OK)
+            }
+            else ->  {
+                R|<local>/failures|.R|kotlin/collections/joinToString|<R|kotlin/String|>(String(
+))
+            }
+        }
+
+    }
+FILE: boberc/example/generated/BobercGenerated.kt
+    package boberc.example.generated
+
+    public final fun fizzBuzz(n: R|kotlin/Int|): R|kotlin/collections/List<kotlin/String>|
+    public final fun R|kotlin/String|.shout(): R|kotlin/String?|
+    public final fun summarize(vararg words: R|kotlin/Array<out kotlin/String?>|): R|kotlin/String|
+    public final fun platformInfo(): R|kotlin/String|

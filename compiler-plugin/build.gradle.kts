@@ -1,20 +1,9 @@
-@file:OptIn(ExperimentalWasmDsl::class)
-
-import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinUsages
-import org.jetbrains.kotlin.gradle.targets.wasm.d8.D8EnvSpec
-import org.jetbrains.kotlin.gradle.targets.wasm.d8.D8Plugin
-
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.buildconfig)
     alias(libs.plugins.gradle.java.test.fixtures)
-    alias(libs.plugins.node.gradle)
     alias(libs.plugins.gradle.idea)
 }
-
-project.plugins.apply(D8Plugin::class.java)
 
 val testDataDir = layout.projectDirectory.dir("testData")
 val testGenDirectory = layout.buildDirectory.dir("test-gen")
@@ -40,29 +29,25 @@ idea {
 
 val testArtifacts: Configuration = configurations.create("testArtifact")
 
-val annotationsRuntimeClasspath = configurations.dependencyScope("annotationsRuntimeClasspath") {
+// boberc-runtime is needed on the classpath of code compiled in tests (the `template()` intrinsic, annotations).
+val bobercRuntime = configurations.dependencyScope("bobercRuntime") {
     isTransitive = false
 }
-val annotationsJvmRuntimeClasspath = configurations.resolvable("annotationsJvmRuntimeClasspath") {
-    extendsFrom(annotationsRuntimeClasspath)
-}
-val annotationsJsRuntimeClasspath = configurations.resolvable("annotationsJsRuntimeClasspath") {
-    extendsFrom(annotationsRuntimeClasspath)
-    attributes {
-        attribute(Usage.USAGE_ATTRIBUTE, objects.named(KotlinUsages.KOTLIN_RUNTIME))
-        attribute(KotlinPlatformType.attribute, KotlinPlatformType.js)
-    }
+val bobercRuntimeClasspath = configurations.resolvable("bobercRuntimeClasspath") {
+    extendsFrom(bobercRuntime.get())
 }
 
 dependencies {
     compileOnly(libs.kotlin.compiler)
+    // The template model + codec (and the shared IR signature renderer) are used by the plugin itself.
+    implementation(project(":boberc-runtime"))
 
     testFixturesApi(libs.kotlin.test.junit5)
     testFixturesApi(libs.kotlin.test.framework)
     testFixturesApi(libs.kotlin.compiler)
     testFixturesRuntimeOnly(libs.junit)
 
-    annotationsRuntimeClasspath(project(":plugin-annotations"))
+    bobercRuntime(project(":boberc-runtime"))
 
     // Dependencies required to run the internal test framework.
     testArtifacts(libs.kotlin.stdlib)
@@ -71,9 +56,6 @@ dependencies {
     testArtifacts(libs.kotlin.test)
     testArtifacts(libs.kotlin.script.runtime)
     testArtifacts(libs.kotlin.annotations.jvm)
-
-    testArtifacts(libs.kotlin.stdlib.js)
-    testArtifacts(libs.kotlin.test.js)
 }
 
 buildConfig {
@@ -81,20 +63,20 @@ buildConfig {
         internalVisibility = true
     }
 
-    packageName(group.toString())
-    buildConfigField("String", "KOTLIN_PLUGIN_ID", "\"${rootProject.group}\"")
+    packageName("boberc.compiler")
+    buildConfigField("String", "KOTLIN_PLUGIN_ID", "\"boberc\"")
 }
 
 tasks.test {
+    // ./gradlew test -PupdateTestData rewrites expected test data from the actual results.
+    if (project.hasProperty("updateTestData")) systemProperty("kotlin.test.update.test.data", "true")
     dependsOn(testArtifacts)
-    dependsOn(annotationsJvmRuntimeClasspath)
-    dependsOn(annotationsJsRuntimeClasspath)
+    dependsOn(bobercRuntimeClasspath)
 
     useJUnitPlatform()
     workingDir = rootDir
 
-    systemProperty("annotationsRuntime.jvm.classpath", annotationsJvmRuntimeClasspath.get().asPath)
-    systemProperty("annotationsRuntime.js.classpath", annotationsJsRuntimeClasspath.get().asPath)
+    systemProperty("bobercRuntime.classpath", bobercRuntimeClasspath.get().asPath)
 
     // Properties required to run the internal test framework.
     setLibraryProperty("org.jetbrains.kotlin.test.kotlin-stdlib", "kotlin-stdlib")
@@ -106,17 +88,6 @@ tasks.test {
 
     systemProperty("idea.ignore.disabled.plugins", "true")
     systemProperty("idea.home.path", rootDir)
-
-    // Properties required to run JS tests from the internal test framework.
-    val d8EnvSpec = project.the<D8EnvSpec>()
-    with(d8EnvSpec) { dependsOn(project.d8SetupTaskProvider) }
-
-    setLibraryProperty("org.jetbrains.kotlin.test.kotlin-stdlib-js", "kotlin-stdlib-js")
-    setLibraryProperty("org.jetbrains.kotlin.test.kotlin-test-js", "kotlin-test-js")
-
-    systemProperty("javascript.engine.path.V8", d8EnvSpec.executable.get())
-    systemProperty("javascript.engine.path.repl", "${layout.projectDirectory.file("repl.js").asFile}")
-    systemProperty("kotlin.js.test.root.out.dir", "${layout.buildDirectory.get().asFile}/js-test-output")
 }
 
 kotlin {
@@ -124,6 +95,10 @@ kotlin {
         optIn.add("org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi")
         optIn.add("org.jetbrains.kotlin.ir.symbols.UnsafeDuringIrConstructionAPI")
     }
+}
+
+tasks.compileKotlin {
+    compilerOptions.optIn.add("boberc.BobercInternalApi")
 }
 
 val generateTests = tasks.register<JavaExec>("generateTests") {
@@ -134,7 +109,7 @@ val generateTests = tasks.register<JavaExec>("generateTests") {
         .withPropertyName("generatedTests")
 
     classpath = sourceSets.testFixtures.get().runtimeClasspath
-    mainClass.set("org.jetbrains.kotlin.compiler.plugin.template.GenerateTestsKt")
+    mainClass.set("boberc.compiler.GenerateTestsKt")
     workingDir = rootDir
     args(
         listOf(

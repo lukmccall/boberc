@@ -1,0 +1,249 @@
+FILE fqName:<root> fileName:/captureLambda.kt
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:t type:boberc.model.FunctionTemplate [val]
+        CALL 'public final fun makeTemplate (prefix: kotlin.String, times: kotlin.Int): boberc.model.FunctionTemplate declared in <root>' type=boberc.model.FunctionTemplate origin=null
+          ARG prefix: CONST String type=kotlin.String value="ab"
+          ARG times: CONST Int type=kotlin.Int value=2
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+            ARG <this>: CALL 'public final fun <get-isLambda> (): kotlin.Boolean declared in boberc.model.FunctionTemplate' type=kotlin.Boolean origin=GET_PROPERTY
+              ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: not a lambda"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun map <T, R> (<this>: kotlin.collections.Iterable<T of kotlin.collections.map>, transform: kotlin.Function1<T of kotlin.collections.map, R of kotlin.collections.map>): kotlin.collections.List<R of kotlin.collections.map> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: boberc.model.TParameter
+                TYPE_ARG R: kotlin.String
+                ARG <this>: CALL 'public final fun <get-regularParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                ARG transform: FUN_EXPR type=kotlin.Function1<boberc.model.TParameter, kotlin.String> origin=LAMBDA
+                  FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+                    VALUE_PARAMETER kind:Regular name:it index:0 type:boberc.model.TParameter
+                    BLOCK_BODY
+                      RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: boberc.model.TParameter): kotlin.String declared in <root>.box'
+                        CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.TParameter' type=kotlin.String origin=GET_PROPERTY
+                          ARG <this>: GET_VAR 'it: boberc.model.TParameter declared in <root>.box.<anonymous>' type=boberc.model.TParameter origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                  CONST String type=kotlin.String value="self"
+                  CONST String type=kotlin.String value="other"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: params "
+              CALL 'public final fun map <T, R> (<this>: kotlin.collections.Iterable<T of kotlin.collections.map>, transform: kotlin.Function1<T of kotlin.collections.map, R of kotlin.collections.map>): kotlin.collections.List<R of kotlin.collections.map> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: boberc.model.TParameter
+                TYPE_ARG R: kotlin.String
+                ARG <this>: CALL 'public final fun <get-regularParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                ARG transform: FUN_EXPR type=kotlin.Function1<boberc.model.TParameter, kotlin.String> origin=LAMBDA
+                  FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+                    VALUE_PARAMETER kind:Regular name:it index:0 type:boberc.model.TParameter
+                    BLOCK_BODY
+                      RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: boberc.model.TParameter): kotlin.String declared in <root>.box'
+                        CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.TParameter' type=kotlin.String origin=GET_PROPERTY
+                          ARG <this>: GET_VAR 'it: boberc.model.TParameter declared in <root>.box.<anonymous>' type=boberc.model.TParameter origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun any <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.any>, predicate: kotlin.Function1<T of kotlin.collections.any, kotlin.Boolean>): kotlin.Boolean declared in kotlin.collections' type=kotlin.Boolean origin=null
+            TYPE_ARG T: boberc.model.TParameter
+            ARG <this>: CALL 'public final fun <get-regularParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+              ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+            ARG predicate: FUN_EXPR type=kotlin.Function1<boberc.model.TParameter, kotlin.Boolean> origin=LAMBDA
+              FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Boolean
+                VALUE_PARAMETER kind:Regular name:it index:0 type:boberc.model.TParameter
+                BLOCK_BODY
+                  RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: boberc.model.TParameter): kotlin.Boolean declared in <root>.box'
+                    CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                      ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                        ARG arg0: CALL 'public final fun <get-type> (): boberc.model.TType declared in boberc.model.TParameter' type=boberc.model.TType origin=GET_PROPERTY
+                          ARG <this>: GET_VAR 'it: boberc.model.TParameter declared in <root>.box.<anonymous>' type=boberc.model.TParameter origin=null
+                        ARG arg1: CONSTRUCTOR_CALL 'public constructor <init> (isNullable: kotlin.Boolean) declared in boberc.model.TType.This' type=boberc.model.TType.This origin=null
+                          ARG isNullable: CONST Boolean type=kotlin.Boolean value=false
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: param types"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun map <T, R> (<this>: kotlin.collections.Iterable<T of kotlin.collections.map>, transform: kotlin.Function1<T of kotlin.collections.map, R of kotlin.collections.map>): kotlin.collections.List<R of kotlin.collections.map> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: boberc.model.TParameter
+                TYPE_ARG R: kotlin.String
+                ARG <this>: CALL 'public final fun <get-spliceParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                ARG transform: FUN_EXPR type=kotlin.Function1<boberc.model.TParameter, kotlin.String> origin=LAMBDA
+                  FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+                    VALUE_PARAMETER kind:Regular name:it index:0 type:boberc.model.TParameter
+                    BLOCK_BODY
+                      RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: boberc.model.TParameter): kotlin.String declared in <root>.box'
+                        CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.TParameter' type=kotlin.String origin=GET_PROPERTY
+                          ARG <this>: GET_VAR 'it: boberc.model.TParameter declared in <root>.box.<anonymous>' type=boberc.model.TParameter origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                  CONST String type=kotlin.String value="prefix"
+                  CONST String type=kotlin.String value="times"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: captures "
+              CALL 'public final fun map <T, R> (<this>: kotlin.collections.Iterable<T of kotlin.collections.map>, transform: kotlin.Function1<T of kotlin.collections.map, R of kotlin.collections.map>): kotlin.collections.List<R of kotlin.collections.map> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: boberc.model.TParameter
+                TYPE_ARG R: kotlin.String
+                ARG <this>: CALL 'public final fun <get-spliceParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                ARG transform: FUN_EXPR type=kotlin.Function1<boberc.model.TParameter, kotlin.String> origin=LAMBDA
+                  FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+                    VALUE_PARAMETER kind:Regular name:it index:0 type:boberc.model.TParameter
+                    BLOCK_BODY
+                      RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: boberc.model.TParameter): kotlin.String declared in <root>.box'
+                        CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.TParameter' type=kotlin.String origin=GET_PROPERTY
+                          ARG <this>: GET_VAR 'it: boberc.model.TParameter declared in <root>.box.<anonymous>' type=boberc.model.TParameter origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-boundSplices> (): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in boberc.model.FunctionTemplate' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+              ARG arg1: CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Any> origin=null
+                TYPE_ARG K: kotlin.String
+                TYPE_ARG V: kotlin.Any
+                ARG pairs: VARARG type=kotlin.Array<out kotlin.Pair<kotlin.String, kotlin.Any>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any>
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.String> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.String
+                    ARG <this>: CONST String type=kotlin.String value="prefix"
+                    ARG that: CONST String type=kotlin.String value="ab"
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST String type=kotlin.String value="times"
+                    ARG that: CONST Int type=kotlin.Int value=2
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: bound "
+              CALL 'public final fun <get-boundSplices> (): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in boberc.model.FunctionTemplate' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun map <T, R> (<this>: kotlin.collections.Iterable<T of kotlin.collections.map>, transform: kotlin.Function1<T of kotlin.collections.map, R of kotlin.collections.map>): kotlin.collections.List<R of kotlin.collections.map> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: boberc.model.TParameter
+                TYPE_ARG R: kotlin.String
+                ARG <this>: CALL 'public final fun signatureParameters (asMember: kotlin.Boolean): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=null
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                  ARG asMember: CONST Boolean type=kotlin.Boolean value=true
+                ARG transform: FUN_EXPR type=kotlin.Function1<boberc.model.TParameter, kotlin.String> origin=LAMBDA
+                  FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+                    VALUE_PARAMETER kind:Regular name:it index:0 type:boberc.model.TParameter
+                    BLOCK_BODY
+                      RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: boberc.model.TParameter): kotlin.String declared in <root>.box'
+                        CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.TParameter' type=kotlin.String origin=GET_PROPERTY
+                          ARG <this>: GET_VAR 'it: boberc.model.TParameter declared in <root>.box.<anonymous>' type=boberc.model.TParameter origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (element: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG element: CONST String type=kotlin.String value="other"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: signature"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+            ARG <this>: CALL 'public final fun <get-requiresOwnerClass> (): kotlin.Boolean declared in boberc.model.FunctionTemplate' type=kotlin.Boolean origin=GET_PROPERTY
+              ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: requiresOwnerClass"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+                ARG <this>: CALL 'public final fun <get-boundSplices> (): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in boberc.model.FunctionTemplate' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=GET_PROPERTY
+                  ARG <this>: CALL 'public final fun makeTemplate (prefix: kotlin.String, times: kotlin.Int): boberc.model.FunctionTemplate declared in <root>' type=boberc.model.FunctionTemplate origin=null
+                    ARG prefix: CONST String type=kotlin.String value="x"
+                    ARG times: CONST Int type=kotlin.Int value=1
+                ARG key: CONST String type=kotlin.String value="prefix"
+              ARG arg1: CONST String type=kotlin.String value="x"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: captured value not rebound"
+      VAR name:instance type:boberc.model.TemplateInstance [val]
+        CALL 'public final fun instantiate (name: kotlin.String, splices: kotlin.collections.Map<kotlin.String, kotlin.Any?>): boberc.model.TemplateInstance declared in boberc.model.FunctionTemplate' type=boberc.model.TemplateInstance origin=null
+          ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+          ARG name: CONST String type=kotlin.String value="compareTo"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-splices> (): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in boberc.model.TemplateInstance' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val instance: boberc.model.TemplateInstance declared in <root>.box' type=boberc.model.TemplateInstance origin=null
+              ARG arg1: CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Any> origin=null
+                TYPE_ARG K: kotlin.String
+                TYPE_ARG V: kotlin.Any
+                ARG pairs: VARARG type=kotlin.Array<out kotlin.Pair<kotlin.String, kotlin.Any>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any>
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.String> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.String
+                    ARG <this>: CONST String type=kotlin.String value="prefix"
+                    ARG that: CONST String type=kotlin.String value="ab"
+                  CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Int> origin=null
+                    TYPE_ARG A: kotlin.String
+                    TYPE_ARG B: kotlin.Int
+                    ARG <this>: CONST String type=kotlin.String value="times"
+                    ARG that: CONST Int type=kotlin.Int value=2
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: instance splices "
+              CALL 'public final fun <get-splices> (): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in boberc.model.TemplateInstance' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val instance: boberc.model.TemplateInstance declared in <root>.box' type=boberc.model.TemplateInstance origin=null
+      VAR name:constant type:boberc.model.FunctionTemplate [val]
+        CALL 'public final fun decodeLambdaTemplate (captured: kotlin.Array<kotlin.Any?>, vararg parts: kotlin.String): boberc.model.FunctionTemplate declared in boberc.internal' type=boberc.model.FunctionTemplate origin=null
+          ARG captured: CALL 'public final fun arrayOf <T> (vararg elements: T of kotlin.arrayOf): kotlin.Array<T of kotlin.arrayOf> declared in kotlin' type=kotlin.Array<kotlin.Any?> origin=null
+            TYPE_ARG T: kotlin.Any?
+            ARG elements: VARARG type=kotlin.Array<kotlin.Any?> varargElementType=kotlin.Any?
+          ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(template 8 \"lambda\" true PUBLIC false false () _ () (class \"kotlin/Int\") (block ((return 0 (const INT \"42\" (class \"kotlin/Int\")))) (class \"kotlin/Unit\") _))"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: WHEN type=kotlin.Boolean origin=OROR
+            BRANCH
+              if: CALL 'public final fun isNotEmpty <T> (<this>: kotlin.collections.Collection<T of kotlin.collections.isNotEmpty>): kotlin.Boolean declared in kotlin.collections' type=kotlin.Boolean origin=null
+                TYPE_ARG T: boberc.model.TParameter
+                ARG <this>: CALL 'public final fun <get-parameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val constant: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+              then: CONST Boolean type=kotlin.Boolean value=true
+            BRANCH
+              if: CONST Boolean type=kotlin.Boolean value=true
+              then: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: CALL 'public final fun <get-returnType> (): boberc.model.TType declared in boberc.model.FunctionTemplate' type=boberc.model.TType origin=GET_PROPERTY
+                    ARG <this>: GET_VAR 'val constant: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                  ARG arg1: CONSTRUCTOR_CALL 'public constructor <init> (classId: kotlin.String, arguments: kotlin.collections.List<boberc.model.TTypeArgument>, isNullable: kotlin.Boolean) declared in boberc.model.TType.Class' type=boberc.model.TType.Class origin=null
+                    ARG classId: CONST String type=kotlin.String value="kotlin/Int"
+                    ARG arguments: CALL 'public final fun emptyList <T> (): kotlin.collections.List<T of kotlin.collections.emptyList> declared in kotlin.collections' type=kotlin.collections.List<boberc.model.TTypeArgument> origin=null
+                      TYPE_ARG T: boberc.model.TTypeArgument
+                    ARG isNullable: CONST Boolean type=kotlin.Boolean value=false
+          then: BLOCK type=kotlin.Unit origin=null
+            RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+              CALL 'public final fun plus (other: kotlin.Any?): kotlin.String declared in kotlin.String' type=kotlin.String origin=PLUS
+                ARG <this>: CONST String type=kotlin.String value="Fail: constant\n"
+                ARG other: CALL 'public final fun render (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+                  ARG <this>: GET_VAR 'val constant: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        CONST String type=kotlin.String value="OK"
+  FUN name:makeTemplate visibility:public modality:FINAL returnType:boberc.model.FunctionTemplate
+    VALUE_PARAMETER kind:Regular name:prefix index:0 type:kotlin.String
+    VALUE_PARAMETER kind:Regular name:times index:1 type:kotlin.Int
+    BLOCK_BODY
+      RETURN type=kotlin.Nothing from='public final fun makeTemplate (prefix: kotlin.String, times: kotlin.Int): boberc.model.FunctionTemplate declared in <root>'
+        CALL 'public final fun decodeLambdaTemplate (captured: kotlin.Array<kotlin.Any?>, vararg parts: kotlin.String): boberc.model.FunctionTemplate declared in boberc.internal' type=boberc.model.FunctionTemplate origin=null
+          ARG captured: CALL 'public final fun arrayOf <T> (vararg elements: T of kotlin.arrayOf): kotlin.Array<T of kotlin.arrayOf> declared in kotlin' type=kotlin.Array<kotlin.Any?> origin=null
+            TYPE_ARG T: kotlin.Any?
+            ARG elements: VARARG type=kotlin.Array<kotlin.Any?> varargElementType=kotlin.Any?
+              GET_VAR 'prefix: kotlin.String declared in <root>.makeTemplate' type=kotlin.String origin=null
+              GET_VAR 'times: kotlin.Int declared in <root>.makeTemplate' type=kotlin.Int origin=null
+          ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(template 8 \"lambda\" true PUBLIC false false () _ ((param \"self\" (this) false _ false false _) (param \"other\" (this) false _ false false _) (param \"prefix\" (class \"kotlin/String\") true _ false false _) (param \"times\" (class \"kotlin/Int\") true _ false false _)) (class \"kotlin/String\") (block ((return 0 (call (callable \"kotlin\" \"String\" \"plus\" FUNCTION \"0|rkotlin/Any\") () ((call (callable \"kotlin.text\" _ \"repeat\" FUNCTION \"0|ekotlin/CharSequence,rkotlin/Int\") () ((get (param 2)) (get (param 3))) (class \"kotlin/String\") _) (call (callable \"kotlin\" \"Int\" \"compareTo\" FUNCTION \"0|rkotlin/Int\") () ((call (callable \"kotlin\" \"Any\" \"hashCode\" FUNCTION \"0|\") () ((typeOp IMPLICIT_CAST (class \"kotlin/Any\") (get (param 0)) (class \"kotlin/Any\"))) (class \"kotlin/Int\") _) (call (callable \"kotlin\" \"Any\" \"hashCode\" FUNCTION \"0|\") () ((typeOp IMPLICIT_CAST (class \"kotlin/Any\") (get (param 1)) (class \"kotlin/Any\"))) (class \"kotlin/Int\") _)) (class \"kotlin/Int\") _)) (class \"kotlin/String\") \"PLUS\"))) (class \"kotlin/Unit\") _))"

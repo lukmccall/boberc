@@ -1,0 +1,729 @@
+FILE fqName:boberc.example fileName:/api.kt
+  CLASS ANNOTATION_CLASS name:Described modality:OPEN visibility:public superTypes:[kotlin.Annotation]
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:boberc.example.Described
+    CONSTRUCTOR visibility:public returnType:boberc.example.Described [primary]
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS ANNOTATION_CLASS name:Described modality:OPEN visibility:public superTypes:[kotlin.Annotation]' type=kotlin.Unit
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Annotation
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Annotation
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Annotation
+  CLASS INTERFACE name:Describable modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:boberc.example.Describable
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+  CLASS INTERFACE name:Describer modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:boberc.example.Describer<T of boberc.example.Describer>
+    TYPE_PARAMETER name:T index:0 variance: superTypes:[kotlin.Any?] reified:false
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    FUN name:describe visibility:public modality:ABSTRACT returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:boberc.example.Describer<T of boberc.example.Describer>
+      VALUE_PARAMETER kind:Regular name:value index:1 type:T of boberc.example.Describer
+    PROPERTY name:typeName visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-typeName> visibility:public modality:ABSTRACT returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:boberc.example.Describer<T of boberc.example.Describer>
+        correspondingProperty: PROPERTY name:typeName visibility:public modality:ABSTRACT [val]
+FILE fqName:test fileName:/main.kt
+  CLASS CLASS name:Named modality:FINAL visibility:public superTypes:[kotlin.Any; boberc.example.Describable]
+    annotations:
+      Described
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:test.Named
+    PROPERTY name:name visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'name: kotlin.String declared in test.Named.<init>' type=kotlin.String origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-name> visibility:public modality:FINAL returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Named
+        correspondingProperty: PROPERTY name:name visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-name> (): kotlin.String declared in test.Named'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: test.Named declared in test.Named.<get-name>' type=test.Named origin=null
+    CLASS GENERATED[boberc.example.DescribedKey] CLASS name:Describer modality:FINAL visibility:private superTypes:[boberc.example.Describer<test.Named>]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:test.Named.Describer
+      PROPERTY GENERATED[boberc.example.DescribedKey] name:typeName visibility:public modality:FINAL [val]
+        overridden:
+          public abstract typeName: kotlin.String declared in boberc.example.Describer
+        FIELD PROPERTY_BACKING_FIELD name:typeName type:kotlin.String visibility:private [final]
+          EXPRESSION_BODY
+            CONST String type=kotlin.String value="Named"
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-typeName> visibility:public modality:FINAL returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Named.Describer
+          correspondingProperty: PROPERTY GENERATED[boberc.example.DescribedKey] name:typeName visibility:public modality:FINAL [val]
+          overridden:
+            public abstract fun <get-typeName> (): kotlin.String declared in boberc.example.Describer
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-typeName> (): kotlin.String declared in test.Named.Describer'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:typeName type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: test.Named.Describer declared in test.Named.Describer.<get-typeName>' type=test.Named.Describer origin=null
+      CONSTRUCTOR GENERATED[boberc.example.DescribedKey] visibility:public returnType:test.Named.Describer [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[boberc.example.DescribedKey] CLASS name:Describer modality:FINAL visibility:private superTypes:[boberc.example.Describer<test.Named>]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in boberc.example.Describer
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in boberc.example.Describer
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in boberc.example.Describer
+      FUN GENERATED[boberc.example.DescribedKey] name:describe visibility:public modality:FINAL returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Named.Describer
+        VALUE_PARAMETER GENERATED[boberc.example.DescribedKey] kind:Regular name:value index:1 type:test.Named
+        overridden:
+          public abstract fun describe (value: T of boberc.example.Describer): kotlin.String declared in boberc.example.Describer
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun describe (value: test.Named): kotlin.String declared in test.Named.Describer'
+            CALL 'public final fun buildString (builderAction: @[ExtensionFunctionType] kotlin.Function1<java.lang.StringBuilder, kotlin.Unit>): kotlin.String declared in kotlin.text' type=kotlin.String origin=null
+              ARG builderAction: FUN_EXPR type=kotlin.Function1<java.lang.StringBuilder, kotlin.Unit> origin=LAMBDA
+                FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Unit
+                  VALUE_PARAMETER kind:ExtensionReceiver name:$this$buildString index:0 type:java.lang.StringBuilder
+                  BLOCK_BODY
+                    TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                      CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                        ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Named.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                        ARG p0: CONST String type=kotlin.String value="Named"
+                    TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                      CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                        ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Named.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                        ARG p0: CONST String type=kotlin.String value="("
+                    VAR name:first type:kotlin.Boolean [var]
+                      CONST Boolean type=kotlin.Boolean value=true
+                    BLOCK type=kotlin.Unit origin=null
+                      VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:test.Named [val]
+                        GET_VAR 'value: test.Named declared in test.Named.Describer.describe' type=test.Named origin=null
+                      BLOCK type=kotlin.Unit origin=null
+                        VAR name:name type:kotlin.String [val]
+                          CONST String type=kotlin.String value="name"
+                        VAR name:propertyValue type:kotlin.String [val]
+                          CALL 'public final fun <get-name> (): kotlin.String declared in test.Named' type=kotlin.String origin=null
+                            ARG <this>: GET_VAR 'val tmp_0: test.Named declared in test.Named.Describer.describe.<anonymous>' type=test.Named origin=null
+                        WHEN type=kotlin.Unit origin=IF
+                          BRANCH
+                            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+                              ARG <this>: GET_VAR 'var first: kotlin.Boolean declared in test.Named.Describer.describe.<anonymous>' type=kotlin.Boolean origin=null
+                            then: TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                              CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                                ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Named.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                                ARG p0: CONST String type=kotlin.String value=", "
+                        SET_VAR 'var first: kotlin.Boolean declared in test.Named.Describer.describe.<anonymous>' type=kotlin.Unit origin=EQ
+                          CONST Boolean type=kotlin.Boolean value=false
+                        TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                          CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                            ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Named.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                            ARG p0: STRING_CONCATENATION type=kotlin.String
+                              GET_VAR 'val name: kotlin.String declared in test.Named.Describer.describe.<anonymous>' type=kotlin.String origin=null
+                              CONST String type=kotlin.String value="="
+                              GET_VAR 'val propertyValue: kotlin.String declared in test.Named.Describer.describe.<anonymous>' type=kotlin.String origin=null
+                    TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                      CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                        ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Named.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                        ARG p0: CONST String type=kotlin.String value=")"
+    CLASS OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:test.Named.Companion
+      PROPERTY name:greeting visibility:public modality:FINAL [val]
+        FIELD PROPERTY_BACKING_FIELD name:greeting type:kotlin.String visibility:private [final]
+          EXPRESSION_BODY
+            CONST String type=kotlin.String value="hi"
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-greeting> visibility:public modality:FINAL returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Named.Companion
+          correspondingProperty: PROPERTY name:greeting visibility:public modality:FINAL [val]
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-greeting> (): kotlin.String declared in test.Named.Companion'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:greeting type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: test.Named.Companion declared in test.Named.Companion.<get-greeting>' type=test.Named.Companion origin=null
+      PROPERTY GENERATED[boberc.example.DescribedKey] name:describer visibility:public modality:FINAL [val]
+        FIELD PROPERTY_BACKING_FIELD name:describer type:boberc.example.Describer<test.Named> visibility:private [final]
+          EXPRESSION_BODY
+            CONSTRUCTOR_CALL 'public constructor <init> () declared in test.Named.Describer' type=test.Named.Describer origin=null
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-describer> visibility:public modality:FINAL returnType:boberc.example.Describer<test.Named>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Named.Companion
+          correspondingProperty: PROPERTY GENERATED[boberc.example.DescribedKey] name:describer visibility:public modality:FINAL [val]
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-describer> (): boberc.example.Describer<test.Named> declared in test.Named.Companion'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:describer type:boberc.example.Describer<test.Named> visibility:private [final]' type=boberc.example.Describer<test.Named> origin=null
+                receiver: GET_VAR '<this>: test.Named.Companion declared in test.Named.Companion.<get-describer>' type=test.Named.Companion origin=null
+      CONSTRUCTOR visibility:private returnType:test.Named.Companion [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in kotlin.Any
+    CONSTRUCTOR visibility:public returnType:test.Named [primary]
+      VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Named modality:FINAL visibility:public superTypes:[kotlin.Any; boberc.example.Describable]' type=kotlin.Unit
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in boberc.example.Describable
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+        public open fun hashCode (): kotlin.Int declared in boberc.example.Describable
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+        public open fun toString (): kotlin.String declared in boberc.example.Describable
+  CLASS CLASS name:Point modality:FINAL visibility:public superTypes:[kotlin.Any; boberc.example.Describable]
+    annotations:
+      Described
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:test.Point
+    PROPERTY name:x visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:x type:kotlin.Int visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'x: kotlin.Int declared in test.Point.<init>' type=kotlin.Int origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-x> visibility:public modality:FINAL returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Point
+        correspondingProperty: PROPERTY name:x visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-x> (): kotlin.Int declared in test.Point'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:x type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: test.Point declared in test.Point.<get-x>' type=test.Point origin=null
+    PROPERTY name:y visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:y type:kotlin.Int visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'y: kotlin.Int declared in test.Point.<init>' type=kotlin.Int origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-y> visibility:public modality:FINAL returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Point
+        correspondingProperty: PROPERTY name:y visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-y> (): kotlin.Int declared in test.Point'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:y type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: test.Point declared in test.Point.<get-y>' type=test.Point origin=null
+    CLASS GENERATED[boberc.example.DescribedKey] CLASS name:Describer modality:FINAL visibility:private superTypes:[boberc.example.Describer<test.Point>]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:test.Point.Describer
+      PROPERTY GENERATED[boberc.example.DescribedKey] name:typeName visibility:public modality:FINAL [val]
+        overridden:
+          public abstract typeName: kotlin.String declared in boberc.example.Describer
+        FIELD PROPERTY_BACKING_FIELD name:typeName type:kotlin.String visibility:private [final]
+          EXPRESSION_BODY
+            CONST String type=kotlin.String value="Point"
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-typeName> visibility:public modality:FINAL returnType:kotlin.String
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Point.Describer
+          correspondingProperty: PROPERTY GENERATED[boberc.example.DescribedKey] name:typeName visibility:public modality:FINAL [val]
+          overridden:
+            public abstract fun <get-typeName> (): kotlin.String declared in boberc.example.Describer
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-typeName> (): kotlin.String declared in test.Point.Describer'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:typeName type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                receiver: GET_VAR '<this>: test.Point.Describer declared in test.Point.Describer.<get-typeName>' type=test.Point.Describer origin=null
+      CONSTRUCTOR GENERATED[boberc.example.DescribedKey] visibility:public returnType:test.Point.Describer [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[boberc.example.DescribedKey] CLASS name:Describer modality:FINAL visibility:private superTypes:[boberc.example.Describer<test.Point>]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in boberc.example.Describer
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in boberc.example.Describer
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in boberc.example.Describer
+      FUN GENERATED[boberc.example.DescribedKey] name:describe visibility:public modality:FINAL returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Point.Describer
+        VALUE_PARAMETER GENERATED[boberc.example.DescribedKey] kind:Regular name:value index:1 type:test.Point
+        overridden:
+          public abstract fun describe (value: T of boberc.example.Describer): kotlin.String declared in boberc.example.Describer
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun describe (value: test.Point): kotlin.String declared in test.Point.Describer'
+            CALL 'public final fun buildString (builderAction: @[ExtensionFunctionType] kotlin.Function1<java.lang.StringBuilder, kotlin.Unit>): kotlin.String declared in kotlin.text' type=kotlin.String origin=null
+              ARG builderAction: FUN_EXPR type=kotlin.Function1<java.lang.StringBuilder, kotlin.Unit> origin=LAMBDA
+                FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Unit
+                  VALUE_PARAMETER kind:ExtensionReceiver name:$this$buildString index:0 type:java.lang.StringBuilder
+                  BLOCK_BODY
+                    TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                      CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                        ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Point.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                        ARG p0: CONST String type=kotlin.String value="Point"
+                    TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                      CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                        ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Point.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                        ARG p0: CONST String type=kotlin.String value="("
+                    VAR name:first type:kotlin.Boolean [var]
+                      CONST Boolean type=kotlin.Boolean value=true
+                    BLOCK type=kotlin.Unit origin=null
+                      VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:test.Point [val]
+                        GET_VAR 'value: test.Point declared in test.Point.Describer.describe' type=test.Point origin=null
+                      BLOCK type=kotlin.Unit origin=null
+                        VAR name:name type:kotlin.String [val]
+                          CONST String type=kotlin.String value="x"
+                        VAR name:propertyValue type:kotlin.Int [val]
+                          CALL 'public final fun <get-x> (): kotlin.Int declared in test.Point' type=kotlin.Int origin=null
+                            ARG <this>: GET_VAR 'val tmp_1: test.Point declared in test.Point.Describer.describe.<anonymous>' type=test.Point origin=null
+                        WHEN type=kotlin.Unit origin=IF
+                          BRANCH
+                            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+                              ARG <this>: GET_VAR 'var first: kotlin.Boolean declared in test.Point.Describer.describe.<anonymous>' type=kotlin.Boolean origin=null
+                            then: TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                              CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                                ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Point.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                                ARG p0: CONST String type=kotlin.String value=", "
+                        SET_VAR 'var first: kotlin.Boolean declared in test.Point.Describer.describe.<anonymous>' type=kotlin.Unit origin=EQ
+                          CONST Boolean type=kotlin.Boolean value=false
+                        TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                          CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                            ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Point.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                            ARG p0: STRING_CONCATENATION type=kotlin.String
+                              GET_VAR 'val name: kotlin.String declared in test.Point.Describer.describe.<anonymous>' type=kotlin.String origin=null
+                              CONST String type=kotlin.String value="="
+                              GET_VAR 'val propertyValue: kotlin.Int declared in test.Point.Describer.describe.<anonymous>' type=kotlin.Int origin=null
+                      BLOCK type=kotlin.Unit origin=null
+                        VAR name:name type:kotlin.String [val]
+                          CONST String type=kotlin.String value="y"
+                        VAR name:propertyValue type:kotlin.Int [val]
+                          CALL 'public final fun <get-y> (): kotlin.Int declared in test.Point' type=kotlin.Int origin=null
+                            ARG <this>: GET_VAR 'val tmp_1: test.Point declared in test.Point.Describer.describe.<anonymous>' type=test.Point origin=null
+                        WHEN type=kotlin.Unit origin=IF
+                          BRANCH
+                            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+                              ARG <this>: GET_VAR 'var first: kotlin.Boolean declared in test.Point.Describer.describe.<anonymous>' type=kotlin.Boolean origin=null
+                            then: TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                              CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                                ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Point.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                                ARG p0: CONST String type=kotlin.String value=", "
+                        SET_VAR 'var first: kotlin.Boolean declared in test.Point.Describer.describe.<anonymous>' type=kotlin.Unit origin=EQ
+                          CONST Boolean type=kotlin.Boolean value=false
+                        TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                          CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                            ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Point.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                            ARG p0: STRING_CONCATENATION type=kotlin.String
+                              GET_VAR 'val name: kotlin.String declared in test.Point.Describer.describe.<anonymous>' type=kotlin.String origin=null
+                              CONST String type=kotlin.String value="="
+                              GET_VAR 'val propertyValue: kotlin.Int declared in test.Point.Describer.describe.<anonymous>' type=kotlin.Int origin=null
+                    TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                      CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=java.lang.StringBuilder? origin=null
+                        ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in test.Point.Describer.describe.<anonymous>' type=java.lang.StringBuilder origin=null
+                        ARG p0: CONST String type=kotlin.String value=")"
+    CLASS GENERATED[boberc.example.DescribedKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:test.Point.Companion
+      PROPERTY GENERATED[boberc.example.DescribedKey] name:describer visibility:public modality:FINAL [val]
+        FIELD PROPERTY_BACKING_FIELD name:describer type:boberc.example.Describer<test.Point> visibility:private [final]
+          EXPRESSION_BODY
+            CONSTRUCTOR_CALL 'public constructor <init> () declared in test.Point.Describer' type=test.Point.Describer origin=null
+        FUN DEFAULT_PROPERTY_ACCESSOR name:<get-describer> visibility:public modality:FINAL returnType:boberc.example.Describer<test.Point>
+          VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:test.Point.Companion
+          correspondingProperty: PROPERTY GENERATED[boberc.example.DescribedKey] name:describer visibility:public modality:FINAL [val]
+          BLOCK_BODY
+            RETURN type=kotlin.Nothing from='public final fun <get-describer> (): boberc.example.Describer<test.Point> declared in test.Point.Companion'
+              GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:describer type:boberc.example.Describer<test.Point> visibility:private [final]' type=boberc.example.Describer<test.Point> origin=null
+                receiver: GET_VAR '<this>: test.Point.Companion declared in test.Point.Companion.<get-describer>' type=test.Point.Companion origin=null
+      CONSTRUCTOR GENERATED[boberc.example.DescribedKey] visibility:private returnType:test.Point.Companion [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[boberc.example.DescribedKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in kotlin.Any
+    CONSTRUCTOR visibility:public returnType:test.Point [primary]
+      VALUE_PARAMETER kind:Regular name:x index:0 type:kotlin.Int
+      VALUE_PARAMETER kind:Regular name:y index:1 type:kotlin.Int
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Point modality:FINAL visibility:public superTypes:[kotlin.Any; boberc.example.Describable]' type=kotlin.Unit
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in boberc.example.Describable
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+        public open fun hashCode (): kotlin.Int declared in boberc.example.Describable
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+        public open fun toString (): kotlin.String declared in boberc.example.Describable
+  FUN name:asDescribable visibility:public modality:FINAL returnType:boberc.example.Describable
+    VALUE_PARAMETER kind:Regular name:value index:0 type:test.Point
+    BLOCK_BODY
+      RETURN type=kotlin.Nothing from='public final fun asDescribable (value: test.Point): boberc.example.Describable declared in test'
+        GET_VAR 'value: test.Point declared in test.asDescribable' type=test.Point origin=null
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:pointDescriber type:boberc.example.Describer<test.Point> [val]
+        CALL 'public final fun <get-describer> (): boberc.example.Describer<test.Point> declared in test.Point.Companion' type=boberc.example.Describer<test.Point> origin=GET_PROPERTY
+          ARG <this>: GET_OBJECT 'CLASS GENERATED[boberc.example.DescribedKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=test.Point.Companion
+      VAR name:failures type:kotlin.collections.List<kotlin.String> [val]
+        CALL 'public final fun listOfNotNull <T> (vararg elements: T of kotlin.collections.listOfNotNull?): kotlin.collections.List<T of kotlin.collections.listOfNotNull> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.String
+          ARG elements: VARARG type=kotlin.Array<out kotlin.String?> varargElementType=kotlin.String?
+            CALL 'private final fun check (actual: kotlin.Any?, expected: kotlin.Any?): kotlin.String? declared in test' type=kotlin.String? origin=null
+              ARG actual: TYPE_OP type=kotlin.Boolean origin=INSTANCEOF typeOperand=boberc.example.Describable
+                CALL 'public final fun asDescribable (value: test.Point): boberc.example.Describable declared in test' type=boberc.example.Describable origin=null
+                  ARG value: CONSTRUCTOR_CALL 'public constructor <init> (x: kotlin.Int, y: kotlin.Int) declared in test.Point' type=test.Point origin=null
+                    ARG x: CONST Int type=kotlin.Int value=1
+                    ARG y: CONST Int type=kotlin.Int value=2
+              ARG expected: CONST Boolean type=kotlin.Boolean value=true
+            CALL 'private final fun check (actual: kotlin.Any?, expected: kotlin.Any?): kotlin.String? declared in test' type=kotlin.String? origin=null
+              ARG actual: CALL 'public abstract fun <get-typeName> (): kotlin.String declared in boberc.example.Describer' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val pointDescriber: boberc.example.Describer<test.Point> declared in test.box' type=boberc.example.Describer<test.Point> origin=null
+              ARG expected: CONST String type=kotlin.String value="Point"
+            CALL 'private final fun check (actual: kotlin.Any?, expected: kotlin.Any?): kotlin.String? declared in test' type=kotlin.String? origin=null
+              ARG actual: CALL 'public abstract fun describe (value: T of boberc.example.Describer): kotlin.String declared in boberc.example.Describer' type=kotlin.String origin=null
+                ARG <this>: GET_VAR 'val pointDescriber: boberc.example.Describer<test.Point> declared in test.box' type=boberc.example.Describer<test.Point> origin=null
+                ARG value: CONSTRUCTOR_CALL 'public constructor <init> (x: kotlin.Int, y: kotlin.Int) declared in test.Point' type=test.Point origin=null
+                  ARG x: CONST Int type=kotlin.Int value=1
+                  ARG y: CONST Int type=kotlin.Int value=2
+              ARG expected: CONST String type=kotlin.String value="Point(x=1, y=2)"
+            CALL 'private final fun check (actual: kotlin.Any?, expected: kotlin.Any?): kotlin.String? declared in test' type=kotlin.String? origin=null
+              ARG actual: CALL 'public abstract fun describe (value: T of boberc.example.Describer): kotlin.String declared in boberc.example.Describer' type=kotlin.String origin=null
+                ARG <this>: CALL 'public final fun <get-describer> (): boberc.example.Describer<test.Named> declared in test.Named.Companion' type=boberc.example.Describer<test.Named> origin=GET_PROPERTY
+                  ARG <this>: GET_OBJECT 'CLASS OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=test.Named.Companion
+                ARG value: CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String) declared in test.Named' type=test.Named origin=null
+                  ARG name: CONST String type=kotlin.String value="Ann"
+              ARG expected: CONST String type=kotlin.String value="Named(name=Ann)"
+            CALL 'private final fun check (actual: kotlin.Any?, expected: kotlin.Any?): kotlin.String? declared in test' type=kotlin.String? origin=null
+              ARG actual: CALL 'public final fun <get-greeting> (): kotlin.String declared in test.Named.Companion' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: GET_OBJECT 'CLASS OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=test.Named.Companion
+              ARG expected: CONST String type=kotlin.String value="hi"
+            CALL 'private final fun check (actual: kotlin.Any?, expected: kotlin.Any?): kotlin.String? declared in test' type=kotlin.String? origin=null
+              ARG actual: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+                ARG arg0: CALL 'public final fun <get-describer> (): boberc.example.Describer<test.Point> declared in test.Point.Companion' type=boberc.example.Describer<test.Point> origin=GET_PROPERTY
+                  ARG <this>: GET_OBJECT 'CLASS GENERATED[boberc.example.DescribedKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=test.Point.Companion
+                ARG arg1: CALL 'public final fun <get-describer> (): boberc.example.Describer<test.Point> declared in test.Point.Companion' type=boberc.example.Describer<test.Point> origin=GET_PROPERTY
+                  ARG <this>: GET_OBJECT 'CLASS GENERATED[boberc.example.DescribedKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=test.Point.Companion
+              ARG expected: CONST Boolean type=kotlin.Boolean value=true
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in test'
+        WHEN type=kotlin.String origin=IF
+          BRANCH
+            if: CALL 'public abstract fun isEmpty (): kotlin.Boolean declared in kotlin.collections.List' type=kotlin.Boolean origin=null
+              ARG <this>: GET_VAR 'val failures: kotlin.collections.List<kotlin.String> declared in test.box' type=kotlin.collections.List<kotlin.String> origin=null
+            then: CONST String type=kotlin.String value="OK"
+          BRANCH
+            if: CONST Boolean type=kotlin.Boolean value=true
+            then: CALL 'public final fun joinToString <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.joinToString>, separator: kotlin.CharSequence, prefix: kotlin.CharSequence, postfix: kotlin.CharSequence, limit: kotlin.Int, truncated: kotlin.CharSequence, transform: kotlin.Function1<T of kotlin.collections.joinToString, kotlin.CharSequence>?): kotlin.String declared in kotlin.collections' type=kotlin.String origin=null
+              TYPE_ARG T: kotlin.String
+              ARG <this>: GET_VAR 'val failures: kotlin.collections.List<kotlin.String> declared in test.box' type=kotlin.collections.List<kotlin.String> origin=null
+              ARG separator: CONST String type=kotlin.String value="\n"
+  FUN name:check visibility:private modality:FINAL returnType:kotlin.String?
+    VALUE_PARAMETER kind:Regular name:actual index:0 type:kotlin.Any?
+    VALUE_PARAMETER kind:Regular name:expected index:1 type:kotlin.Any?
+    BLOCK_BODY
+      RETURN type=kotlin.Nothing from='private final fun check (actual: kotlin.Any?, expected: kotlin.Any?): kotlin.String? declared in test'
+        WHEN type=kotlin.String? origin=IF
+          BRANCH
+            if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+              ARG arg0: GET_VAR 'actual: kotlin.Any? declared in test.check' type=kotlin.Any? origin=null
+              ARG arg1: GET_VAR 'expected: kotlin.Any? declared in test.check' type=kotlin.Any? origin=null
+            then: CONST Null type=kotlin.Nothing? value=null
+          BRANCH
+            if: CONST Boolean type=kotlin.Boolean value=true
+            then: STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="expected <"
+              GET_VAR 'expected: kotlin.Any? declared in test.check' type=kotlin.Any? origin=null
+              CONST String type=kotlin.String value="> but was <"
+              GET_VAR 'actual: kotlin.Any? declared in test.check' type=kotlin.Any? origin=null
+              CONST String type=kotlin.String value=">"
+FILE fqName:boberc.example.generated fileName:boberc/example/generated/BobercGenerated.kt
+  FUN GENERATED[boberc.plugin.BobercTemplateKey] name:fizzBuzz visibility:public modality:FINAL returnType:kotlin.collections.List<kotlin.String>
+    VALUE_PARAMETER GENERATED[boberc.plugin.BobercTemplateKey] kind:Regular name:n index:0 type:kotlin.Int
+    BLOCK_BODY
+      RETURN type=kotlin.Nothing from='public final fun fizzBuzz (n: kotlin.Int): kotlin.collections.List<kotlin.String> declared in boberc.example.generated'
+        CALL 'public final fun map <T, R> (<this>: kotlin.collections.Iterable<T of kotlin.collections.map>, transform: kotlin.Function1<T of kotlin.collections.map, R of kotlin.collections.map>): kotlin.collections.List<R of kotlin.collections.map> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.Int
+          TYPE_ARG R: kotlin.String
+          ARG <this>: CALL 'public final fun rangeTo (other: kotlin.Int): kotlin.ranges.IntRange declared in kotlin.Int' type=kotlin.ranges.IntRange origin=RANGE
+            ARG <this>: CONST Int type=kotlin.Int value=1
+            ARG other: GET_VAR 'n: kotlin.Int declared in boberc.example.generated.fizzBuzz' type=kotlin.Int origin=null
+          ARG transform: FUN_EXPR type=kotlin.Function1<kotlin.Int, kotlin.String> origin=LAMBDA
+            FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+              VALUE_PARAMETER kind:Regular name:it index:0 type:kotlin.Int
+              BLOCK_BODY
+                RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: kotlin.Int): kotlin.String declared in boberc.example.generated.fizzBuzz'
+                  WHEN type=kotlin.String origin=WHEN
+                    BRANCH
+                      if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                        ARG arg0: CALL 'public final fun rem (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=PERC
+                          ARG <this>: GET_VAR 'it: kotlin.Int declared in boberc.example.generated.fizzBuzz.<anonymous>' type=kotlin.Int origin=null
+                          ARG other: CONST Int type=kotlin.Int value=15
+                        ARG arg1: CONST Int type=kotlin.Int value=0
+                      then: CONST String type=kotlin.String value="FizzBuzz"
+                    BRANCH
+                      if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                        ARG arg0: CALL 'public final fun rem (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=PERC
+                          ARG <this>: GET_VAR 'it: kotlin.Int declared in boberc.example.generated.fizzBuzz.<anonymous>' type=kotlin.Int origin=null
+                          ARG other: CONST Int type=kotlin.Int value=3
+                        ARG arg1: CONST Int type=kotlin.Int value=0
+                      then: CONST String type=kotlin.String value="Fizz"
+                    BRANCH
+                      if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                        ARG arg0: CALL 'public final fun rem (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=PERC
+                          ARG <this>: GET_VAR 'it: kotlin.Int declared in boberc.example.generated.fizzBuzz.<anonymous>' type=kotlin.Int origin=null
+                          ARG other: CONST Int type=kotlin.Int value=5
+                        ARG arg1: CONST Int type=kotlin.Int value=0
+                      then: CONST String type=kotlin.String value="Buzz"
+                    BRANCH
+                      if: CONST Boolean type=kotlin.Boolean value=true
+                      then: CALL 'public open fun toString (): kotlin.String declared in kotlin.Int' type=kotlin.String origin=null
+                        ARG <this>: GET_VAR 'it: kotlin.Int declared in boberc.example.generated.fizzBuzz.<anonymous>' type=kotlin.Int origin=null
+  FUN GENERATED[boberc.plugin.BobercTemplateKey] name:platformInfo visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:out type:java.io.PrintStream? [val]
+        GET_FIELD 'FIELD IR_EXTERNAL_JAVA_DECLARATION_STUB name:out type:@[FlexibleNullability] java.io.PrintStream? visibility:public [final,static] declared in java.lang.System' type=java.io.PrintStream? origin=null
+      VAR name:type type:kotlin.reflect.KClass<kotlin.String> [val]
+        CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
+      RETURN type=kotlin.Nothing from='public final fun platformInfo (): kotlin.String declared in boberc.example.generated'
+        STRING_CONCATENATION type=kotlin.String
+          CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: GET_VAR 'val out: java.io.PrintStream? declared in boberc.example.generated.platformInfo' type=java.io.PrintStream? origin=null
+              ARG arg1: CONST Null type=kotlin.Nothing? value=null
+          CONST String type=kotlin.String value=":"
+          CALL 'public open fun getName (): @[FlexibleNullability] kotlin.String? declared in java.lang.Class' type=kotlin.String? origin=GET_PROPERTY
+            ARG <this>: CALL 'public final fun <get-java> <T> (<this>: kotlin.reflect.KClass<T of kotlin.jvm.<get-java>>): java.lang.Class<T of kotlin.jvm.<get-java>> declared in kotlin.jvm' type=java.lang.Class<kotlin.String> origin=GET_PROPERTY
+              TYPE_ARG T: kotlin.String
+              ARG <this>: GET_VAR 'val type: kotlin.reflect.KClass<kotlin.String> declared in boberc.example.generated.platformInfo' type=kotlin.reflect.KClass<kotlin.String> origin=null
+  FUN GENERATED[boberc.plugin.BobercTemplateKey] name:shout visibility:public modality:FINAL returnType:kotlin.String?
+    VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:0 type:kotlin.String
+    BLOCK_BODY
+      RETURN type=kotlin.Nothing from='public final fun shout (<this>: kotlin.String): kotlin.String? declared in boberc.example.generated'
+        TRY type=kotlin.String?
+          try: BLOCK type=kotlin.String? origin=null
+            WHEN type=kotlin.String? origin=IF
+              BRANCH
+                if: CALL 'public final fun isEmpty (<this>: kotlin.CharSequence): kotlin.Boolean declared in kotlin.text' type=kotlin.Boolean origin=null
+                  ARG <this>: GET_VAR '<this>: kotlin.String declared in boberc.example.generated.shout' type=kotlin.String origin=null
+                then: CONST Null type=kotlin.Nothing? value=null
+              BRANCH
+                if: CONST Boolean type=kotlin.Boolean value=true
+                then: CALL 'public final fun plus (other: kotlin.Any?): kotlin.String declared in kotlin.String' type=kotlin.String origin=PLUS
+                  ARG <this>: CALL 'public final fun uppercase (<this>: kotlin.String): kotlin.String declared in kotlin.text' type=kotlin.String origin=null
+                    ARG <this>: GET_VAR '<this>: kotlin.String declared in boberc.example.generated.shout' type=kotlin.String origin=null
+                  ARG other: CONST String type=kotlin.String value="!!!"
+          CATCH parameter=val e: java.lang.IllegalStateException declared in boberc.example.generated.shout
+            VAR CATCH_PARAMETER name:e type:java.lang.IllegalStateException [val]
+            BLOCK type=kotlin.Nothing? origin=null
+              CONST Null type=kotlin.Nothing? value=null
+  FUN GENERATED[boberc.plugin.BobercTemplateKey] name:summarize visibility:public modality:FINAL returnType:kotlin.String
+    VALUE_PARAMETER GENERATED[boberc.plugin.BobercTemplateKey] kind:Regular name:words index:0 type:kotlin.Array<out kotlin.String?> varargElementType:kotlin.String? [vararg]
+    BLOCK_BODY
+      VAR name:counts type:kotlin.collections.MutableMap<kotlin.Int, kotlin.Int> [val]
+        CALL 'public final fun mutableMapOf <K, V> (): kotlin.collections.MutableMap<K of kotlin.collections.mutableMapOf, V of kotlin.collections.mutableMapOf> declared in kotlin.collections' type=kotlin.collections.MutableMap<kotlin.Int, kotlin.Int> origin=null
+          TYPE_ARG K: kotlin.Int
+          TYPE_ARG V: kotlin.Int
+      BLOCK type=kotlin.Unit origin=FOR_LOOP
+        VAR FOR_LOOP_ITERATOR name:tmp_0 type:kotlin.collections.Iterator<kotlin.String?> [val]
+          CALL 'public final fun iterator (): kotlin.collections.Iterator<T of kotlin.Array> declared in kotlin.Array' type=kotlin.collections.Iterator<kotlin.String?> origin=FOR_LOOP_ITERATOR
+            ARG <this>: GET_VAR 'words: kotlin.Array<out kotlin.String?> declared in boberc.example.generated.summarize' type=kotlin.Array<out kotlin.String?> origin=null
+        WHILE label=null origin=FOR_LOOP_INNER_WHILE
+          condition: CALL 'public abstract fun hasNext (): kotlin.Boolean declared in kotlin.collections.Iterator' type=kotlin.Boolean origin=FOR_LOOP_HAS_NEXT
+            ARG <this>: GET_VAR 'val tmp_0: kotlin.collections.Iterator<kotlin.String?> declared in boberc.example.generated.summarize' type=kotlin.collections.Iterator<kotlin.String?> origin=null
+          body: BLOCK type=kotlin.Unit origin=FOR_LOOP_INNER_WHILE
+            VAR FOR_LOOP_VARIABLE name:w type:kotlin.String? [val]
+              CALL 'public abstract fun next (): T of kotlin.collections.Iterator declared in kotlin.collections.Iterator' type=kotlin.String? origin=FOR_LOOP_NEXT
+                ARG <this>: GET_VAR 'val tmp_0: kotlin.collections.Iterator<kotlin.String?> declared in boberc.example.generated.summarize' type=kotlin.collections.Iterator<kotlin.String?> origin=null
+            BLOCK type=kotlin.Unit origin=null
+              VAR name:length type:kotlin.Int [val]
+                BLOCK type=kotlin.Int origin=ELVIS
+                  VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:kotlin.Int? [val]
+                    BLOCK type=kotlin.Int? origin=SAFE_CALL
+                      VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:kotlin.String? [val]
+                        GET_VAR 'val w: kotlin.String? declared in boberc.example.generated.summarize' type=kotlin.String? origin=null
+                      WHEN type=kotlin.Int? origin=null
+                        BRANCH
+                          if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                            ARG arg0: GET_VAR 'val tmp_2: kotlin.String? declared in boberc.example.generated.summarize' type=kotlin.String? origin=null
+                            ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                          then: CONST Null type=kotlin.Nothing? value=null
+                        BRANCH
+                          if: CONST Boolean type=kotlin.Boolean value=true
+                          then: CALL 'public open fun <get-length> (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=GET_PROPERTY
+                            ARG <this>: TYPE_OP type=kotlin.String origin=IMPLICIT_CAST typeOperand=kotlin.String
+                              GET_VAR 'val tmp_2: kotlin.String? declared in boberc.example.generated.summarize' type=kotlin.String? origin=null
+                  WHEN type=kotlin.Int origin=null
+                    BRANCH
+                      if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                        ARG arg0: GET_VAR 'val tmp_1: kotlin.Int? declared in boberc.example.generated.summarize' type=kotlin.Int? origin=null
+                        ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                      then: CONST Int type=kotlin.Int value=-1
+                    BRANCH
+                      if: CONST Boolean type=kotlin.Boolean value=true
+                      then: GET_VAR 'val tmp_1: kotlin.Int? declared in boberc.example.generated.summarize' type=kotlin.Int? origin=null
+              CALL 'public final fun set <K, V> (<this>: kotlin.collections.MutableMap<K of kotlin.collections.set, V of kotlin.collections.set>, key: K of kotlin.collections.set, value: V of kotlin.collections.set): kotlin.Unit declared in kotlin.collections' type=kotlin.Unit origin=EQ
+                TYPE_ARG K: kotlin.Int
+                TYPE_ARG V: kotlin.Int
+                ARG <this>: GET_VAR 'val counts: kotlin.collections.MutableMap<kotlin.Int, kotlin.Int> declared in boberc.example.generated.summarize' type=kotlin.collections.MutableMap<kotlin.Int, kotlin.Int> origin=null
+                ARG key: GET_VAR 'val length: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+                ARG value: CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=PLUS
+                  ARG <this>: BLOCK type=kotlin.Int origin=ELVIS
+                    VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:kotlin.Int? [val]
+                      CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Int? origin=GET_ARRAY_ELEMENT
+                        ARG <this>: GET_VAR 'val counts: kotlin.collections.MutableMap<kotlin.Int, kotlin.Int> declared in boberc.example.generated.summarize' type=kotlin.collections.MutableMap<kotlin.Int, kotlin.Int> origin=null
+                        ARG key: GET_VAR 'val length: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+                    WHEN type=kotlin.Int origin=null
+                      BRANCH
+                        if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                          ARG arg0: GET_VAR 'val tmp_3: kotlin.Int? declared in boberc.example.generated.summarize' type=kotlin.Int? origin=null
+                          ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                        then: CONST Int type=kotlin.Int value=0
+                      BRANCH
+                        if: CONST Boolean type=kotlin.Boolean value=true
+                        then: GET_VAR 'val tmp_3: kotlin.Int? declared in boberc.example.generated.summarize' type=kotlin.Int? origin=null
+                  ARG other: CONST Int type=kotlin.Int value=1
+      VAR name:attempts type:kotlin.Int [var]
+        CONST Int type=kotlin.Int value=0
+      DO_WHILE label=null origin=DO_WHILE_LOOP
+        body: COMPOSITE type=kotlin.Unit origin=null
+          TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+            BLOCK type=kotlin.Int origin=POSTFIX_INCR
+              VAR IR_TEMPORARY_VARIABLE name:tmp_4 type:kotlin.Int [val]
+                GET_VAR 'var attempts: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+              SET_VAR 'var attempts: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Unit origin=POSTFIX_INCR
+                CALL 'public final fun inc (): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=POSTFIX_INCR
+                  ARG <this>: GET_VAR 'val tmp_4: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+              GET_VAR 'val tmp_4: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+        condition: CALL 'public final fun less (arg0: kotlin.Int, arg1: kotlin.Int): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=LT
+          ARG arg0: GET_VAR 'var attempts: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+          ARG arg1: CONST Int type=kotlin.Int value=2
+      VAR name:level type:kotlin.DeprecationLevel [val]
+        BLOCK type=kotlin.DeprecationLevel origin=WHEN
+          VAR IR_TEMPORARY_VARIABLE name:tmp_5 type:kotlin.Int [val]
+            CALL 'public final fun <get-size> (): kotlin.Int declared in kotlin.Array' type=kotlin.Int origin=GET_PROPERTY
+              ARG <this>: GET_VAR 'words: kotlin.Array<out kotlin.String?> declared in boberc.example.generated.summarize' type=kotlin.Array<out kotlin.String?> origin=null
+          WHEN type=kotlin.DeprecationLevel origin=WHEN
+            BRANCH
+              if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                ARG arg0: GET_VAR 'val tmp_5: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+                ARG arg1: CONST Int type=kotlin.Int value=0
+              then: GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:HIDDEN' type=kotlin.DeprecationLevel
+            BRANCH
+              if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                ARG arg0: GET_VAR 'val tmp_5: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+                ARG arg1: CONST Int type=kotlin.Int value=1
+              then: GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:ERROR' type=kotlin.DeprecationLevel
+            BRANCH
+              if: CONST Boolean type=kotlin.Boolean value=true
+              then: GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:WARNING' type=kotlin.DeprecationLevel
+      VAR name:any type:kotlin.Any [val]
+        GET_VAR 'val level: kotlin.DeprecationLevel declared in boberc.example.generated.summarize' type=kotlin.DeprecationLevel origin=null
+      VAR name:isEnum type:kotlin.Boolean [val]
+        TYPE_OP type=kotlin.Boolean origin=INSTANCEOF typeOperand=kotlin.Enum<*>
+          GET_VAR 'val any: kotlin.Any declared in boberc.example.generated.summarize' type=kotlin.Any origin=null
+      VAR name:total type:kotlin.Int [val]
+        CALL 'public final fun sumOf <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.sumOf>, selector: kotlin.Function1<T of kotlin.collections.sumOf, kotlin.Int>): kotlin.Int declared in kotlin.collections' type=kotlin.Int origin=null
+          TYPE_ARG T: kotlin.String
+          ARG <this>: CALL 'public final fun filterNotNull <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.filterNotNull?>): kotlin.collections.List<T of kotlin.collections.filterNotNull> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+            TYPE_ARG T: kotlin.String
+            ARG <this>: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String?> origin=null
+              TYPE_ARG T: kotlin.String?
+              ARG elements: VARARG type=kotlin.Array<out kotlin.String?> varargElementType=kotlin.String?
+                SPREAD_ELEMENT
+                  GET_VAR 'words: kotlin.Array<out kotlin.String?> declared in boberc.example.generated.summarize' type=kotlin.Array<out kotlin.String?> origin=null
+          ARG selector: FUN_EXPR type=kotlin.Function1<kotlin.String, kotlin.Int> origin=LAMBDA
+            FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Int
+              VALUE_PARAMETER kind:Regular name:it index:0 type:kotlin.String
+              BLOCK_BODY
+                RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: kotlin.String): kotlin.Int declared in boberc.example.generated.summarize'
+                  CALL 'public open fun <get-length> (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=GET_PROPERTY
+                    ARG <this>: GET_VAR 'it: kotlin.String declared in boberc.example.generated.summarize.<anonymous>' type=kotlin.String origin=null
+      VAR name:totalLong type:kotlin.Long [val]
+        CALL 'public final fun sumOf <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.sumOf>, selector: kotlin.Function1<T of kotlin.collections.sumOf, kotlin.Long>): kotlin.Long declared in kotlin.collections' type=kotlin.Long origin=null
+          TYPE_ARG T: kotlin.String
+          ARG <this>: CALL 'public final fun filterNotNull <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.filterNotNull?>): kotlin.collections.List<T of kotlin.collections.filterNotNull> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+            TYPE_ARG T: kotlin.String
+            ARG <this>: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String?> origin=null
+              TYPE_ARG T: kotlin.String?
+              ARG elements: VARARG type=kotlin.Array<out kotlin.String?> varargElementType=kotlin.String?
+                SPREAD_ELEMENT
+                  GET_VAR 'words: kotlin.Array<out kotlin.String?> declared in boberc.example.generated.summarize' type=kotlin.Array<out kotlin.String?> origin=null
+          ARG selector: FUN_EXPR type=kotlin.Function1<kotlin.String, kotlin.Long> origin=LAMBDA
+            FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Long
+              VALUE_PARAMETER kind:Regular name:it index:0 type:kotlin.String
+              BLOCK_BODY
+                RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: kotlin.String): kotlin.Long declared in boberc.example.generated.summarize'
+                  CALL 'public final fun times (other: kotlin.Long): kotlin.Long declared in kotlin.Long' type=kotlin.Long origin=MUL
+                    ARG <this>: CALL 'public open fun toLong (): kotlin.Long declared in kotlin.Int' type=kotlin.Long origin=null
+                      ARG <this>: CALL 'public open fun <get-length> (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=GET_PROPERTY
+                        ARG <this>: GET_VAR 'it: kotlin.String declared in boberc.example.generated.summarize.<anonymous>' type=kotlin.String origin=null
+                    ARG other: CONST Long type=kotlin.Long value=2
+      RETURN type=kotlin.Nothing from='public final fun summarize (vararg words: kotlin.String?): kotlin.String declared in boberc.example.generated'
+        STRING_CONCATENATION type=kotlin.String
+          CONST String type=kotlin.String value="counts="
+          GET_VAR 'val counts: kotlin.collections.MutableMap<kotlin.Int, kotlin.Int> declared in boberc.example.generated.summarize' type=kotlin.collections.MutableMap<kotlin.Int, kotlin.Int> origin=null
+          CONST String type=kotlin.String value=" attempts="
+          GET_VAR 'var attempts: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+          CONST String type=kotlin.String value=" level="
+          CALL 'public final fun <get-name> (): kotlin.String declared in kotlin.Enum' type=kotlin.String origin=GET_PROPERTY
+            ARG <this>: GET_VAR 'val level: kotlin.DeprecationLevel declared in boberc.example.generated.summarize' type=kotlin.DeprecationLevel origin=null
+          CONST String type=kotlin.String value=" enum="
+          GET_VAR 'val isEnum: kotlin.Boolean declared in boberc.example.generated.summarize' type=kotlin.Boolean origin=null
+          CONST String type=kotlin.String value=" total="
+          GET_VAR 'val total: kotlin.Int declared in boberc.example.generated.summarize' type=kotlin.Int origin=null
+          CONST String type=kotlin.String value="/"
+          GET_VAR 'val totalLong: kotlin.Long declared in boberc.example.generated.summarize' type=kotlin.Long origin=null
+          CONST String type=kotlin.String value=" unit="
+          GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Unit modality:FINAL visibility:public superTypes:[kotlin.Any]' type=kotlin.Unit

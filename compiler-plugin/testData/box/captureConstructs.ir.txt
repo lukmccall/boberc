@@ -1,0 +1,352 @@
+FILE fqName:<root> fileName:/captureConstructs.kt
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:t type:boberc.model.FunctionTemplate [val]
+        CALL 'public final fun decodeFunctionTemplate (vararg parts: kotlin.String): boberc.model.FunctionTemplate declared in boberc.internal' type=boberc.model.FunctionTemplate origin=null
+          ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(template 8 \"kitchenSink\" false PUBLIC false false ((typeParam \"T\" INVARIANT false ((class \"kotlin/Comparable\" (invariant (typeParam 0)))))) (this) ((param \"prefix\" (class \"kotlin/String\") true _ false false _) (param \"limit\" (class \"kotlin/Int\") true _ false false _) (param \"items\" (class \"kotlin/collections/List\" (invariant (typeParam 0))) false _ false false _) (param \"extra\" (class \"kotlin/Array\" (out (class \"kotlin/String\"))) false (class \"kotlin/String\") false false _) (param \"separator\" (class \"kotlin/String\") false _ false false (const STRING \", \" (class \"kotlin/String\")))) (class \"kotlin/String\") (block ((var 1 \"sorted\" (class \"kotlin/collections/List\" (invariant (typeParam 0))) false _ (call (callable \"kotlin.collections\" _ \"sorted\" FUNCTION \"1|ekotlin/collections/Iterable<#T>\") ((typeParam 0)) ((get (param 2))) (class \"kotlin/collections/List\" (invariant (typeParam 0))) _)) (var 2 \"count\" (class \"kotlin/Int\") true _ (const INT \"0\" (class \"kotlin/Int\"))) (var 3 \"result\" (class \"kotlin/String\") false _ (call (callable \"kotlin.text\" _ \"buildString\" FUNCTION \"0|rkotlin/Function1<java/lang/StringBuilder,kotlin/Unit>\") () ((lambda 4 ((lambdaParam 5 EXTENSION_RECEIVER \"$this$buildString\" (class \"java/lang/StringBuilder\"))) (class \"kotlin/Unit\") ((typeOp IMPLICIT_COERCION_TO_UNIT (class \"kotlin/Unit\") (call (callable \"java.lang\" \"StringBuilder\" \"append\" FUNCTION \"0|rkotlin/String\") () ((get (local 5)) (get (param 0))) (class? \"java/lang/StringBuilder\") _) (class \"kotlin/Unit\")) (block ((var 6 \"<iterator>\" (class \"kotlin/collections/Iterator\" (invariant (typeParam 0))) false \"FOR_LOOP_ITERATOR\" (call (callable \"kotlin.collections\" \"List\" \"iterator\" FUNCTION \"0|\") () ((get (local 1))) (class \"kotlin/collections/Iterator\" (invariant (typeParam 0))) \"FOR_LOOP_ITERATOR\")) (while 7 _ (call (callable \"kotlin.collections\" \"Iterator\" \"hasNext\" FUNCTION \"0|\") () ((get (local 6))) (class \"kotlin/Boolean\") \"FOR_LOOP_HAS_NEXT\") (block ((var 8 \"item\" (typeParam 0) false \"FOR_LOOP_VARIABLE\" (call (callable \"kotlin.collections\" \"Iterator\" \"next\" FUNCTION \"0|\") () ((get (local 6))) (typeParam 0) \"FOR_LOOP_NEXT\")) (block ((when ((branch (call (builtin \"greaterOrEqual\" \"0|rkotlin/Int,rkotlin/Int\") () ((get (local 2)) (get (param 1))) (class \"kotlin/Boolean\") \"GTEQ\") (break 7))) (class \"kotlin/Unit\") \"IF\") (when ((branch (call (builtin \"greater\" \"0|rkotlin/Int,rkotlin/Int\") () ((get (local 2)) (const INT \"0\" (class \"kotlin/Int\"))) (class \"kotlin/Boolean\") \"GT\") (typeOp IMPLICIT_COERCION_TO_UNIT (class \"kotlin/Unit\") (call (callable \"java.lang\" \"StringBuilder\" \"append\" FUNCTION \"0|rkotlin/String\") () ((get (local 5)) (get (param 4))) (class? \"java/lang/StringBuilder\") _) (class \"kotlin/Unit\")))) (class \"kotlin/Unit\") \"IF\") (typeOp IMPLICIT_COERCION_TO_UNIT (class \"kotlin/Unit\") (call (callable \"java.lang\" \"StringBuilder\" \"append\" FUNCTION \"0|rkotlin/String\") () ((get (local 5)) (call (callable \"kotlin\" \"Any\" \"toString\" FUNCTION \"0|\") () ((get (local 8))) (class \"kotlin/String\") _)) (class? \"java/lang/StringBuilder\") _) (class \"kotlin/Unit\")) (typeOp IMPLICIT_COERCION_TO_UNIT (class \"kotlin/Unit\") (block ((var 9 \"<unary>\" (class \"kotlin/Int\") false \"IR_TEMPORARY_VARIABLE\" (get (local 2))) (set (local 2) (call (callable \"kotlin\" \"Int\" \"inc\" FUNCTION \"0|\") () ((get (local 9))) (class \"kotlin/Int\") \"POSTFIX_INCR\") \"POSTFIX_INCR\") (get (local 9))) (class \"kotlin/Int\") \"POSTFIX_INCR\") (class \"kotlin/Unit\"))) (class \"kotlin/Unit\") _)) (class \"kotlin/Unit\") \"FOR_LOOP_INNER_WHILE\") \"FOR_LOOP_INNER_WHILE\")) (class \"kotlin/Unit\") \"FOR_LOOP\")) (class \"kotlin/Function1\" (invariant (class \"java/lang/StringBuilder\")) (invariant (class \"kotlin/Unit\"))) \"LAMBDA\" false)) (class \"kotlin/String\") _)) (var 10 \"kind\" (class \"kotlin/String\") false _ (when ((branch (call (builtin \"EQEQ\" \"0|rkotlin/Any,rkotlin/Any\") () ((get (local 2)) (const INT \"0\" (class \"kotlin/Int\"))) (class \"kotlin/Boolean\") \"EQEQ\") (const STRING \"empty\" (class \"kotlin/String\"))) (branch (call (builtin \"less\" \"0|rkotlin/Int,rkotlin/Int\") () ((get (local 2)) (get (param 1))) (class \"kotlin/Boolean\") \"LT\") (const STRING \"partial\" (class \"kotlin/String\"))) (else (const BOOLEAN \"true\" (class \"kotlin/Boolean\")) (const STRING \"full\" (class \"kotlin/String\")))) (class \"kotlin/String\") \"WHEN\")) (var 11 \"safe\" (class \"kotlin/String\") false _ (try (block ((var 12 \"tmp0_elvis_lhs\" (class? \"kotlin/String\") false \"IR_TEMPORARY_VARIABLE\" (call (callable \"kotlin.text\" _ \"ifEmpty\" FUNCTION \"2|e#C,rkotlin/Function0<#R>\") ((class \"kotlin/String\") (class? \"kotlin/String\")) ((call (callable \"kotlin.collections\" _ \"joinToString\" FUNCTION \"1|ekotlin/Array<#T>,rkotlin/CharSequence,rkotlin/CharSequence,rkotlin/CharSequence,rkotlin/Int,rkotlin/CharSequence,rkotlin/Function1<#T,kotlin/CharSequence>\") ((class \"kotlin/String\")) ((get (param 3)) _ _ _ _ _ _) (class \"kotlin/String\") _) (lambda 13 () (class? \"kotlin/String\") ((return 13 (const NULL _ (class? \"kotlin/Nothing\")))) (class \"kotlin/Function0\" (invariant (class? \"kotlin/String\"))) \"LAMBDA\" false)) (class? \"kotlin/String\") _)) (when ((branch (call (builtin \"EQEQ\" \"0|rkotlin/Any,rkotlin/Any\") () ((get (local 12)) (const NULL _ (class? \"kotlin/Nothing\"))) (class \"kotlin/Boolean\") \"EQEQ\") (const STRING \"none\" (class \"kotlin/String\"))) (else (const BOOLEAN \"true\" (class \"kotlin/Boolean\")) (get (local 12)))) (class \"kotlin/String\") _)) (class \"kotlin/String\") \"ELVIS\") ((catch (var 14 \"e\" (class \"java/lang/IllegalStateException\") false \"CATCH_PARAMETER\" _) (block ((throw (new \"java/lang/IllegalArgumentException\" \"0|rkotlin/String,rkotlin/Throwable\" () 0 ((const STRING \"unexpected\" (class \"kotlin/String\")) (get (local 14))) (class \"java/lang/IllegalArgumentException\") _))) (class \"kotlin/Nothing\") _))) (block ((set (local 2) (call (callable \"kotlin\" \"Int\" \"plus\" FUNCTION \"0|rkotlin/Int\") () ((get (local 2)) (const INT \"0\" (class \"kotlin/Int\"))) (class \"kotlin/Int\") \"PLUSEQ\") \"PLUSEQ\")) (class \"kotlin/Unit\") _) (class \"kotlin/String\"))) (var 15 \"i\" (class \"kotlin/Int\") true _ (const INT \"0\" (class \"kotlin/Int\"))) (block ((doWhile 16 _ (call (builtin \"less\" \"0|rkotlin/Int,rkotlin/Int\") () ((get (local 15)) (const INT \"3\" (class \"kotlin/Int\"))) (class \"kotlin/Boolean\") \"LT\") (composite ((typeOp IMPLICIT_COERCION_TO_UNIT (class \"kotlin/Unit\") (block ((var 17 \"<unary>\" (class \"kotlin/Int\") false \"IR_TEMPORARY_VARIABLE\" (get (local 15))) (set (local 15) (call (callable \"kotlin\" \"Int\" \"inc\" FUNCTION \"0|\") () ((get (local 17))) (class \"kotlin/Int\") \"POSTFIX_INCR\") \"POSTFIX_INCR\") (get (local 17))) (class \"kotlin/Int\") \"POSTFIX_INCR\") (class \"kotlin/Unit\"))) (class \"kotlin/Unit\") _) \"DO_WHILE_LOOP\")) (class \"kotlin/Unit\") _) (var 18 \"self\" (class \"kotlin/Any\") false _ (typeOp CAST (class \"kotlin/Any\") (get receiver) (class \"kotlin/Any\"))) (var 19 \"isString\" (class \"kotlin/Boolean\") false _ (typeOp INSTANCEOF (class \"kotlin/String\") (get (local 18)) (class \"kotlin/Boolean\"))) (return 0 (concat ((get (local 3)) (const STRING \"|\" (class \"kotlin/String\")) (get (local 10)) (const STRING \"|\" (class \"kotlin/String\")) (get (local 11)) (const STRING \"|\" (class \"kotlin/String\")) (get (local 15)) (const STRING \"|\" (class \"kotlin/String\")) (when ((branch (call (callable \"kotlin\" \"Boolean\" \"not\" FUNCTION \"0|\") () ((call (builtin \"EQEQ\" \"0|rkotlin/Any,rkotlin/Any\") () ((call (callable \"kotlin\" \"Any\" \"hashCode\" FUNCTION \"0|\") () ((get (local 18))) (class \"kotlin/Int\") _) (const INT \"0\" (class \"kotlin/Int\"))) (class \"kotlin/Boolean\") \"EXCLEQ\")) (class \"kotlin/Boolean\") \"EXCLEQ\") (const BOOLEAN \"true\" (class \"kotlin/Boolean\"))) (else (const BOOLEAN \"true\" (class \"kotlin/Boolean\")) (call (callable \"kotlin\" \"Boolean\" \"not\" FUNCTION \"0|\") () ((get (local 19))) (class \"kotlin/Boolean\") _))) (class \"kotlin/Boolean\") \"OROR\") (const STRING \"|\" (class \"kotlin/String\")) (call (callable \"kotlin.collections\" \"List\" \"size\" GETTER \"0|\") () ((call (callable \"kotlin.collections\" _ \"listOf\" FUNCTION \"1|rkotlin/Array<#T>\") ((class \"kotlin/String\")) ((vararg ((spread (get (param 3)))) (class \"kotlin/String\") (class \"kotlin/Array\" (out (class \"kotlin/String\"))))) (class \"kotlin/collections/List\" (invariant (class \"kotlin/String\"))) _)) (class \"kotlin/Int\") \"GET_PROPERTY\") (const STRING \"|\" (class \"kotlin/String\")) (call (callable \"kotlin\" _ \"Char\" FUNCTION \"0|rkotlin/Int\") () ((const INT \"65\" (class \"kotlin/Int\"))) (class \"kotlin/Char\") _) (const STRING \"|\" (class \"kotlin/String\")) (const FLOAT \"1069547520\" (class \"kotlin/Float\")) (const STRING \"|\" (class \"kotlin/String\")) (const LONG \"2\" (class \"kotlin/Long\"))) (class \"kotlin/String\")))) (class \"kotlin/Unit\") _))"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=boberc.model.TType.This
+            CALL 'public final fun <get-receiverType> (): boberc.model.TType? declared in boberc.model.FunctionTemplate' type=boberc.model.TType? origin=GET_PROPERTY
+              ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: receiver "
+              CALL 'public final fun <get-receiverType> (): boberc.model.TType? declared in boberc.model.FunctionTemplate' type=boberc.model.TType? origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun map <T, R> (<this>: kotlin.collections.Iterable<T of kotlin.collections.map>, transform: kotlin.Function1<T of kotlin.collections.map, R of kotlin.collections.map>): kotlin.collections.List<R of kotlin.collections.map> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: boberc.model.TParameter
+                TYPE_ARG R: kotlin.String
+                ARG <this>: CALL 'public final fun <get-spliceParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                ARG transform: FUN_EXPR type=kotlin.Function1<boberc.model.TParameter, kotlin.String> origin=LAMBDA
+                  FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+                    VALUE_PARAMETER kind:Regular name:it index:0 type:boberc.model.TParameter
+                    BLOCK_BODY
+                      RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: boberc.model.TParameter): kotlin.String declared in <root>.box'
+                        CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.TParameter' type=kotlin.String origin=GET_PROPERTY
+                          ARG <this>: GET_VAR 'it: boberc.model.TParameter declared in <root>.box.<anonymous>' type=boberc.model.TParameter origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                  CONST String type=kotlin.String value="prefix"
+                  CONST String type=kotlin.String value="limit"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: splices "
+              CALL 'public final fun map <T, R> (<this>: kotlin.collections.Iterable<T of kotlin.collections.map>, transform: kotlin.Function1<T of kotlin.collections.map, R of kotlin.collections.map>): kotlin.collections.List<R of kotlin.collections.map> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: boberc.model.TParameter
+                TYPE_ARG R: kotlin.String
+                ARG <this>: CALL 'public final fun <get-spliceParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                ARG transform: FUN_EXPR type=kotlin.Function1<boberc.model.TParameter, kotlin.String> origin=LAMBDA
+                  FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+                    VALUE_PARAMETER kind:Regular name:it index:0 type:boberc.model.TParameter
+                    BLOCK_BODY
+                      RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: boberc.model.TParameter): kotlin.String declared in <root>.box'
+                        CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.TParameter' type=kotlin.String origin=GET_PROPERTY
+                          ARG <this>: GET_VAR 'it: boberc.model.TParameter declared in <root>.box.<anonymous>' type=boberc.model.TParameter origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun map <T, R> (<this>: kotlin.collections.Iterable<T of kotlin.collections.map>, transform: kotlin.Function1<T of kotlin.collections.map, R of kotlin.collections.map>): kotlin.collections.List<R of kotlin.collections.map> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: boberc.model.TParameter
+                TYPE_ARG R: kotlin.String
+                ARG <this>: CALL 'public final fun <get-regularParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                ARG transform: FUN_EXPR type=kotlin.Function1<boberc.model.TParameter, kotlin.String> origin=LAMBDA
+                  FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+                    VALUE_PARAMETER kind:Regular name:it index:0 type:boberc.model.TParameter
+                    BLOCK_BODY
+                      RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: boberc.model.TParameter): kotlin.String declared in <root>.box'
+                        CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.TParameter' type=kotlin.String origin=GET_PROPERTY
+                          ARG <this>: GET_VAR 'it: boberc.model.TParameter declared in <root>.box.<anonymous>' type=boberc.model.TParameter origin=null
+              ARG arg1: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+                TYPE_ARG T: kotlin.String
+                ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                  CONST String type=kotlin.String value="items"
+                  CONST String type=kotlin.String value="extra"
+                  CONST String type=kotlin.String value="separator"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: params"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+            ARG arg0: CALL 'public final fun <get-varargElementType> (): boberc.model.TType? declared in boberc.model.TParameter' type=boberc.model.TType? origin=GET_PROPERTY
+              ARG <this>: CALL 'public abstract fun get (index: kotlin.Int): E of kotlin.collections.List declared in kotlin.collections.List' type=boberc.model.TParameter origin=GET_ARRAY_ELEMENT
+                ARG <this>: CALL 'public final fun <get-regularParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                ARG index: CONST Int type=kotlin.Int value=1
+            ARG arg1: CONST Null type=kotlin.Nothing? value=null
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: vararg"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+            ARG arg0: CALL 'public final fun <get-defaultValue> (): boberc.model.TExpr? declared in boberc.model.TParameter' type=boberc.model.TExpr? origin=GET_PROPERTY
+              ARG <this>: CALL 'public abstract fun get (index: kotlin.Int): E of kotlin.collections.List declared in kotlin.collections.List' type=boberc.model.TParameter origin=GET_ARRAY_ELEMENT
+                ARG <this>: CALL 'public final fun <get-regularParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                  ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+                ARG index: CONST Int type=kotlin.Int value=2
+            ARG arg1: CONST Null type=kotlin.Nothing? value=null
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: default value"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public abstract fun <get-size> (): kotlin.Int declared in kotlin.collections.List' type=kotlin.Int origin=GET_PROPERTY
+                ARG <this>: CALL 'public final fun <get-bounds> (): kotlin.collections.List<boberc.model.TType> declared in boberc.model.TTypeParameter' type=kotlin.collections.List<boberc.model.TType> origin=GET_PROPERTY
+                  ARG <this>: CALL 'public final fun single <T> (<this>: kotlin.collections.List<T of kotlin.collections.single>): T of kotlin.collections.single declared in kotlin.collections' type=boberc.model.TTypeParameter origin=null
+                    TYPE_ARG T: boberc.model.TTypeParameter
+                    ARG <this>: CALL 'public final fun <get-typeParameters> (): kotlin.collections.List<boberc.model.TTypeParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TTypeParameter> origin=GET_PROPERTY
+                      ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=1
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: bounds"
+      VAR name:rendered type:kotlin.String [val]
+        CALL 'public final fun render (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+          ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      VAR name:roundTrip type:kotlin.String [val]
+        CALL 'public final fun render (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+          ARG <this>: CALL 'public final fun decode (encoded: kotlin.String): boberc.model.FunctionTemplate declared in boberc.model.FunctionTemplate.Companion' type=boberc.model.FunctionTemplate origin=null
+            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=boberc.model.FunctionTemplate.Companion
+            ARG encoded: CALL 'public final fun encode (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+              ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+              ARG arg1: GET_VAR 'val roundTrip: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: round trip\n"
+              GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+              CONST String type=kotlin.String value="\n---\n"
+              GET_VAR 'val roundTrip: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+      VAR name:expectedFragments type:kotlin.collections.List<kotlin.String> [val]
+        CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.String
+          ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(callable \"kotlin.text\" _ \"buildString\" FUNCTION"
+            CONST String type=kotlin.String value="(callable \"kotlin.collections\" _ \"sorted\" FUNCTION \"1|ekotlin/collections/Iterable<#T>\")"
+            CONST String type=kotlin.String value="(builtin \"less\""
+            CONST String type=kotlin.String value="(lambda"
+            CONST String type=kotlin.String value="(try"
+            CONST String type=kotlin.String value="(doWhile"
+            CONST String type=kotlin.String value="(typeOp INSTANCEOF"
+      VAR name:missing type:kotlin.collections.List<kotlin.String> [val]
+        CALL 'public final fun filter <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.filter>, predicate: kotlin.Function1<T of kotlin.collections.filter, kotlin.Boolean>): kotlin.collections.List<T of kotlin.collections.filter> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.String
+          ARG <this>: GET_VAR 'val expectedFragments: kotlin.collections.List<kotlin.String> declared in <root>.box' type=kotlin.collections.List<kotlin.String> origin=null
+          ARG predicate: FUN_EXPR type=kotlin.Function1<kotlin.String, kotlin.Boolean> origin=LAMBDA
+            FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Boolean
+              VALUE_PARAMETER kind:Regular name:it index:0 type:kotlin.String
+              BLOCK_BODY
+                RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: kotlin.String): kotlin.Boolean declared in <root>.box'
+                  CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=NOT_IN
+                    ARG <this>: CALL 'public final fun contains (<this>: kotlin.CharSequence, other: kotlin.CharSequence, ignoreCase: kotlin.Boolean): kotlin.Boolean declared in kotlin.text' type=kotlin.Boolean origin=NOT_IN
+                      ARG <this>: GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+                      ARG other: GET_VAR 'it: kotlin.String declared in <root>.box.<anonymous>' type=kotlin.String origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        WHEN type=kotlin.String origin=IF
+          BRANCH
+            if: CALL 'public abstract fun isEmpty (): kotlin.Boolean declared in kotlin.collections.List' type=kotlin.Boolean origin=null
+              ARG <this>: GET_VAR 'val missing: kotlin.collections.List<kotlin.String> declared in <root>.box' type=kotlin.collections.List<kotlin.String> origin=null
+            then: CONST String type=kotlin.String value="OK"
+          BRANCH
+            if: CONST Boolean type=kotlin.Boolean value=true
+            then: STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: missing "
+              GET_VAR 'val missing: kotlin.collections.List<kotlin.String> declared in <root>.box' type=kotlin.collections.List<kotlin.String> origin=null
+              CONST String type=kotlin.String value=" in\n"
+              GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+  FUN name:kitchenSink visibility:public modality:FINAL returnType:kotlin.String
+    TYPE_PARAMETER name:T index:0 variance: superTypes:[kotlin.Comparable<T of <root>.kitchenSink>] reified:false
+    VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:0 type:boberc.This
+    VALUE_PARAMETER kind:Regular name:prefix index:1 type:kotlin.String
+      annotations:
+        Splice
+    VALUE_PARAMETER kind:Regular name:limit index:2 type:kotlin.Int
+      annotations:
+        Splice
+    VALUE_PARAMETER kind:Regular name:items index:3 type:kotlin.collections.List<T of <root>.kitchenSink>
+    VALUE_PARAMETER kind:Regular name:extra index:4 type:kotlin.Array<out kotlin.String> varargElementType:kotlin.String [vararg]
+    VALUE_PARAMETER kind:Regular name:separator index:5 type:kotlin.String
+      EXPRESSION_BODY
+        CONST String type=kotlin.String value=", "
+    annotations:
+      Template
+    BLOCK_BODY
+      VAR name:sorted type:kotlin.collections.List<T of <root>.kitchenSink> [val]
+        CALL 'public final fun sorted <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.sorted>): kotlin.collections.List<T of kotlin.collections.sorted> declared in kotlin.collections' type=kotlin.collections.List<T of <root>.kitchenSink> origin=null
+          TYPE_ARG T: T of <root>.kitchenSink
+          ARG <this>: GET_VAR 'items: kotlin.collections.List<T of <root>.kitchenSink> declared in <root>.kitchenSink' type=kotlin.collections.List<T of <root>.kitchenSink> origin=null
+      VAR name:count type:kotlin.Int [var]
+        CONST Int type=kotlin.Int value=0
+      VAR name:result type:kotlin.String [val]
+        CALL 'public final fun buildString (builderAction: @[ExtensionFunctionType] kotlin.Function1<java.lang.StringBuilder, kotlin.Unit>): kotlin.String declared in kotlin.text' type=kotlin.String origin=null
+          ARG builderAction: FUN_EXPR type=@[ExtensionFunctionType] kotlin.Function1<java.lang.StringBuilder, kotlin.Unit> origin=LAMBDA
+            FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Unit
+              VALUE_PARAMETER kind:ExtensionReceiver name:$this$buildString index:0 type:java.lang.StringBuilder
+              BLOCK_BODY
+                TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                  CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=@[FlexibleNullability] java.lang.StringBuilder? origin=null
+                    ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in <root>.kitchenSink.<anonymous>' type=java.lang.StringBuilder origin=IMPLICIT_ARGUMENT
+                    ARG p0: GET_VAR 'prefix: kotlin.String declared in <root>.kitchenSink' type=kotlin.String origin=null
+                BLOCK type=kotlin.Unit origin=FOR_LOOP
+                  VAR FOR_LOOP_ITERATOR name:tmp_0 type:kotlin.collections.Iterator<T of <root>.kitchenSink> [val]
+                    CALL 'public abstract fun iterator (): kotlin.collections.Iterator<E of kotlin.collections.List> declared in kotlin.collections.List' type=kotlin.collections.Iterator<T of <root>.kitchenSink> origin=FOR_LOOP_ITERATOR
+                      ARG <this>: GET_VAR 'val sorted: kotlin.collections.List<T of <root>.kitchenSink> declared in <root>.kitchenSink' type=kotlin.collections.List<T of <root>.kitchenSink> origin=null
+                  WHILE label=null origin=FOR_LOOP_INNER_WHILE
+                    condition: CALL 'public abstract fun hasNext (): kotlin.Boolean declared in kotlin.collections.Iterator' type=kotlin.Boolean origin=FOR_LOOP_HAS_NEXT
+                      ARG <this>: GET_VAR 'val tmp_0: kotlin.collections.Iterator<T of <root>.kitchenSink> declared in <root>.kitchenSink.<anonymous>' type=kotlin.collections.Iterator<T of <root>.kitchenSink> origin=null
+                    body: BLOCK type=kotlin.Unit origin=FOR_LOOP_INNER_WHILE
+                      VAR FOR_LOOP_VARIABLE name:item type:T of <root>.kitchenSink [val]
+                        CALL 'public abstract fun next (): T of kotlin.collections.Iterator declared in kotlin.collections.Iterator' type=T of <root>.kitchenSink origin=FOR_LOOP_NEXT
+                          ARG <this>: GET_VAR 'val tmp_0: kotlin.collections.Iterator<T of <root>.kitchenSink> declared in <root>.kitchenSink.<anonymous>' type=kotlin.collections.Iterator<T of <root>.kitchenSink> origin=null
+                      BLOCK type=kotlin.Unit origin=null
+                        WHEN type=kotlin.Unit origin=IF
+                          BRANCH
+                            if: CALL 'public final fun greaterOrEqual (arg0: kotlin.Int, arg1: kotlin.Int): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=GTEQ
+                              ARG arg0: GET_VAR 'var count: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+                              ARG arg1: GET_VAR 'limit: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+                            then: BREAK label=null loop.label=null
+                        WHEN type=kotlin.Unit origin=IF
+                          BRANCH
+                            if: CALL 'public final fun greater (arg0: kotlin.Int, arg1: kotlin.Int): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=GT
+                              ARG arg0: GET_VAR 'var count: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+                              ARG arg1: CONST Int type=kotlin.Int value=0
+                            then: TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                              CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=@[FlexibleNullability] java.lang.StringBuilder? origin=null
+                                ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in <root>.kitchenSink.<anonymous>' type=java.lang.StringBuilder origin=IMPLICIT_ARGUMENT
+                                ARG p0: GET_VAR 'separator: kotlin.String declared in <root>.kitchenSink' type=kotlin.String origin=null
+                        TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                          CALL 'public open fun append (p0: @[FlexibleNullability] kotlin.String?): @[FlexibleNullability] java.lang.StringBuilder? declared in java.lang.StringBuilder' type=@[FlexibleNullability] java.lang.StringBuilder? origin=null
+                            ARG <this>: GET_VAR '$this$buildString: java.lang.StringBuilder declared in <root>.kitchenSink.<anonymous>' type=java.lang.StringBuilder origin=IMPLICIT_ARGUMENT
+                            ARG p0: CALL 'public open fun toString (): kotlin.String declared in kotlin.Any' type=kotlin.String origin=null
+                              ARG <this>: GET_VAR 'val item: T of <root>.kitchenSink declared in <root>.kitchenSink.<anonymous>' type=T of <root>.kitchenSink origin=null
+                        TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+                          BLOCK type=kotlin.Int origin=POSTFIX_INCR
+                            VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:kotlin.Int [val]
+                              GET_VAR 'var count: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=POSTFIX_INCR
+                            SET_VAR 'var count: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Unit origin=POSTFIX_INCR
+                              CALL 'public final fun inc (): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=POSTFIX_INCR
+                                ARG <this>: GET_VAR 'val tmp_1: kotlin.Int declared in <root>.kitchenSink.<anonymous>' type=kotlin.Int origin=null
+                            GET_VAR 'val tmp_1: kotlin.Int declared in <root>.kitchenSink.<anonymous>' type=kotlin.Int origin=null
+      VAR name:kind type:kotlin.String [val]
+        WHEN type=kotlin.String origin=WHEN
+          BRANCH
+            if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+              ARG arg0: GET_VAR 'var count: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+              ARG arg1: CONST Int type=kotlin.Int value=0
+            then: CONST String type=kotlin.String value="empty"
+          BRANCH
+            if: CALL 'public final fun less (arg0: kotlin.Int, arg1: kotlin.Int): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=LT
+              ARG arg0: GET_VAR 'var count: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+              ARG arg1: GET_VAR 'limit: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+            then: CONST String type=kotlin.String value="partial"
+          BRANCH
+            if: CONST Boolean type=kotlin.Boolean value=true
+            then: CONST String type=kotlin.String value="full"
+      VAR name:safe type:kotlin.String [val]
+        TRY type=kotlin.String
+          try: BLOCK type=kotlin.String origin=ELVIS
+            VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:kotlin.String? [val]
+              CALL 'public final fun ifEmpty <C, R> (<this>: C of kotlin.text.ifEmpty, defaultValue: kotlin.Function0<R of kotlin.text.ifEmpty>): R of kotlin.text.ifEmpty declared in kotlin.text' type=kotlin.String? origin=null
+                TYPE_ARG C: kotlin.String
+                TYPE_ARG R: kotlin.String?
+                ARG <this>: CALL 'public final fun joinToString <T> (<this>: kotlin.Array<out T of kotlin.collections.joinToString>, separator: kotlin.CharSequence, prefix: kotlin.CharSequence, postfix: kotlin.CharSequence, limit: kotlin.Int, truncated: kotlin.CharSequence, transform: kotlin.Function1<T of kotlin.collections.joinToString, kotlin.CharSequence>?): kotlin.String declared in kotlin.collections' type=kotlin.String origin=null
+                  TYPE_ARG T: kotlin.String
+                  ARG <this>: GET_VAR 'extra: kotlin.Array<out kotlin.String> declared in <root>.kitchenSink' type=kotlin.Array<out kotlin.String> origin=null
+                ARG defaultValue: FUN_EXPR type=kotlin.Function0<kotlin.String?> origin=LAMBDA
+                  FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String?
+                    BLOCK_BODY
+                      RETURN type=kotlin.Nothing from='local final fun <anonymous> (): kotlin.String? declared in <root>.kitchenSink'
+                        CONST Null type=kotlin.Nothing? value=null
+            WHEN type=kotlin.String origin=null
+              BRANCH
+                if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                  ARG arg0: GET_VAR 'val tmp_2: kotlin.String? declared in <root>.kitchenSink' type=kotlin.String? origin=null
+                  ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                then: CONST String type=kotlin.String value="none"
+              BRANCH
+                if: CONST Boolean type=kotlin.Boolean value=true
+                then: GET_VAR 'val tmp_2: kotlin.String? declared in <root>.kitchenSink' type=kotlin.String? origin=null
+          CATCH parameter=val e: java.lang.IllegalStateException declared in <root>.kitchenSink
+            VAR CATCH_PARAMETER name:e type:java.lang.IllegalStateException [val]
+            BLOCK type=kotlin.Nothing origin=null
+              THROW type=kotlin.Nothing
+                CONSTRUCTOR_CALL 'public constructor <init> (p0: @[FlexibleNullability] kotlin.String?, p1: @[FlexibleNullability] kotlin.Throwable?) declared in java.lang.IllegalArgumentException' type=java.lang.IllegalArgumentException origin=null
+                  ARG p0: CONST String type=kotlin.String value="unexpected"
+                  ARG p1: GET_VAR 'val e: java.lang.IllegalStateException declared in <root>.kitchenSink' type=java.lang.IllegalStateException origin=null
+          finally: BLOCK type=kotlin.Unit origin=null
+            SET_VAR 'var count: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Unit origin=PLUSEQ
+              CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=PLUSEQ
+                ARG <this>: GET_VAR 'var count: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=PLUSEQ
+                ARG other: CONST Int type=kotlin.Int value=0
+      VAR name:i type:kotlin.Int [var]
+        CONST Int type=kotlin.Int value=0
+      BLOCK type=kotlin.Unit origin=null
+        DO_WHILE label=null origin=DO_WHILE_LOOP
+          body: COMPOSITE type=kotlin.Unit origin=null
+            TYPE_OP type=kotlin.Unit origin=IMPLICIT_COERCION_TO_UNIT typeOperand=kotlin.Unit
+              BLOCK type=kotlin.Int origin=POSTFIX_INCR
+                VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:kotlin.Int [val]
+                  GET_VAR 'var i: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=POSTFIX_INCR
+                SET_VAR 'var i: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Unit origin=POSTFIX_INCR
+                  CALL 'public final fun inc (): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=POSTFIX_INCR
+                    ARG <this>: GET_VAR 'val tmp_3: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+                GET_VAR 'val tmp_3: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+          condition: CALL 'public final fun less (arg0: kotlin.Int, arg1: kotlin.Int): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=LT
+            ARG arg0: GET_VAR 'var i: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+            ARG arg1: CONST Int type=kotlin.Int value=3
+      VAR name:self type:kotlin.Any [val]
+        TYPE_OP type=kotlin.Any origin=CAST typeOperand=kotlin.Any
+          GET_VAR '<this>: boberc.This declared in <root>.kitchenSink' type=boberc.This origin=null
+      VAR name:isString type:kotlin.Boolean [val]
+        TYPE_OP type=kotlin.Boolean origin=INSTANCEOF typeOperand=kotlin.String
+          GET_VAR 'val self: kotlin.Any declared in <root>.kitchenSink' type=kotlin.Any origin=null
+      RETURN type=kotlin.Nothing from='public final fun kitchenSink <T> (<this>: boberc.This, prefix: kotlin.String, limit: kotlin.Int, items: kotlin.collections.List<T of <root>.kitchenSink>, vararg extra: kotlin.String, separator: kotlin.String): kotlin.String declared in <root>'
+        STRING_CONCATENATION type=kotlin.String
+          GET_VAR 'val result: kotlin.String declared in <root>.kitchenSink' type=kotlin.String origin=null
+          CONST String type=kotlin.String value="|"
+          GET_VAR 'val kind: kotlin.String declared in <root>.kitchenSink' type=kotlin.String origin=null
+          CONST String type=kotlin.String value="|"
+          GET_VAR 'val safe: kotlin.String declared in <root>.kitchenSink' type=kotlin.String origin=null
+          CONST String type=kotlin.String value="|"
+          GET_VAR 'var i: kotlin.Int declared in <root>.kitchenSink' type=kotlin.Int origin=null
+          CONST String type=kotlin.String value="|"
+          WHEN type=kotlin.Boolean origin=OROR
+            BRANCH
+              if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+                ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                  ARG arg0: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Any' type=kotlin.Int origin=null
+                    ARG <this>: GET_VAR 'val self: kotlin.Any declared in <root>.kitchenSink' type=kotlin.Any origin=null
+                  ARG arg1: CONST Int type=kotlin.Int value=0
+              then: CONST Boolean type=kotlin.Boolean value=true
+            BRANCH
+              if: CONST Boolean type=kotlin.Boolean value=true
+              then: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=null
+                ARG <this>: GET_VAR 'val isString: kotlin.Boolean declared in <root>.kitchenSink' type=kotlin.Boolean origin=null
+          CONST String type=kotlin.String value="|"
+          CALL 'public abstract fun <get-size> (): kotlin.Int declared in kotlin.collections.List' type=kotlin.Int origin=GET_PROPERTY
+            ARG <this>: CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+              TYPE_ARG T: kotlin.String
+              ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                SPREAD_ELEMENT
+                  GET_VAR 'extra: kotlin.Array<out kotlin.String> declared in <root>.kitchenSink' type=kotlin.Array<out kotlin.String> origin=null
+          CONST String type=kotlin.String value="|"
+          CALL 'public final fun Char (code: kotlin.Int): kotlin.Char declared in kotlin' type=kotlin.Char origin=null
+            ARG code: CONST Int type=kotlin.Int value=65
+          CONST String type=kotlin.String value="|"
+          CONST Float type=kotlin.Float value=1.5
+          CONST String type=kotlin.String value="|"
+          CONST Long type=kotlin.Long value=2

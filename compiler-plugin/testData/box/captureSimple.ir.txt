@@ -1,0 +1,63 @@
+FILE fqName:<root> fileName:/captureSimple.kt
+  PROPERTY name:EXPECTED visibility:private modality:FINAL [val]
+    FIELD PROPERTY_BACKING_FIELD name:EXPECTED type:kotlin.String visibility:private [final,static]
+      EXPRESSION_BODY
+        CALL 'public final fun trim (<this>: kotlin.String): kotlin.String declared in kotlin.text' type=kotlin.String origin=null
+          ARG <this>: CONST String type=kotlin.String value="\n(template 8 \"greeting\" false PUBLIC false false\n  ()\n  _\n  ((param \"name\" (class \"kotlin/String\") false _ false false _))\n  (class \"kotlin/String\")\n  (block\n    (\n      (return 0\n        (concat\n          (\n            (const STRING \"Hello, \" (class \"kotlin/String\"))\n            (get (param 0))\n            (const STRING \"!\" (class \"kotlin/String\")))\n          (class \"kotlin/String\"))))\n    (class \"kotlin/Unit\")\n    _))\n"
+    FUN DEFAULT_PROPERTY_ACCESSOR name:<get-EXPECTED> visibility:private modality:FINAL returnType:kotlin.String
+      correspondingProperty: PROPERTY name:EXPECTED visibility:private modality:FINAL [val]
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='private final fun <get-EXPECTED> (): kotlin.String declared in <root>'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:EXPECTED type:kotlin.String visibility:private [final,static]' type=kotlin.String origin=null
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun greeting (name: kotlin.String): kotlin.String declared in <root>' type=kotlin.String origin=null
+                ARG name: CONST String type=kotlin.String value="Bob"
+              ARG arg1: CONST String type=kotlin.String value="Hello, Bob!"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: template is not callable"
+      VAR name:t type:boberc.model.FunctionTemplate [val]
+        CALL 'public final fun decodeFunctionTemplate (vararg parts: kotlin.String): boberc.model.FunctionTemplate declared in boberc.internal' type=boberc.model.FunctionTemplate origin=null
+          ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(template 8 \"greeting\" false PUBLIC false false () _ ((param \"name\" (class \"kotlin/String\") false _ false false _)) (class \"kotlin/String\") (block ((return 0 (concat ((const STRING \"Hello, \" (class \"kotlin/String\")) (get (param 0)) (const STRING \"!\" (class \"kotlin/String\"))) (class \"kotlin/String\")))) (class \"kotlin/Unit\") _))"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+              ARG arg1: CONST String type=kotlin.String value="greeting"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: name "
+              CALL 'public final fun <get-name> (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      VAR name:rendered type:kotlin.String [val]
+        CALL 'public final fun render (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+          ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        WHEN type=kotlin.String origin=IF
+          BRANCH
+            if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+              ARG arg0: GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+              ARG arg1: CALL 'private final fun <get-EXPECTED> (): kotlin.String declared in <root>' type=kotlin.String origin=GET_PROPERTY
+            then: CONST String type=kotlin.String value="OK"
+          BRANCH
+            if: CONST Boolean type=kotlin.Boolean value=true
+            then: STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail, rendered:\n"
+              GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+  FUN name:greeting visibility:public modality:FINAL returnType:kotlin.String
+    VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
+    annotations:
+      Template
+    BLOCK_BODY
+      RETURN type=kotlin.Nothing from='public final fun greeting (name: kotlin.String): kotlin.String declared in <root>'
+        STRING_CONCATENATION type=kotlin.String
+          CONST String type=kotlin.String value="Hello, "
+          GET_VAR 'name: kotlin.String declared in <root>.greeting' type=kotlin.String origin=null
+          CONST String type=kotlin.String value="!"

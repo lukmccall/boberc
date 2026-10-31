@@ -1,0 +1,179 @@
+FILE fqName:<root> fileName:/captureAdvanced.kt
+  CLASS INTERFACE name:BoxMirror modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Mirror(fqName = "com.example.Box")
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.BoxMirror<T of <root>.BoxMirror>
+    TYPE_PARAMETER name:T index:0 variance: superTypes:[kotlin.Any?] reified:false
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    FUN name:describe visibility:public modality:ABSTRACT returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.BoxMirror<T of <root>.BoxMirror>
+      VALUE_PARAMETER kind:Regular name:prefix index:1 type:kotlin.String
+        EXPRESSION_BODY
+          CONST String type=kotlin.String value="Box"
+      VALUE_PARAMETER kind:Regular name:suffix index:2 type:kotlin.String
+        EXPRESSION_BODY
+          CONST String type=kotlin.String value="!"
+    FUN name:map visibility:public modality:ABSTRACT returnType:<root>.BoxMirror<R of <root>.BoxMirror.map>
+      TYPE_PARAMETER name:R index:0 variance: superTypes:[kotlin.Any?] reified:false
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.BoxMirror<T of <root>.BoxMirror>
+      VALUE_PARAMETER kind:Regular name:transform index:1 type:kotlin.Function1<T of <root>.BoxMirror, R of <root>.BoxMirror.map>
+  CLASS INTERFACE name:Tagger modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Mirror(fqName = <null>)
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.Tagger
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    FUN name:tag visibility:public modality:ABSTRACT returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Tagger
+      VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:1 type:kotlin.String
+  FUN name:advanced visibility:public modality:FINAL returnType:kotlin.String
+    VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:0 type:<root>.Tagger
+    VALUE_PARAMETER kind:Regular name:box index:1 type:<root>.BoxMirror<kotlin.Int>
+    annotations:
+      Template
+    BLOCK_BODY
+      VAR name:parts type:kotlin.collections.MutableList<kotlin.String> [val]
+        CALL 'public final fun mutableListOf <T> (vararg elements: T of kotlin.collections.mutableListOf): kotlin.collections.MutableList<T of kotlin.collections.mutableListOf> declared in kotlin.collections' type=kotlin.collections.MutableList<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.String
+          ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CALL 'public abstract fun describe (prefix: kotlin.String, suffix: kotlin.String): kotlin.String declared in <root>.BoxMirror' type=kotlin.String origin=null
+              ARG <this>: GET_VAR 'box: <root>.BoxMirror<kotlin.Int> declared in <root>.advanced' type=<root>.BoxMirror<kotlin.Int> origin=null
+              ARG suffix: CONST String type=kotlin.String value="?"
+            CALL 'public abstract fun describe (prefix: kotlin.String, suffix: kotlin.String): kotlin.String declared in <root>.BoxMirror' type=kotlin.String origin=null
+              ARG <this>: GET_VAR 'box: <root>.BoxMirror<kotlin.Int> declared in <root>.advanced' type=<root>.BoxMirror<kotlin.Int> origin=null
+              ARG prefix: CONST String type=kotlin.String value="a"
+              ARG suffix: CONST String type=kotlin.String value="b"
+            CALL 'public abstract fun tag (<this>: kotlin.String): kotlin.String declared in <root>.Tagger' type=kotlin.String origin=null
+              ARG <this>(index:0): GET_VAR '<this>: <root>.Tagger declared in <root>.advanced' type=<root>.Tagger origin=IMPLICIT_ARGUMENT
+              ARG <this>(index:1): CONST String type=kotlin.String value="x"
+      CALL 'public final fun plusAssign <T> (<this>: kotlin.collections.MutableCollection<in T of kotlin.collections.plusAssign>, element: T of kotlin.collections.plusAssign): kotlin.Unit declared in kotlin.collections' type=kotlin.Unit origin=PLUSEQ
+        TYPE_ARG T: kotlin.String
+        ARG <this>: GET_VAR 'val parts: kotlin.collections.MutableList<kotlin.String> declared in <root>.advanced' type=kotlin.collections.MutableList<kotlin.String> origin=PLUSEQ
+        ARG element: CALL 'public abstract fun describe (prefix: kotlin.String, suffix: kotlin.String): kotlin.String declared in <root>.BoxMirror' type=kotlin.String origin=null
+          ARG <this>: CALL 'public abstract fun map <R> (transform: kotlin.Function1<T of <root>.BoxMirror, R of <root>.BoxMirror.map>): <root>.BoxMirror<R of <root>.BoxMirror.map> declared in <root>.BoxMirror' type=<root>.BoxMirror<kotlin.String> origin=null
+            TYPE_ARG R: kotlin.String
+            ARG <this>: GET_VAR 'box: <root>.BoxMirror<kotlin.Int> declared in <root>.advanced' type=<root>.BoxMirror<kotlin.Int> origin=null
+            ARG transform: FUN_EXPR type=kotlin.Function1<kotlin.Int, kotlin.String> origin=LAMBDA
+              FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.String
+                VALUE_PARAMETER kind:Regular name:it index:0 type:kotlin.Int
+                BLOCK_BODY
+                  RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: kotlin.Int): kotlin.String declared in <root>.advanced'
+                    CALL 'public open fun toString (): kotlin.String declared in kotlin.Int' type=kotlin.String origin=null
+                      ARG <this>: GET_VAR 'it: kotlin.Int declared in <root>.advanced.<anonymous>' type=kotlin.Int origin=null
+      CALL 'public final fun plusAssign <T> (<this>: kotlin.collections.MutableCollection<in T of kotlin.collections.plusAssign>, element: T of kotlin.collections.plusAssign): kotlin.Unit declared in kotlin.collections' type=kotlin.Unit origin=PLUSEQ
+        TYPE_ARG T: kotlin.String
+        ARG <this>: GET_VAR 'val parts: kotlin.collections.MutableList<kotlin.String> declared in <root>.advanced' type=kotlin.collections.MutableList<kotlin.String> origin=PLUSEQ
+        ARG element: CALL 'public final fun callMember <T> (<this>: kotlin.Any?, name: kotlin.String, vararg arguments: kotlin.Any?): T of boberc.callMember declared in boberc' type=kotlin.String origin=null
+          TYPE_ARG T: kotlin.String
+          ARG <this>: GET_VAR 'box: <root>.BoxMirror<kotlin.Int> declared in <root>.advanced' type=<root>.BoxMirror<kotlin.Int> origin=null
+          ARG name: CONST String type=kotlin.String value="describe"
+          ARG arguments: VARARG type=kotlin.Array<out kotlin.Any?> varargElementType=kotlin.Any?
+            CALL 'public final fun arg (name: kotlin.String, value: kotlin.Any?): kotlin.Any? declared in boberc' type=kotlin.Any? origin=null
+              ARG name: CONST String type=kotlin.String value="prefix"
+              ARG value: CONST String type=kotlin.String value="p"
+      CALL 'public final fun plusAssign <T> (<this>: kotlin.collections.MutableCollection<in T of kotlin.collections.plusAssign>, element: T of kotlin.collections.plusAssign): kotlin.Unit declared in kotlin.collections' type=kotlin.Unit origin=PLUSEQ
+        TYPE_ARG T: kotlin.String
+        ARG <this>: GET_VAR 'val parts: kotlin.collections.MutableList<kotlin.String> declared in <root>.advanced' type=kotlin.collections.MutableList<kotlin.String> origin=PLUSEQ
+        ARG element: CALL 'public final fun callExtension <T> (<this>: kotlin.Any?, fqName: kotlin.String, vararg arguments: kotlin.Any?): T of boberc.callExtension declared in boberc' type=kotlin.String origin=null
+          TYPE_ARG T: kotlin.String
+          ARG <this>: CONST String type=kotlin.String value="s"
+          ARG fqName: CONST String type=kotlin.String value="com.example.shout"
+          ARG arguments: VARARG type=kotlin.Array<out kotlin.Any?> varargElementType=kotlin.Any?
+            CONST Int type=kotlin.Int value=2
+      CALL 'public final fun plusAssign <T> (<this>: kotlin.collections.MutableCollection<in T of kotlin.collections.plusAssign>, element: T of kotlin.collections.plusAssign): kotlin.Unit declared in kotlin.collections' type=kotlin.Unit origin=PLUSEQ
+        TYPE_ARG T: kotlin.String
+        ARG <this>: GET_VAR 'val parts: kotlin.collections.MutableList<kotlin.String> declared in <root>.advanced' type=kotlin.collections.MutableList<kotlin.String> origin=PLUSEQ
+        ARG element: CALL 'public final fun callMemberExtension <T> (<this>: kotlin.Any?, name: kotlin.String, extensionReceiver: kotlin.Any?, vararg arguments: kotlin.Any?): T of boberc.callMemberExtension declared in boberc' type=kotlin.String origin=null
+          TYPE_ARG T: kotlin.String
+          ARG <this>: GET_VAR '<this>: <root>.Tagger declared in <root>.advanced' type=<root>.Tagger origin=IMPLICIT_ARGUMENT
+          ARG name: CONST String type=kotlin.String value="tag"
+          ARG extensionReceiver: CONST String type=kotlin.String value="y"
+      CALL 'public final fun forEachProperty (<this>: kotlin.Any?, action: kotlin.Function2<@[ParameterName(name = "name")] kotlin.String, @[ParameterName(name = "value")] kotlin.Any?, kotlin.Unit>): kotlin.Unit declared in boberc' type=kotlin.Unit origin=null
+        ARG <this>: GET_VAR '<this>: <root>.Tagger declared in <root>.advanced' type=<root>.Tagger origin=IMPLICIT_ARGUMENT
+        ARG action: FUN_EXPR type=kotlin.Function2<kotlin.String, kotlin.Any?, kotlin.Unit> origin=LAMBDA
+          FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Unit
+            VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
+            VALUE_PARAMETER kind:Regular name:value index:1 type:kotlin.Any?
+            BLOCK_BODY
+              CALL 'public final fun plusAssign <T> (<this>: kotlin.collections.MutableCollection<in T of kotlin.collections.plusAssign>, element: T of kotlin.collections.plusAssign): kotlin.Unit declared in kotlin.collections' type=kotlin.Unit origin=PLUSEQ
+                TYPE_ARG T: kotlin.String
+                ARG <this>: GET_VAR 'val parts: kotlin.collections.MutableList<kotlin.String> declared in <root>.advanced' type=kotlin.collections.MutableList<kotlin.String> origin=PLUSEQ
+                ARG element: STRING_CONCATENATION type=kotlin.String
+                  GET_VAR 'name: kotlin.String declared in <root>.advanced.<anonymous>' type=kotlin.String origin=null
+                  CONST String type=kotlin.String value="="
+                  GET_VAR 'value: kotlin.Any? declared in <root>.advanced.<anonymous>' type=kotlin.Any? origin=null
+      RETURN type=kotlin.Nothing from='public final fun advanced (<this>: <root>.Tagger, box: <root>.BoxMirror<kotlin.Int>): kotlin.String declared in <root>'
+        CALL 'public final fun joinToString <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.joinToString>, separator: kotlin.CharSequence, prefix: kotlin.CharSequence, postfix: kotlin.CharSequence, limit: kotlin.Int, truncated: kotlin.CharSequence, transform: kotlin.Function1<T of kotlin.collections.joinToString, kotlin.CharSequence>?): kotlin.String declared in kotlin.collections' type=kotlin.String origin=null
+          TYPE_ARG T: kotlin.String
+          ARG <this>: GET_VAR 'val parts: kotlin.collections.MutableList<kotlin.String> declared in <root>.advanced' type=kotlin.collections.MutableList<kotlin.String> origin=null
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:compact type:kotlin.String [val]
+        CALL 'public final fun encode (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+          ARG <this>: CALL 'public final fun decodeFunctionTemplate (vararg parts: kotlin.String): boberc.model.FunctionTemplate declared in boberc.internal' type=boberc.model.FunctionTemplate origin=null
+            ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+              CONST String type=kotlin.String value="(template 8 \"advanced\" false PUBLIC false false () (this) ((param \"box\" (named \"com.example.Box\" (invariant (class \"kotlin/Int\"))) false _ false false _)) (class \"kotlin/String\") (block ((var 1 \"parts\" (class \"kotlin/collections/MutableList\" (invariant (class \"kotlin/String\"))) false _ (call (callable \"kotlin.collections\" _ \"mutableListOf\" FUNCTION \"1|rkotlin/Array<#T>\") ((class \"kotlin/String\")) ((vararg ((dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (get (param 0)) _ () ((namedArg (const STRING \"suffix\" (class \"kotlin/String\")) (const STRING \"?\" (class \"kotlin/String\")))) (class \"kotlin/String\")) (dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (get (param 0)) _ () ((const STRING \"a\" (class \"kotlin/String\")) (const STRING \"b\" (class \"kotlin/String\"))) (class \"kotlin/String\")) (dynamic CALL_MEMBER (const STRING \"tag\" (class \"kotlin/String\")) (get receiver) (const STRING \"x\" (class \"kotlin/String\")) () () (class \"kotlin/String\"))) (class \"kotlin/String\") (class \"kotlin/Array\" (out (class \"kotlin/String\"))))) (class \"kotlin/collections/MutableList\" (invariant (class \"kotlin/String\"))) _)) (call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (dynamic CALL_MEMBER (const STRING \"map\" (class \"kotlin/String\")) (get (param 0)) _ ((class \"kotlin/String\")) ((lambda 2 ((lambdaParam 3 REGULAR \"it\" (class \"kotlin/Int\"))) (class \"kotlin/String\") ((return 2 (call (callable \"kotlin\" \"Int\" \"toString\" FUNCTION \"0|\") () ((get (local 3))) (class \"kotlin/String\") _))) (class \"kotlin/Function1\" (invariant (class \"kotlin/Int\")) (invariant (class \"kotlin/String\"))) \"LAMBDA\" false)) (named \"com.example.Box\" (invariant (class \"kotlin/String\")))) _ () () (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\") (call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (get (param 0)) _ () ((namedArg (const STRING \"prefix\" (class \"kotlin/String\")) (const STRING \"p\" (class \"kotlin/String\")))) (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\") (call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (dynamic CALL_FUNCTION (const STRING \"com.example.shout\" (class \"kotlin/String\")) (const STRING \"s\" (class \"kotlin/String\")) _ () ((const INT \"2\" (class \"kotlin/Int\"))) (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\") (call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (dynamic CALL_MEMBER (const STRING \"tag\" (class \"kotlin/String\")) (get receiver) (const STRING \"y\" (class \"kotlin/String\")) () () (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\") (forEachProperty (get receiver) 4 \"name\" 5 \"value\" ((call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (concat ((get (local 4)) (const STRING \"=\" (class \"kotlin/String\")) (get (local 5))) (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\"))) (return 0 (call (callable \"kotlin.collections\" _ \"joinToString\" FUNCTION \"1|ekotlin/collections/Iterable<#T>,rkotlin/CharSequence,rkotlin/CharSequence,rkotlin/CharSequence,rkotlin/Int,rkotlin/CharSequence,rkotlin/Function1<#T,kotlin/CharSequence>\") ((class \"kotlin/String\")) ((get (local 1)) _ _ _ _ _ _) (class \"kotlin/String\") _))) (class \"kotlin/Unit\") _))"
+      VAR name:expected type:kotlin.collections.List<kotlin.String> [val]
+        CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.String
+          ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (get (param 0)) _ () ((namedArg (const STRING \"suffix\""
+            CONST String type=kotlin.String value="(dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (get (param 0)) _ () ((const STRING \"a\""
+            CONST String type=kotlin.String value="(dynamic CALL_MEMBER (const STRING \"tag\" (class \"kotlin/String\")) (get receiver) (const STRING \"x\""
+            CONST String type=kotlin.String value="(dynamic CALL_MEMBER (const STRING \"map\" (class \"kotlin/String\")) (get (param 0)) _ ((class \"kotlin/String\"))"
+            CONST String type=kotlin.String value="(namedArg (const STRING \"prefix\""
+            CONST String type=kotlin.String value="(dynamic CALL_FUNCTION (const STRING \"com.example.shout\" (class \"kotlin/String\")) (const STRING \"s\""
+            CONST String type=kotlin.String value="(dynamic CALL_MEMBER (const STRING \"tag\" (class \"kotlin/String\")) (get receiver) (const STRING \"y\""
+            CONST String type=kotlin.String value="(forEachProperty (get receiver) "
+      VAR name:missing type:kotlin.collections.List<kotlin.String> [val]
+        CALL 'public final fun filter <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.filter>, predicate: kotlin.Function1<T of kotlin.collections.filter, kotlin.Boolean>): kotlin.collections.List<T of kotlin.collections.filter> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.String
+          ARG <this>: GET_VAR 'val expected: kotlin.collections.List<kotlin.String> declared in <root>.box' type=kotlin.collections.List<kotlin.String> origin=null
+          ARG predicate: FUN_EXPR type=kotlin.Function1<kotlin.String, kotlin.Boolean> origin=LAMBDA
+            FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Boolean
+              VALUE_PARAMETER kind:Regular name:it index:0 type:kotlin.String
+              BLOCK_BODY
+                RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: kotlin.String): kotlin.Boolean declared in <root>.box'
+                  CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=NOT_IN
+                    ARG <this>: CALL 'public final fun contains (<this>: kotlin.CharSequence, other: kotlin.CharSequence, ignoreCase: kotlin.Boolean): kotlin.Boolean declared in kotlin.text' type=kotlin.Boolean origin=NOT_IN
+                      ARG <this>: GET_VAR 'val compact: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+                      ARG other: GET_VAR 'it: kotlin.String declared in <root>.box.<anonymous>' type=kotlin.String origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        WHEN type=kotlin.String origin=IF
+          BRANCH
+            if: CALL 'public abstract fun isEmpty (): kotlin.Boolean declared in kotlin.collections.List' type=kotlin.Boolean origin=null
+              ARG <this>: GET_VAR 'val missing: kotlin.collections.List<kotlin.String> declared in <root>.box' type=kotlin.collections.List<kotlin.String> origin=null
+            then: CONST String type=kotlin.String value="OK"
+          BRANCH
+            if: CONST Boolean type=kotlin.Boolean value=true
+            then: STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: missing "
+              GET_VAR 'val missing: kotlin.collections.List<kotlin.String> declared in <root>.box' type=kotlin.collections.List<kotlin.String> origin=null
+              CONST String type=kotlin.String value=" in\n"
+              CALL 'public final fun render (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+                ARG <this>: CALL 'public final fun decodeFunctionTemplate (vararg parts: kotlin.String): boberc.model.FunctionTemplate declared in boberc.internal' type=boberc.model.FunctionTemplate origin=null
+                  ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+                    CONST String type=kotlin.String value="(template 8 \"advanced\" false PUBLIC false false () (this) ((param \"box\" (named \"com.example.Box\" (invariant (class \"kotlin/Int\"))) false _ false false _)) (class \"kotlin/String\") (block ((var 1 \"parts\" (class \"kotlin/collections/MutableList\" (invariant (class \"kotlin/String\"))) false _ (call (callable \"kotlin.collections\" _ \"mutableListOf\" FUNCTION \"1|rkotlin/Array<#T>\") ((class \"kotlin/String\")) ((vararg ((dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (get (param 0)) _ () ((namedArg (const STRING \"suffix\" (class \"kotlin/String\")) (const STRING \"?\" (class \"kotlin/String\")))) (class \"kotlin/String\")) (dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (get (param 0)) _ () ((const STRING \"a\" (class \"kotlin/String\")) (const STRING \"b\" (class \"kotlin/String\"))) (class \"kotlin/String\")) (dynamic CALL_MEMBER (const STRING \"tag\" (class \"kotlin/String\")) (get receiver) (const STRING \"x\" (class \"kotlin/String\")) () () (class \"kotlin/String\"))) (class \"kotlin/String\") (class \"kotlin/Array\" (out (class \"kotlin/String\"))))) (class \"kotlin/collections/MutableList\" (invariant (class \"kotlin/String\"))) _)) (call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (dynamic CALL_MEMBER (const STRING \"map\" (class \"kotlin/String\")) (get (param 0)) _ ((class \"kotlin/String\")) ((lambda 2 ((lambdaParam 3 REGULAR \"it\" (class \"kotlin/Int\"))) (class \"kotlin/String\") ((return 2 (call (callable \"kotlin\" \"Int\" \"toString\" FUNCTION \"0|\") () ((get (local 3))) (class \"kotlin/String\") _))) (class \"kotlin/Function1\" (invariant (class \"kotlin/Int\")) (invariant (class \"kotlin/String\"))) \"LAMBDA\" false)) (named \"com.example.Box\" (invariant (class \"kotlin/String\")))) _ () () (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\") (call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (dynamic CALL_MEMBER (const STRING \"describe\" (class \"kotlin/String\")) (get (param 0)) _ () ((namedArg (const STRING \"prefix\" (class \"kotlin/String\")) (const STRING \"p\" (class \"kotlin/String\")))) (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\") (call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (dynamic CALL_FUNCTION (const STRING \"com.example.shout\" (class \"kotlin/String\")) (const STRING \"s\" (class \"kotlin/String\")) _ () ((const INT \"2\" (class \"kotlin/Int\"))) (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\") (call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (dynamic CALL_MEMBER (const STRING \"tag\" (class \"kotlin/String\")) (get receiver) (const STRING \"y\" (class \"kotlin/String\")) () () (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\") (forEachProperty (get receiver) 4 \"name\" 5 \"value\" ((call (callable \"kotlin.collections\" _ \"plusAssign\" FUNCTION \"1|ekotlin/collections/MutableCollection<#T>,r#T\") ((class \"kotlin/String\")) ((get (local 1)) (concat ((get (local 4)) (const STRING \"=\" (class \"kotlin/String\")) (get (local 5))) (class \"kotlin/String\"))) (class \"kotlin/Unit\") \"PLUSEQ\"))) (return 0 (call (callable \"kotlin.collections\" _ \"joinToString\" FUNCTION \"1|ekotlin/collections/Iterable<#T>,rkotlin/CharSequence,rkotlin/CharSequence,rkotlin/CharSequence,rkotlin/Int,rkotlin/CharSequence,rkotlin/Function1<#T,kotlin/CharSequence>\") ((class \"kotlin/String\")) ((get (local 1)) _ _ _ _ _ _) (class \"kotlin/String\") _))) (class \"kotlin/Unit\") _))"

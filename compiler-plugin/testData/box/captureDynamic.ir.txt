@@ -1,0 +1,183 @@
+FILE fqName:<root> fileName:/captureDynamic.kt
+  CLASS INTERFACE name:HasCounter modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Mirror(fqName = <null>)
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.HasCounter
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    FUN name:bump visibility:public modality:ABSTRACT returnType:kotlin.Int
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.HasCounter
+      VALUE_PARAMETER kind:Regular name:by index:1 type:kotlin.Int
+    PROPERTY name:counter visibility:public modality:ABSTRACT [var]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-counter> visibility:public modality:ABSTRACT returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.HasCounter
+        correspondingProperty: PROPERTY name:counter visibility:public modality:ABSTRACT [var]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<set-counter> visibility:public modality:ABSTRACT returnType:kotlin.Unit
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.HasCounter
+        VALUE_PARAMETER kind:Regular name:<set-?> index:1 type:kotlin.Int
+        correspondingProperty: PROPERTY name:counter visibility:public modality:ABSTRACT [var]
+  CLASS INTERFACE name:PointMirror modality:ABSTRACT visibility:public superTypes:[kotlin.Any]
+    annotations:
+      Mirror(fqName = "com.example.Point")
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.PointMirror
+    FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+    FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+    PROPERTY name:x visibility:public modality:ABSTRACT [val]
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-x> visibility:public modality:ABSTRACT returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.PointMirror
+        correspondingProperty: PROPERTY name:x visibility:public modality:ABSTRACT [val]
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:t type:boberc.model.FunctionTemplate [val]
+        CALL 'public final fun decodeFunctionTemplate (vararg parts: kotlin.String): boberc.model.FunctionTemplate declared in boberc.internal' type=boberc.model.FunctionTemplate origin=null
+          ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(template 8 \"touch\" false PUBLIC false false () (this) ((param \"point\" (named \"com.example.Point\") false _ false false _)) (class \"kotlin/String\") (block ((dynamic SET_MEMBER (const STRING \"counter\" (class \"kotlin/String\")) (get receiver) _ () ((call (callable \"kotlin\" \"Int\" \"plus\" FUNCTION \"0|rkotlin/Int\") () ((dynamic GET_MEMBER (const STRING \"counter\" (class \"kotlin/String\")) (get receiver) _ () () (class \"kotlin/Int\")) (dynamic CALL_MEMBER (const STRING \"bump\" (class \"kotlin/String\")) (get receiver) _ () ((const INT \"1\" (class \"kotlin/Int\"))) (class \"kotlin/Int\"))) (class \"kotlin/Int\") \"PLUS\")) (class \"kotlin/Unit\")) (var 1 \"other\" (named \"com.example.Point\") false _ (typeOp CAST (named \"com.example.Point\") (dynamic NEW_INSTANCE (const STRING \"com.example.Point\" (class \"kotlin/String\")) _ _ () ((const INT \"1\" (class \"kotlin/Int\"))) (dynamic)) (named \"com.example.Point\"))) (return 0 (concat ((call (callable \"kotlin\" \"Int\" \"plus\" FUNCTION \"0|rkotlin/Int\") () ((dynamic GET_MEMBER (const STRING \"x\" (class \"kotlin/String\")) (get (param 0)) _ () () (class \"kotlin/Int\")) (dynamic GET_MEMBER (const STRING \"x\" (class \"kotlin/String\")) (get (local 1)) _ () () (class \"kotlin/Int\"))) (class \"kotlin/Int\") \"PLUS\") (const STRING \" \" (class \"kotlin/String\")) (dynamic GET_MEMBER (const STRING \"label\" (class \"kotlin/String\")) (get receiver) _ () () (class \"kotlin/String\")) (const STRING \" \" (class \"kotlin/String\")) (dynamic IS_INSTANCE (const STRING \"com.example.Base\" (class \"kotlin/String\")) (dynamic GET_OBJECT (const STRING \"com.example.Registry\" (class \"kotlin/String\")) _ _ () () (dynamic)) _ () () (class \"kotlin/Boolean\"))) (class \"kotlin/String\")))) (class \"kotlin/Unit\") _))"
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-receiverType> (): boberc.model.TType? declared in boberc.model.FunctionTemplate' type=boberc.model.TType? origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+              ARG arg1: CONSTRUCTOR_CALL 'public constructor <init> (isNullable: kotlin.Boolean) declared in boberc.model.TType.This' type=boberc.model.TType.This origin=null
+                ARG isNullable: CONST Boolean type=kotlin.Boolean value=false
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: receiver "
+              CALL 'public final fun <get-receiverType> (): boberc.model.TType? declared in boberc.model.FunctionTemplate' type=boberc.model.TType? origin=GET_PROPERTY
+                ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun <get-type> (): boberc.model.TType declared in boberc.model.TParameter' type=boberc.model.TType origin=GET_PROPERTY
+                ARG <this>: CALL 'public final fun single <T> (<this>: kotlin.collections.List<T of kotlin.collections.single>): T of kotlin.collections.single declared in kotlin.collections' type=boberc.model.TParameter origin=null
+                  TYPE_ARG T: boberc.model.TParameter
+                  ARG <this>: CALL 'public final fun <get-regularParameters> (): kotlin.collections.List<boberc.model.TParameter> declared in boberc.model.FunctionTemplate' type=kotlin.collections.List<boberc.model.TParameter> origin=GET_PROPERTY
+                    ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+              ARG arg1: CONSTRUCTOR_CALL 'public constructor <init> (fqName: kotlin.String, arguments: kotlin.collections.List<boberc.model.TTypeArgument>, isNullable: kotlin.Boolean) declared in boberc.model.TType.Named' type=boberc.model.TType.Named origin=null
+                ARG fqName: CONST String type=kotlin.String value="com.example.Point"
+                ARG arguments: CALL 'public final fun emptyList <T> (): kotlin.collections.List<T of kotlin.collections.emptyList> declared in kotlin.collections' type=kotlin.collections.List<boberc.model.TTypeArgument> origin=null
+                  TYPE_ARG T: boberc.model.TTypeArgument
+                ARG isNullable: CONST Boolean type=kotlin.Boolean value=false
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: param type"
+      VAR name:rendered type:kotlin.String [val]
+        CALL 'public final fun render (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+          ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      VAR name:compact type:kotlin.String [val]
+        CALL 'public final fun encode (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+          ARG <this>: GET_VAR 'val t: boberc.model.FunctionTemplate declared in <root>.box' type=boberc.model.FunctionTemplate origin=null
+      VAR name:expected type:kotlin.collections.List<kotlin.String> [val]
+        CALL 'public final fun listOf <T> (vararg elements: T of kotlin.collections.listOf): kotlin.collections.List<T of kotlin.collections.listOf> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.String
+          ARG elements: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+            CONST String type=kotlin.String value="(dynamic SET_MEMBER (const STRING \"counter\""
+            CONST String type=kotlin.String value="(dynamic GET_MEMBER (const STRING \"counter\""
+            CONST String type=kotlin.String value="(dynamic CALL_MEMBER (const STRING \"bump\""
+            CONST String type=kotlin.String value="(dynamic NEW_INSTANCE (const STRING \"com.example.Point\""
+            CONST String type=kotlin.String value="(typeOp CAST (named \"com.example.Point\")"
+            CONST String type=kotlin.String value="(dynamic GET_MEMBER (const STRING \"label\""
+            CONST String type=kotlin.String value="(dynamic GET_OBJECT (const STRING \"com.example.Registry\""
+            CONST String type=kotlin.String value="(dynamic IS_INSTANCE (const STRING \"com.example.Base\""
+      VAR name:missing type:kotlin.collections.List<kotlin.String> [val]
+        CALL 'public final fun filter <T> (<this>: kotlin.collections.Iterable<T of kotlin.collections.filter>, predicate: kotlin.Function1<T of kotlin.collections.filter, kotlin.Boolean>): kotlin.collections.List<T of kotlin.collections.filter> declared in kotlin.collections' type=kotlin.collections.List<kotlin.String> origin=null
+          TYPE_ARG T: kotlin.String
+          ARG <this>: GET_VAR 'val expected: kotlin.collections.List<kotlin.String> declared in <root>.box' type=kotlin.collections.List<kotlin.String> origin=null
+          ARG predicate: FUN_EXPR type=kotlin.Function1<kotlin.String, kotlin.Boolean> origin=LAMBDA
+            FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.Boolean
+              VALUE_PARAMETER kind:Regular name:it index:0 type:kotlin.String
+              BLOCK_BODY
+                RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: kotlin.String): kotlin.Boolean declared in <root>.box'
+                  CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=NOT_IN
+                    ARG <this>: CALL 'public final fun contains (<this>: kotlin.CharSequence, other: kotlin.CharSequence, ignoreCase: kotlin.Boolean): kotlin.Boolean declared in kotlin.text' type=kotlin.Boolean origin=NOT_IN
+                      ARG <this>: GET_VAR 'val compact: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+                      ARG other: GET_VAR 'it: kotlin.String declared in <root>.box.<anonymous>' type=kotlin.String origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun isNotEmpty <T> (<this>: kotlin.collections.Collection<T of kotlin.collections.isNotEmpty>): kotlin.Boolean declared in kotlin.collections' type=kotlin.Boolean origin=null
+            TYPE_ARG T: kotlin.String
+            ARG <this>: GET_VAR 'val missing: kotlin.collections.List<kotlin.String> declared in <root>.box' type=kotlin.collections.List<kotlin.String> origin=null
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: missing "
+              GET_VAR 'val missing: kotlin.collections.List<kotlin.String> declared in <root>.box' type=kotlin.collections.List<kotlin.String> origin=null
+              CONST String type=kotlin.String value=" in\n"
+              GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: WHEN type=kotlin.Boolean origin=OROR
+            BRANCH
+              if: CALL 'public final fun contains (<this>: kotlin.CharSequence, other: kotlin.CharSequence, ignoreCase: kotlin.Boolean): kotlin.Boolean declared in kotlin.text' type=kotlin.Boolean origin=IN
+                ARG <this>: GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+                ARG other: CONST String type=kotlin.String value="HasCounter"
+              then: CONST Boolean type=kotlin.Boolean value=true
+            BRANCH
+              if: CONST Boolean type=kotlin.Boolean value=true
+              then: CALL 'public final fun contains (<this>: kotlin.CharSequence, other: kotlin.CharSequence, ignoreCase: kotlin.Boolean): kotlin.Boolean declared in kotlin.text' type=kotlin.Boolean origin=IN
+                ARG <this>: GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+                ARG other: CONST String type=kotlin.String value="PointMirror"
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: mirror leaked\n"
+              GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        CONST String type=kotlin.String value="OK"
+  FUN name:touch visibility:public modality:FINAL returnType:kotlin.String
+    VALUE_PARAMETER kind:ExtensionReceiver name:<this> index:0 type:<root>.HasCounter
+    VALUE_PARAMETER kind:Regular name:point index:1 type:<root>.PointMirror
+    annotations:
+      Template
+    BLOCK_BODY
+      CALL 'public abstract fun <set-counter> (<set-?>: kotlin.Int): kotlin.Unit declared in <root>.HasCounter' type=kotlin.Unit origin=EQ
+        ARG <this>: GET_VAR '<this>: <root>.HasCounter declared in <root>.touch' type=<root>.HasCounter origin=IMPLICIT_ARGUMENT
+        ARG <set-?>: CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=PLUS
+          ARG <this>: CALL 'public abstract fun <get-counter> (): kotlin.Int declared in <root>.HasCounter' type=kotlin.Int origin=GET_PROPERTY
+            ARG <this>: GET_VAR '<this>: <root>.HasCounter declared in <root>.touch' type=<root>.HasCounter origin=IMPLICIT_ARGUMENT
+          ARG other: CALL 'public abstract fun bump (by: kotlin.Int): kotlin.Int declared in <root>.HasCounter' type=kotlin.Int origin=null
+            ARG <this>: GET_VAR '<this>: <root>.HasCounter declared in <root>.touch' type=<root>.HasCounter origin=IMPLICIT_ARGUMENT
+            ARG by: CONST Int type=kotlin.Int value=1
+      VAR name:other type:<root>.PointMirror [val]
+        TYPE_OP type=<root>.PointMirror origin=CAST typeOperand=<root>.PointMirror
+          CALL 'public final fun newInstance (classFqName: kotlin.String, vararg arguments: kotlin.Any?): boberc.Dynamic declared in boberc' type=boberc.Dynamic origin=null
+            ARG classFqName: CONST String type=kotlin.String value="com.example.Point"
+            ARG arguments: VARARG type=kotlin.Array<out kotlin.Any?> varargElementType=kotlin.Any?
+              CONST Int type=kotlin.Int value=1
+      RETURN type=kotlin.Nothing from='public final fun touch (<this>: <root>.HasCounter, point: <root>.PointMirror): kotlin.String declared in <root>'
+        STRING_CONCATENATION type=kotlin.String
+          CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=PLUS
+            ARG <this>: CALL 'public abstract fun <get-x> (): kotlin.Int declared in <root>.PointMirror' type=kotlin.Int origin=GET_PROPERTY
+              ARG <this>: GET_VAR 'point: <root>.PointMirror declared in <root>.touch' type=<root>.PointMirror origin=null
+            ARG other: CALL 'public abstract fun <get-x> (): kotlin.Int declared in <root>.PointMirror' type=kotlin.Int origin=GET_PROPERTY
+              ARG <this>: GET_VAR 'val other: <root>.PointMirror declared in <root>.touch' type=<root>.PointMirror origin=null
+          CONST String type=kotlin.String value=" "
+          CALL 'public final fun getMember <T> (<this>: kotlin.Any?, name: kotlin.String): T of boberc.getMember declared in boberc' type=kotlin.String origin=null
+            TYPE_ARG T: kotlin.String
+            ARG <this>: GET_VAR '<this>: <root>.HasCounter declared in <root>.touch' type=<root>.HasCounter origin=IMPLICIT_ARGUMENT
+            ARG name: CONST String type=kotlin.String value="label"
+          CONST String type=kotlin.String value=" "
+          CALL 'public final fun isInstanceOf (<this>: kotlin.Any?, classFqName: kotlin.String): kotlin.Boolean declared in boberc' type=kotlin.Boolean origin=null
+            ARG <this>: CALL 'public final fun objectInstance (classFqName: kotlin.String): boberc.Dynamic declared in boberc' type=boberc.Dynamic origin=null
+              ARG classFqName: CONST String type=kotlin.String value="com.example.Registry"
+            ARG classFqName: CONST String type=kotlin.String value="com.example.Base"

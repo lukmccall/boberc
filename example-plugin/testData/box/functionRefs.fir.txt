@@ -1,0 +1,74 @@
+FILE: annotations.kt
+    package boberc.example
+
+    public final annotation class Forward : R|kotlin/Annotation| {
+        public constructor(): R|boberc/example/Forward| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+FILE: main.kt
+    package test
+
+    public final val recorded: R|kotlin/collections/MutableList<kotlin/String>| = R|kotlin/collections/mutableListOf|<R|kotlin/String|>()
+        public get(): R|kotlin/collections/MutableList<kotlin/String>|
+    public final fun record(what: R|kotlin/String|): R|kotlin/Unit| {
+        R|test/recorded|.R|kotlin/collections/plusAssign|<R|kotlin/String|>(R|<local>/what|)
+    }
+    public final class Calculator : R|kotlin/Any| {
+        public constructor(factor: R|kotlin/Int|): R|test/Calculator| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val factor: R|kotlin/Int| = R|<local>/factor|
+            public get(): R|kotlin/Int|
+
+        @R|boberc/example/Forward|() public final fun scale(value: R|kotlin/Int|): R|kotlin/Int| {
+            ^scale R|kotlin/error|(String(replaced))
+        }
+
+        private final fun scaleImpl(value: R|kotlin/Int|): R|kotlin/Int| {
+            ^scaleImpl R|<local>/value|.R|kotlin/Int.times|(this@R|test/Calculator|.R|test/Calculator.factor|)
+        }
+
+        @R|boberc/example/Forward|() public final fun describe(label: R|kotlin/String|, value: R|kotlin/Int|): R|kotlin/String| {
+            ^describe R|kotlin/error|(String(replaced))
+        }
+
+        private final fun describeImpl(label: R|kotlin/String|, value: R|kotlin/Int|): R|kotlin/String| {
+            ^describeImpl <strcat>(R|<local>/label|, String(=), R|<local>/value|.R|kotlin/Int.times|(this@R|test/Calculator|.R|test/Calculator.factor|))
+        }
+
+    }
+    private final fun check(actual: R|kotlin/Any?|, expected: R|kotlin/Any?|): R|kotlin/String?| {
+        ^check when () {
+            ==(R|<local>/actual|, R|<local>/expected|) ->  {
+                Null(null)
+            }
+            else ->  {
+                <strcat>(String(expected <), R|<local>/expected|, String(> but was <), R|<local>/actual|, String(>))
+            }
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval calculator: R|test/Calculator| = R|test/Calculator.Calculator|(Int(3))
+        lval failures: R|kotlin/collections/List<kotlin/String>| = R|kotlin/collections/listOfNotNull|<R|kotlin/String|>(vararg(R|test/check|(R|<local>/calculator|.R|test/Calculator.scale|(Int(2)), Int(6)), R|test/check|(R|<local>/calculator|.R|test/Calculator.describe|(String(x), Int(5)), String(x=15)), R|test/check|(R|test/recorded|, R|kotlin/collections/listOf|<R|kotlin/String|>(vararg(String(scale), String(describe))))))
+        ^box when () {
+            R|<local>/failures|.R|SubstitutionOverride<kotlin/collections/List.isEmpty: R|kotlin/Boolean|>|() ->  {
+                String(OK)
+            }
+            else ->  {
+                R|<local>/failures|.R|kotlin/collections/joinToString|<R|kotlin/String|>(String(
+))
+            }
+        }
+
+    }
+FILE: boberc/example/generated/BobercGenerated.kt
+    package boberc.example.generated
+
+    public final fun fizzBuzz(n: R|kotlin/Int|): R|kotlin/collections/List<kotlin/String>|
+    public final fun R|kotlin/String|.shout(): R|kotlin/String?|
+    public final fun summarize(vararg words: R|kotlin/Array<out kotlin/String?>|): R|kotlin/String|
+    public final fun platformInfo(): R|kotlin/String|

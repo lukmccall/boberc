@@ -1,0 +1,120 @@
+FILE: main.kt
+    package test
+
+    public final class Box<T> : R|kotlin/Any| {
+        public constructor<T>(value: R|T|): R|test/Box<T>| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val value: R|T| = R|<local>/value|
+            public get(): R|T|
+
+        public final fun <R> map(transform: R|(T) -> R|): R|test/Box<R>| {
+            ^map R|test/Box.Box|<R|R|>(R|<local>/transform|.R|SubstitutionOverride<kotlin/Function1.invoke: R|R|>|(this@R|test/Box|.R|test/Box.value|))
+        }
+
+        public final fun describe(prefix: R|kotlin/String| = String(Box), suffix: R|kotlin/String| = String(!)): R|kotlin/String| {
+            ^describe <strcat>(R|<local>/prefix|, String((), this@R|test/Box|.R|test/Box.value|, String()), R|<local>/suffix|)
+        }
+
+    }
+    public final fun <T> wrap(value: R|T|): R|test/Box<T>| {
+        ^wrap R|test/Box.Box|<R|T|>(R|<local>/value|)
+    }
+    public final fun R|kotlin/String|.shout(times: R|kotlin/Int| = Int(1)): R|kotlin/String| {
+        ^shout this@R|test/shout|.R|kotlin/text/uppercase|().R|kotlin/String.plus|(String(!).R|kotlin/text/repeat|(R|<local>/times|))
+    }
+    public final val R|kotlin/String|.doubleLength: R|kotlin/Int|
+        public get(): R|kotlin/Int| {
+            ^ this@R|test/doubleLength|.R|kotlin/String.length|.R|kotlin/Int.times|(Int(2))
+        }
+    public final class Reporter : R|kotlin/Any| {
+        public constructor(name: R|kotlin/String|, count: R|kotlin/Int|, hidden: R|kotlin/Boolean| = Boolean(true)): R|test/Reporter| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = R|<local>/name|
+            public get(): R|kotlin/String|
+
+        public final val count: R|kotlin/Int| = R|<local>/count|
+            public get(): R|kotlin/Int|
+
+        private final val hidden: R|kotlin/Boolean| = R|<local>/hidden|
+            private get(): R|kotlin/Boolean|
+
+        public final fun R|kotlin/String|.tag(): R|kotlin/String| {
+            ^tag <strcat>(String([), this@R|test/Reporter|.R|test/Reporter.name|, String(:), this@R|test/Reporter.tag|, String(]))
+        }
+
+        public final val R|kotlin/Int|.doubled: R|kotlin/Int|
+            public get(): R|kotlin/Int| {
+                ^ this@R|test/Reporter.doubled|.R|kotlin/Int.times|(Int(2))
+            }
+
+        public final fun report(): R|kotlin/String| {
+            ^report String(original)
+        }
+
+        public final fun format(): R|kotlin/String| {
+            ^format String(original)
+        }
+
+        public final fun dump(): R|kotlin/String| {
+            ^dump String(original)
+        }
+
+    }
+    public open class Base : R|kotlin/Any| {
+        public constructor(id: R|kotlin/Int|): R|test/Base| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val id: R|kotlin/Int| = R|<local>/id|
+            public get(): R|kotlin/Int|
+
+    }
+    public final class Derived : R|test/Base| {
+        public constructor(id: R|kotlin/Int|, label: R|kotlin/String|): R|test/Derived| {
+            super<R|test/Base|>(R|<local>/id|)
+        }
+
+        public final val label: R|kotlin/String| = R|<local>/label|
+            public get(): R|kotlin/String|
+
+        public final fun dump(): R|kotlin/String| {
+            ^dump String(original)
+        }
+
+    }
+    private final fun check(actual: R|kotlin/Any?|, expected: R|kotlin/Any?|): R|kotlin/String?| {
+        ^check when () {
+            ==(R|<local>/actual|, R|<local>/expected|) ->  {
+                Null(null)
+            }
+            else ->  {
+                <strcat>(String(expected <), R|<local>/expected|, String(> but was <), R|<local>/actual|, String(>))
+            }
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval reporter: R|test/Reporter| = R|test/Reporter.Reporter|(String(r), Int(3))
+        lval failures: R|kotlin/collections/List<kotlin/String>| = R|kotlin/collections/listOfNotNull|<R|kotlin/String|>(vararg(R|test/check|(R|<local>/reporter|.R|test/Reporter.report|(), String(42 Box(21)! Box(21)? HI! HI!!! 6 [r:x] 10 w)), R|test/check|(R|<local>/reporter|.R|test/Reporter.format|(), String([r:x]8 Box(v)? 2)), R|test/check|(R|<local>/reporter|.R|test/Reporter.dump|(), String(name=r;count=3;hidden=true;)), R|test/check|(R|test/Derived.Derived|(Int(1), String(d)).R|test/Derived.dump|(), String(label id:2 ))))
+        ^box when () {
+            R|<local>/failures|.R|SubstitutionOverride<kotlin/collections/List.isEmpty: R|kotlin/Boolean|>|() ->  {
+                String(OK)
+            }
+            else ->  {
+                R|<local>/failures|.R|kotlin/collections/joinToString|<R|kotlin/String|>(String(
+))
+            }
+        }
+
+    }
+FILE: boberc/example/generated/BobercGenerated.kt
+    package boberc.example.generated
+
+    public final fun fizzBuzz(n: R|kotlin/Int|): R|kotlin/collections/List<kotlin/String>|
+    public final fun R|kotlin/String|.shout(): R|kotlin/String?|
+    public final fun summarize(vararg words: R|kotlin/Array<out kotlin/String?>|): R|kotlin/String|
+    public final fun platformInfo(): R|kotlin/String|

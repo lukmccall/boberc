@@ -1,0 +1,38 @@
+FILE: main.kt
+    package test
+
+    public final class Point : R|kotlin/Any| {
+        public constructor(x: R|kotlin/Int|, y: R|kotlin/Int|): R|test/Point| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val x: R|kotlin/Int| = R|<local>/x|
+            public get(): R|kotlin/Int|
+
+        public final val y: R|kotlin/Int| = R|<local>/y|
+            public get(): R|kotlin/Int|
+
+    }
+    public final class X : R|kotlin/Any| {
+        public constructor(): R|test/X| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final fun toReplace(): R|kotlin/String| {
+            ^toReplace String(original)
+        }
+
+        public final fun makePoint(y: R|kotlin/Int|): R|test/Point|
+
+        public final fun registryName(): R|kotlin/String|
+
+        public final fun pointProperties(): R|kotlin/String|
+
+    }
+FILE: boberc/example/generated/BobercGenerated.kt
+    package boberc.example.generated
+
+    public final fun fizzBuzz(n: R|kotlin/Int|): R|kotlin/collections/List<kotlin/String>|
+    public final fun R|kotlin/String|.shout(): R|kotlin/String?|
+    public final fun summarize(vararg words: R|kotlin/Array<out kotlin/String?>|): R|kotlin/String|
+    public final fun platformInfo(): R|kotlin/String|

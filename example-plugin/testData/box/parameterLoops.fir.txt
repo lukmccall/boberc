@@ -1,0 +1,84 @@
+FILE: annotations.kt
+    package boberc.example
+
+    public final annotation class Delegated : R|kotlin/Annotation| {
+        public constructor(): R|boberc/example/Delegated| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+    public final annotation class Upper : R|kotlin/Annotation| {
+        public constructor(): R|boberc/example/Upper| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+FILE: main.kt
+    package test
+
+    public final class Service : R|kotlin/Any| {
+        public constructor(prefix: R|kotlin/String|): R|test/Service| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val prefix: R|kotlin/String| = R|<local>/prefix|
+            public get(): R|kotlin/String|
+
+        public final val calls: R|kotlin/collections/MutableList<kotlin/String>| = R|kotlin/collections/mutableListOf|<R|kotlin/String|>()
+            public get(): R|kotlin/collections/MutableList<kotlin/String>|
+
+        public final fun log(name: R|kotlin/String|): R|kotlin/Unit| {
+            this@R|test/Service|.R|test/Service.calls|.R|kotlin/collections/plusAssign|<R|kotlin/String|>(R|<local>/name|)
+        }
+
+        @R|boberc/example/Delegated|() public final external fun greet(@R|boberc/example/Upper|() who: R|kotlin/String|, times: R|kotlin/Int|): R|kotlin/String|
+
+        private final fun greet(prefix: R|kotlin/String|, who: R|kotlin/String|, times: R|kotlin/Int|): R|kotlin/String| {
+            ^greet <strcat>(R|<local>/prefix|, String( ), R|<local>/who|.R|kotlin/text/repeat|(R|<local>/times|))
+        }
+
+        @R|kotlin/Deprecated|(message = String(for the test) [evaluated = String(for the test)]) @R|boberc/example/Delegated|() public final external fun count(): R|kotlin/Int|
+
+        private final fun count(prefix: R|kotlin/String|): R|kotlin/Int| {
+            ^count R|<local>/prefix|.R|kotlin/String.length|
+        }
+
+        @R|boberc/example/Delegated|() public final external fun sum(a: R|kotlin/Int|, b: R|kotlin/Int|, @R|boberc/example/Upper|() label: R|kotlin/String|): R|kotlin/String|
+
+        private final fun sum(prefix: R|kotlin/String|, a: R|kotlin/Int|, b: R|kotlin/Int|, label: R|kotlin/String|): R|kotlin/String| {
+            ^sum <strcat>(R|<local>/prefix|, String( ), R|<local>/label|, String(=), R|<local>/a|.R|kotlin/Int.plus|(R|<local>/b|))
+        }
+
+    }
+    private final fun check(actual: R|kotlin/Any?|, expected: R|kotlin/Any?|): R|kotlin/String?| {
+        ^check when () {
+            ==(R|<local>/actual|, R|<local>/expected|) ->  {
+                Null(null)
+            }
+            else ->  {
+                <strcat>(String(expected <), R|<local>/expected|, String(> but was <), R|<local>/actual|, String(>))
+            }
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval service: R|test/Service| = R|test/Service.Service|(String(hi))
+        lval failures: R|kotlin/collections/List<kotlin/String>| = R|kotlin/collections/listOfNotNull|<R|kotlin/String|>(vararg(R|test/check|(R|<local>/service|.R|test/Service.greet|(String(ab), Int(2)), String(hi ABAB)), R|test/check|(R|<local>/service|.R|test/Service.count|(), Int(2)), R|test/check|(R|<local>/service|.R|test/Service.sum|(Int(1), Int(2), String(total)), String(hi TOTAL=3)), R|test/check|(R|<local>/service|.R|test/Service.calls|, R|kotlin/collections/listOf|<R|kotlin/String|>(vararg(String(greet:times), String(deprecated:count/0), String(sum:a), String(sum:b)))), R|test/check|(Q|java/lang/reflect/Modifier|.R|java/lang/reflect/Modifier.isNative*s|(<getClass>(Q|test/Service|).R|kotlin/jvm/java|<R|test/Service|>.R|SubstitutionOverride<java/lang/Class.getDeclaredMethod: R|java/lang/reflect/Method!|>|(String(count)).R|java/lang/reflect/Method.modifiers|), Boolean(false))))
+        ^box when () {
+            R|<local>/failures|.R|SubstitutionOverride<kotlin/collections/List.isEmpty: R|kotlin/Boolean|>|() ->  {
+                String(OK)
+            }
+            else ->  {
+                R|<local>/failures|.R|kotlin/collections/joinToString|<R|kotlin/String|>(String(
+))
+            }
+        }
+
+    }
+FILE: boberc/example/generated/BobercGenerated.kt
+    package boberc.example.generated
+
+    public final fun fizzBuzz(n: R|kotlin/Int|): R|kotlin/collections/List<kotlin/String>|
+    public final fun R|kotlin/String|.shout(): R|kotlin/String?|
+    public final fun summarize(vararg words: R|kotlin/Array<out kotlin/String?>|): R|kotlin/String|
+    public final fun platformInfo(): R|kotlin/String|

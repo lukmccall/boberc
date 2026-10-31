@@ -1,0 +1,120 @@
+FILE: api.kt
+    package boberc.example
+
+    public final annotation class Described : R|kotlin/Annotation| {
+        public constructor(): R|boberc/example/Described| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+    public abstract interface Describable : R|kotlin/Any| {
+    }
+    public abstract interface Describer<T> : R|kotlin/Any| {
+        public abstract val typeName: R|kotlin/String|
+            public get(): R|kotlin/String|
+
+        public abstract fun describe(value: R|T|): R|kotlin/String|
+
+    }
+FILE: main.kt
+    package test
+
+    @R|boberc/example/Described|() public final class Point : R|kotlin/Any|, R|boberc/example/Describable| {
+        public constructor(x: R|kotlin/Int|, y: R|kotlin/Int|): R|test/Point| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val x: R|kotlin/Int| = R|<local>/x|
+            public get(): R|kotlin/Int|
+
+        public final val y: R|kotlin/Int| = R|<local>/y|
+            public get(): R|kotlin/Int|
+
+        private final class Describer : R|boberc/example/Describer<test/Point>| {
+            public final override val typeName: R|kotlin/String|
+                public get(): R|kotlin/String|
+
+            public final override fun describe(value: R|test/Point|): R|kotlin/String|
+
+            public constructor(): R|test/Point.Describer|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final val describer: R|boberc/example/Describer<test/Point>|
+                public get(): R|boberc/example/Describer<test/Point>|
+
+            private constructor(): R|test/Point.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+        }
+
+    }
+    @R|boberc/example/Described|() public final class Named : R|kotlin/Any|, R|boberc/example/Describable| {
+        public constructor(name: R|kotlin/String|): R|test/Named| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = R|<local>/name|
+            public get(): R|kotlin/String|
+
+        public final companion object Companion : R|kotlin/Any| {
+            private constructor(): R|test/Named.Companion| {
+                super<R|kotlin/Any|>()
+            }
+
+            public final val greeting: R|kotlin/String| = String(hi)
+                public get(): R|kotlin/String|
+
+            public final val describer: R|boberc/example/Describer<test/Named>|
+                public get(): R|boberc/example/Describer<test/Named>|
+
+        }
+
+        private final class Describer : R|boberc/example/Describer<test/Named>| {
+            public final override val typeName: R|kotlin/String|
+                public get(): R|kotlin/String|
+
+            public final override fun describe(value: R|test/Named|): R|kotlin/String|
+
+            public constructor(): R|test/Named.Describer|
+
+        }
+
+    }
+    public final fun asDescribable(value: R|test/Point|): R|boberc/example/Describable| {
+        ^asDescribable R|<local>/value|
+    }
+    private final fun check(actual: R|kotlin/Any?|, expected: R|kotlin/Any?|): R|kotlin/String?| {
+        ^check when () {
+            ==(R|<local>/actual|, R|<local>/expected|) ->  {
+                Null(null)
+            }
+            else ->  {
+                <strcat>(String(expected <), R|<local>/expected|, String(> but was <), R|<local>/actual|, String(>))
+            }
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval pointDescriber: R|boberc/example/Describer<test/Point>| = Q|test/Point|.R|test/Point.Companion.describer|
+        lval failures: R|kotlin/collections/List<kotlin/String>| = R|kotlin/collections/listOfNotNull|<R|kotlin/String|>(vararg(R|test/check|((R|test/asDescribable|(R|test/Point.Point|(Int(1), Int(2))) is R|boberc/example/Describable|), Boolean(true)), R|test/check|(R|<local>/pointDescriber|.R|SubstitutionOverride<boberc/example/Describer.typeName: R|kotlin/String|>|, String(Point)), R|test/check|(R|<local>/pointDescriber|.R|SubstitutionOverride<boberc/example/Describer.describe: R|kotlin/String|>|(R|test/Point.Point|(Int(1), Int(2))), String(Point(x=1, y=2))), R|test/check|(Q|test/Named|.R|test/Named.Companion.describer|.R|SubstitutionOverride<boberc/example/Describer.describe: R|kotlin/String|>|(R|test/Named.Named|(String(Ann))), String(Named(name=Ann))), R|test/check|(Q|test/Named|.R|test/Named.Companion.greeting|, String(hi)), R|test/check|(===(Q|test/Point|.R|test/Point.Companion.describer|, Q|test/Point|.R|test/Point.Companion.describer|), Boolean(true))))
+        ^box when () {
+            R|<local>/failures|.R|SubstitutionOverride<kotlin/collections/List.isEmpty: R|kotlin/Boolean|>|() ->  {
+                String(OK)
+            }
+            else ->  {
+                R|<local>/failures|.R|kotlin/collections/joinToString|<R|kotlin/String|>(String(
+))
+            }
+        }
+
+    }
+FILE: boberc/example/generated/BobercGenerated.kt
+    package boberc.example.generated
+
+    public final fun fizzBuzz(n: R|kotlin/Int|): R|kotlin/collections/List<kotlin/String>|
+    public final fun R|kotlin/String|.shout(): R|kotlin/String?|
+    public final fun summarize(vararg words: R|kotlin/Array<out kotlin/String?>|): R|kotlin/String|
+    public final fun platformInfo(): R|kotlin/String|

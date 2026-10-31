@@ -1,0 +1,61 @@
+FILE fqName:<root> fileName:/captureTemporary.kt
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+            ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+              ARG arg0: CALL 'public final fun withTemporary (x: kotlin.Int): kotlin.Int declared in <root>' type=kotlin.Int origin=null
+                ARG x: CONST Int type=kotlin.Int value=1
+              ARG arg1: CONST Int type=kotlin.Int value=4
+          then: RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+            CONST String type=kotlin.String value="Fail: temporary() must return its argument outside templates"
+      VAR name:rendered type:kotlin.String [val]
+        CALL 'public final fun render (): kotlin.String declared in boberc.model.FunctionTemplate' type=kotlin.String origin=null
+          ARG <this>: CALL 'public final fun decodeFunctionTemplate (vararg parts: kotlin.String): boberc.model.FunctionTemplate declared in boberc.internal' type=boberc.model.FunctionTemplate origin=null
+            ARG parts: VARARG type=kotlin.Array<out kotlin.String> varargElementType=kotlin.String
+              CONST String type=kotlin.String value="(template 8 \"withTemporary\" false PUBLIC false false () _ ((param \"x\" (class \"kotlin/Int\") false _ false false _)) (class \"kotlin/Int\") (block ((var 1 \"sum\" (class \"kotlin/Int\") false \"BOBERC_TEMPORARY\" (call (callable \"kotlin\" \"Int\" \"plus\" FUNCTION \"0|rkotlin/Int\") () ((get (param 0)) (const INT \"1\" (class \"kotlin/Int\"))) (class \"kotlin/Int\") \"PLUS\")) (return 0 (call (callable \"kotlin\" \"Int\" \"times\" FUNCTION \"0|rkotlin/Int\") () ((get (local 1)) (const INT \"2\" (class \"kotlin/Int\"))) (class \"kotlin/Int\") \"MUL\"))) (class \"kotlin/Unit\") _))"
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        WHEN type=kotlin.String origin=WHEN
+          BRANCH
+            if: WHEN type=kotlin.Boolean origin=OROR
+              BRANCH
+                if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=NOT_IN
+                  ARG <this>: CALL 'public final fun contains (<this>: kotlin.CharSequence, other: kotlin.CharSequence, ignoreCase: kotlin.Boolean): kotlin.Boolean declared in kotlin.text' type=kotlin.Boolean origin=NOT_IN
+                    ARG <this>: GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+                    ARG other: CONST String type=kotlin.String value="\"sum\""
+                then: CONST Boolean type=kotlin.Boolean value=true
+              BRANCH
+                if: CONST Boolean type=kotlin.Boolean value=true
+                then: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=NOT_IN
+                  ARG <this>: CALL 'public final fun contains (<this>: kotlin.CharSequence, other: kotlin.CharSequence, ignoreCase: kotlin.Boolean): kotlin.Boolean declared in kotlin.text' type=kotlin.Boolean origin=NOT_IN
+                    ARG <this>: GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+                    ARG other: CONST String type=kotlin.String value="\"BOBERC_TEMPORARY\""
+            then: STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail, rendered:\n"
+              GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+          BRANCH
+            if: CALL 'public final fun contains (<this>: kotlin.CharSequence, other: kotlin.CharSequence, ignoreCase: kotlin.Boolean): kotlin.Boolean declared in kotlin.text' type=kotlin.Boolean origin=IN
+              ARG <this>: GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+              ARG other: CONST String type=kotlin.String value="temporary"
+            then: STRING_CONCATENATION type=kotlin.String
+              CONST String type=kotlin.String value="Fail: the temporary() call itself was captured:\n"
+              GET_VAR 'val rendered: kotlin.String declared in <root>.box' type=kotlin.String origin=null
+          BRANCH
+            if: CONST Boolean type=kotlin.Boolean value=true
+            then: CONST String type=kotlin.String value="OK"
+  FUN name:withTemporary visibility:public modality:FINAL returnType:kotlin.Int
+    VALUE_PARAMETER kind:Regular name:x index:0 type:kotlin.Int
+    annotations:
+      Template
+    BLOCK_BODY
+      VAR name:sum type:kotlin.Int [val]
+        CALL 'public final fun temporary <T> (value: T of boberc.temporary): T of boberc.temporary declared in boberc' type=kotlin.Int origin=null
+          TYPE_ARG T: kotlin.Int
+          ARG value: CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=PLUS
+            ARG <this>: GET_VAR 'x: kotlin.Int declared in <root>.withTemporary' type=kotlin.Int origin=null
+            ARG other: CONST Int type=kotlin.Int value=1
+      RETURN type=kotlin.Nothing from='public final fun withTemporary (x: kotlin.Int): kotlin.Int declared in <root>'
+        CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=MUL
+          ARG <this>: GET_VAR 'val sum: kotlin.Int declared in <root>.withTemporary' type=kotlin.Int origin=null
+          ARG other: CONST Int type=kotlin.Int value=2

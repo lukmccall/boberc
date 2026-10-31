@@ -4,6 +4,7 @@
         <option name="testDataFiles">
             <array>
                 <option value="$PROJECT_DIR$/compiler-plugin/testData"/>
+                <option value="$PROJECT_DIR$/example-plugin/testData"/>
             </array>
         </option>
     </component>

@@ -1,0 +1,42 @@
+FILE: annotations.kt
+    package boberc.example
+
+    public final annotation class HashOrdered : R|kotlin/Annotation| {
+        public constructor(): R|boberc/example/HashOrdered| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+FILE: main.kt
+    package test
+
+    @R|boberc/example/HashOrdered|() public final class Version : R|kotlin/Comparable<test/Version>| {
+        public constructor(number: R|kotlin/Int|): R|test/Version| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val number: R|kotlin/Int| = R|<local>/number|
+            public get(): R|kotlin/Int|
+
+        public final override operator fun compareTo(other: R|test/Version|): R|kotlin/Int|
+
+    }
+    public final class NotOrdered : R|kotlin/Comparable<test/NotOrdered>| {
+        public constructor(number: R|kotlin/Int|): R|test/NotOrdered| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val number: R|kotlin/Int| = R|<local>/number|
+            public get(): R|kotlin/Int|
+
+    }
+    public final fun test(a: R|test/Version|, b: R|test/Version|): R|kotlin/Boolean| {
+        ^test CMP(<, R|<local>/a|.R|test/Version.compareTo|(R|<local>/b|))
+    }
+FILE: boberc/example/generated/BobercGenerated.kt
+    package boberc.example.generated
+
+    public final fun fizzBuzz(n: R|kotlin/Int|): R|kotlin/collections/List<kotlin/String>|
+    public final fun R|kotlin/String|.shout(): R|kotlin/String?|
+    public final fun summarize(vararg words: R|kotlin/Array<out kotlin/String?>|): R|kotlin/String|
+    public final fun platformInfo(): R|kotlin/String|

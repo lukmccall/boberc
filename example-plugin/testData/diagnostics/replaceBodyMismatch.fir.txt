@@ -1,0 +1,25 @@
+FILE: annotations.kt
+    package boberc.example
+
+    public final annotation class Stub : R|kotlin/Annotation| {
+        public constructor(): R|boberc/example/Stub| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+FILE: main.kt
+    package test
+
+    @R|boberc/example/Stub|() public final fun addStrings(a: R|kotlin/String|, b: R|kotlin/Int|): R|kotlin/Int| {
+        ^addStrings Int(0)
+    }
+    @R|boberc/example/Stub|() public final fun motto(times: R|kotlin/Int|): R|kotlin/String| {
+        ^motto String()
+    }
+FILE: boberc/example/generated/BobercGenerated.kt
+    package boberc.example.generated
+
+    public final fun fizzBuzz(n: R|kotlin/Int|): R|kotlin/collections/List<kotlin/String>|
+    public final fun R|kotlin/String|.shout(): R|kotlin/String?|
+    public final fun summarize(vararg words: R|kotlin/Array<out kotlin/String?>|): R|kotlin/String|
+    public final fun platformInfo(): R|kotlin/String|
