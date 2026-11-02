@@ -219,19 +219,23 @@ and `isSubtypeOf("…")`.
 
 Conditions that are constant when the template is applied, like `p.hasAnnotation(...)` (including `!`, `&&`,
 `||` and `==` of constants), are decided right then. Only the branch that applies is built, so the other branch
-may contain code that wouldn't resolve for this parameter. This is kolibri's `@NativeMethod` lowering, in full. The bytecode it
-produces is byte-identical to the hand-written transformer's:
+may contain code that wouldn't resolve for this parameter. This is kolibri's `@NativeMethod` lowering, the IR half
+(the FIR half is a [sibling](#generating-declarations-from-shapes-fir)). The bytecode it produces is byte-identical to
+the hand-written transformer's:
 
 ```kotlin
 functionsAnnotatedWith("io.github.expo.kolibri.NativeMethod") {
-    replaceBody(template { self: This ->            // implements each `external` function
-        val result = temporary(self.callMember<Dynamic>(  // a compiler temporary, like `irTemporary`
-            targetFunction.name, self.getMember<Long>("nativePointer"),
-            mapParameters { p -> if (p.hasAnnotation(AsNativePointer::class)) nativePointerOf(p.value as NativeObject?) else p.value },
-        ))
-        forEachParameter { p -> if (p.hasAnnotation(AsNativePointer::class)) reachabilityFenceOf(p.value as NativeObject?) }
-        result
-    })
+    replaceBody {                                    // implements each `external` function
+        val overload = functionRef(generatedSibling(Key)!!)  // the native overload generated for this function
+        template { self: This ->
+            val result = temporary(self.callMember<Dynamic>(  // a compiler temporary, like `irTemporary`
+                overload, self.getMember<Long>("nativePointer"),
+                mapParameters { p -> if (p.hasAnnotation(AsNativePointer::class)) nativePointerOf(p.value as NativeObject?) else p.value },
+            ))
+            forEachParameter { p -> if (p.hasAnnotation(AsNativePointer::class)) reachabilityFenceOf(p.value as NativeObject?) }
+            result
+        }
+    }
 }
 ```
 
@@ -323,9 +327,71 @@ IrTemplates.setBody(define, statements + quotes.returning(template { -> jsName }
 
 ### Generating declarations from shapes (FIR)
 
-A `@Shape` class or interface is the plain-Kotlin description of declarations to generate in FIR. The plugin
-still decides *where* things go, using `FirDeclarationGenerationExtension` callbacks and predicates. The
-shape says *what* they look like:
+A `@Shape` class or interface is the plain-Kotlin description of declarations to generate in FIR. The shape says
+*what* they look like; the `bobercPlugin {}` DSL says *where* they go, and fills their bodies:
+
+```kotlin
+@Shape private interface DescribableShape : DescribableMirror               // supertypes to add
+@Shape private abstract class DescriberShape<T> : DescriberMirror<T> {      // a nested class; T is bound per class
+    abstract override val typeName: String
+    abstract override fun describe(value: T): String
+}
+@Shape private abstract class CompanionShape<T> private constructor() { abstract val describer: DescriberMirror<T> }
+
+val DescribedFeature = bobercPlugin {
+    classesAnnotatedWith("my.Described", where = { it.isClass && !it.isGeneric }) {
+        supertypes(shape(DescribableShape::class))
+        nestedClass("Describer", shape(DescriberShape::class), DescribedKey, typeArguments = { listOf(ownerType) }) {
+            property("typeName") { val n = className; template { -> n } }          // IR: initializer
+            function("describe", template { value: Dynamic -> "..." })            // IR: body
+        }
+        companion(shape(CompanionShape::class), DescribedKey, typeArguments = { listOf(ownerType) }) {
+            property("describer") {
+                val ctor = constructorRef(nestedClass("Describer")!!.primaryConstructor!!)
+                template { -> ctor.call<Dynamic>() }
+            }
+        }
+        ir { /* any IR of your own for the selected class, after the bodies above */ }
+    }
+}
+```
+
+- `supertypes`, `nestedClass`, `companion` (generated when the class has none; otherwise the shape's members go
+  into the user's companion) and `topLevelClass(package, name = { info -> ... }, shape)` (one per selected class;
+  needs `classesAnnotatedWith` or `classNamed`). The DSL answers every FIR callback for them
+  (`getNestedClassifiersNames`, `getCallableNamesForClass`, `generateConstructors`, ...).
+- `where` filters the selected classes with a [`ClassInfo`](#selecting-and-querying-classes) check that runs in FIR
+  and IR alike. `typeArguments` binds the shape's type parameters: `ownerType` is `Box<T>` (valid in the class's
+  supertypes), `ownerStarProjectedType` is `Box<*>` (valid in nested, companion and top-level classes).
+- `key` is the origin of everything generated (default `BobercShapeKey`), so the plugin's own IR code can find it.
+- Bodies: `property(name)`, `function(name)` and `constructorBody` take templates; constructors without one call
+  `super()` and the initializers. Members without a body are left for the plugin to fill, e.g. in `ir { }`.
+- A plugin with its own `FirExtensionRegistrar` registers `BobercDeclarationGenerator(session, plugin)` and
+  `BobercSupertypeGenerator(session, plugin)` itself (or subclasses, to keep existing names), and
+  `BobercIrGenerationExtension(plugin)` if it wants the bodies.
+
+**Siblings.** `functionsAnnotatedWith(...) { sibling(shape, "member", key, typeArguments, parameters, name, body) }`
+generates a member next to every selected function: an overload by default. kolibri's whole FIR generator is
+one call:
+
+```kotlin
+functionsAnnotatedWith("io.github.expo.kolibri.NativeMethod") {
+    sibling(nativeOverloadShape, "nativeOverload", Key,
+        typeArguments = { listOf(original.resolvedReturnType) },
+        parameters = { original.valueParameterSymbols.map { ShapeParameter(it.name, loweredTypeOf(it)) } })
+    replaceBody {
+        val overload = functionRef(generatedSibling(Key)!!)           // exactly this function's sibling
+        template { self: This -> self.callMember<Dynamic>(overload, self.getMember<Long>("nativePointer"), mapParameters { ... }) }
+    }
+}
+```
+
+In IR, `BodyContext.generatedSibling(key)` is the sibling generated for a function and `generatedFrom` the function
+a sibling was generated for. The link is kept on the FIR declaration, not looked up by name, so overloads of the
+same name never mix.
+
+The same shapes also work from hand-written FIR extensions, where the plugin decides where things go with
+`FirDeclarationGenerationExtension` callbacks and predicates:
 
 ```kotlin
 @Mirror("com.example.Codec") interface CodecMirror<T> { val name: String; fun decode(reader: ReaderMirror): T }
@@ -372,7 +438,8 @@ override fun generateFunctions(callableId, context) =
   generated bytecode did not change.
 
 See `Described.kt` in the example plugin for a complete feature built from shapes plus templates: an added
-supertype, a private nested class, a generated or user-written companion, and their bodies.
+supertype, a private nested class, a generated or user-written companion, and their bodies. `Generated.kt` covers
+`topLevelClass`, `ir { }`, `where` and siblings.
 
 ### Selecting and querying classes
 
@@ -391,8 +458,9 @@ functionsAnnotatedWith("my.Stub") { ... }
 functionsNamed("com.example.compute") { ... }
 ```
 
-`ClassInfo` gives `fqName`, `classId`, `simpleName`, `packageName`, `isObject`, `isInterface`,
-`propertyNames`, `functionNames`, `hasProperty()` and `hasFunction()` (declared members, by name). Both
+`ClassInfo` gives `fqName`, `classId`, `simpleName`, `packageName`, `isObject`, `isInterface`, `isClass`,
+`isCompanion`, `isGeneric`, `propertyNames`, `functionNames`, `hasProperty()` and `hasFunction()` (declared
+members, by name). `classesAnnotatedWith(..., where = { it.isClass && !it.isGeneric })` narrows a selection with it. Both
 contexts can look up any class of the compilation by name: `MemberContext.findClass("…")` while generating,
 `BodyContext.findClass("…")` while replacing bodies.
 
@@ -464,9 +532,9 @@ and suspend or inline templates.
 
 ## Known limitations of the POC
 
-- The `bobercPlugin {}` DSL generates, implements and redefines **functions**. Classes, supertypes,
-  constructors and properties are generated from shapes in your own FIR extension (see above); the DSL has no
-  shortcut for them yet.
+- The DSL generates classes from shapes only *around* a selected class (supertypes, nested, companion, one
+  top-level class each) and siblings only for *member* functions. Anything else still needs your own FIR
+  extension with the shape functions.
 - Shapes cannot declare members with their own type parameters, default values, nested classes, or `This` in a
   supertype. Plugin-computed parameters (`ParameterSplice`) are given as FIR types: there is no type-level `if`.
 - A redefined function cannot call its original body yet (useful for wrappers like logging or memoization).
@@ -516,7 +584,8 @@ and suspend or inline templates.
   and lambda-generated members. `dynamicAccess.kt` covers mirrors, string-based access, and class selection by
   name and by structure. `advancedAccess.kt` covers generic classes and members, extension members, default and
   named arguments, and `forEachProperty`. `functionRefs.kt` covers `FunctionRef`. `shapes.kt` covers a feature
-  generated from shapes in FIR and filled by templates in IR. The `.fir.txt` and `.ir.txt` dumps show
+  generated from shapes in FIR and filled by templates in IR, all through the DSL. `generatedDeclarations.kt`
+  covers top-level classes, `ir { }`, `where`, and siblings called exactly through `generatedSibling`. The `.fir.txt` and `.ir.txt` dumps show
   exactly what was generated.
 
 To add a test, drop a `.kt` file into a `testData/box` or `testData/diagnostics` directory; the JUnit classes

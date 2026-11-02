@@ -1,0 +1,99 @@
+FILE: api.kt
+    package boberc.example
+
+    public final annotation class Registered : R|kotlin/Annotation| {
+        public constructor(): R|boberc/example/Registered| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+    public final annotation class WithSibling : R|kotlin/Annotation| {
+        public constructor(): R|boberc/example/WithSibling| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+FILE: main.kt
+    package test
+
+    @R|boberc/example/Registered|() public final class Point : R|kotlin/Any| {
+        public constructor(): R|test/Point| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final fun registeredAs(): R|kotlin/String| {
+            ^registeredAs String(not registered)
+        }
+
+    }
+    @R|boberc/example/Registered|() public final class Box<T> : R|kotlin/Any| {
+        public constructor<T>(): R|test/Box<T>| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final fun registeredAs(): R|kotlin/String| {
+            ^registeredAs String(not registered)
+        }
+
+    }
+    public final class Greeter : R|kotlin/Any| {
+        public constructor(): R|test/Greeter| {
+            super<R|kotlin/Any|>()
+        }
+
+        @R|boberc/example/WithSibling|() public final fun greet(name: R|kotlin/String|): R|kotlin/String| {
+            ^greet String(not replaced)
+        }
+
+        @R|boberc/example/WithSibling|() public final fun greet(name: R|kotlin/String|, times: R|kotlin/Int|): R|kotlin/String| {
+            ^greet String(not replaced)
+        }
+
+        public final fun greet(prefix: R|kotlin/String|, name: R|kotlin/String|): R|kotlin/String|
+
+        public final fun greet(prefix: R|kotlin/String|, name: R|kotlin/String|, times: R|kotlin/Int|): R|kotlin/String|
+
+    }
+    private final fun check(actual: R|kotlin/Any?|, expected: R|kotlin/Any?|): R|kotlin/String?| {
+        ^check when () {
+            ==(R|<local>/actual|, R|<local>/expected|) ->  {
+                Null(null)
+            }
+            else ->  {
+                <strcat>(String(expected <), R|<local>/expected|, String(> but was <), R|<local>/actual|, String(>))
+            }
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval failures: R|kotlin/collections/List<kotlin/String>| = R|kotlin/collections/listOfNotNull|<R|kotlin/String|>(vararg(R|test/check|(Q|boberc/generated/PointInfo|.R|boberc/generated/PointInfo.typeName|, String(Point)), R|test/check|(R|test/Point.Point|().R|test/Point.registeredAs|(), String(registered as test.Point)), R|test/check|(R|test/Box.Box|<R|kotlin/Int|>().R|SubstitutionOverride<test/Box.registeredAs: R|kotlin/String|>|(), String(not registered)), R|test/check|(R|test/Greeter.Greeter|().R|test/Greeter.greet|(String(Ann)), String(Hello Ann (from 1))), R|test/check|(R|test/Greeter.Greeter|().R|test/Greeter.greet|(String(Ann), Int(2)), String(Hello Ann 2 (from 2))), R|test/check|(R|test/Greeter.Greeter|().R|test/Greeter.greet|(String(Hi), String(Bob)), String(Hi Bob (from 1)))))
+        ^box when () {
+            R|<local>/failures|.R|SubstitutionOverride<kotlin/collections/List.isEmpty: R|kotlin/Boolean|>|() ->  {
+                String(OK)
+            }
+            else ->  {
+                R|<local>/failures|.R|kotlin/collections/joinToString|<R|kotlin/String|>(String(
+))
+            }
+        }
+
+    }
+FILE: boberc/generated/PointInfo.kt
+    package boberc.generated
+
+    public final object PointInfo : R|kotlin/Any| {
+        public final val typeName: R|kotlin/String|
+            public get(): R|kotlin/String|
+
+        private constructor(): R|boberc/generated/PointInfo| {
+            super<R|kotlin/Any|>()
+        }
+
+    }
+FILE: boberc/example/generated/BobercGenerated.kt
+    package boberc.example.generated
+
+    public final fun fizzBuzz(n: R|kotlin/Int|): R|kotlin/collections/List<kotlin/String>|
+    public final fun R|kotlin/String|.shout(): R|kotlin/String?|
+    public final fun summarize(vararg words: R|kotlin/Array<out kotlin/String?>|): R|kotlin/String|
+    public final fun platformInfo(): R|kotlin/String|

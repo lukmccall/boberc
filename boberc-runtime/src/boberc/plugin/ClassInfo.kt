@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.descriptors.ClassKind
 import org.jetbrains.kotlin.fir.FirSession
 import org.jetbrains.kotlin.fir.declarations.DirectDeclarationsAccess
 import org.jetbrains.kotlin.fir.declarations.FirDeclarationOrigin
+import org.jetbrains.kotlin.fir.declarations.utils.isCompanion
 import org.jetbrains.kotlin.fir.declarations.FirNamedFunction
 import org.jetbrains.kotlin.fir.declarations.FirProperty
 import org.jetbrains.kotlin.fir.declarations.FirRegularClass
@@ -38,6 +39,11 @@ public class ClassInfo internal constructor(
   public val packageName: String,
   public val isObject: Boolean,
   public val isInterface: Boolean,
+  /** A plain `class` (not an interface, object, enum or annotation class). */
+  public val isClass: Boolean,
+  public val isCompanion: Boolean,
+  /** The class declares type parameters (`class Box<T>`). */
+  public val isGeneric: Boolean,
   public val propertyNames: List<String>,
   public val functionNames: List<String>,
 ) {
@@ -47,13 +53,23 @@ public class ClassInfo internal constructor(
   override fun toString(): String = "ClassInfo($fqName, properties=$propertyNames, functions=$functionNames)"
 
   internal companion object {
-    fun create(classId: ClassId, kind: ClassKind, properties: List<String>, functions: List<String>) = ClassInfo(
+    fun create(
+      classId: ClassId,
+      kind: ClassKind,
+      isCompanion: Boolean,
+      isGeneric: Boolean,
+      properties: List<String>,
+      functions: List<String>,
+    ) = ClassInfo(
       fqName = classId.asSingleFqName().asString(),
       classId = classId.asString(),
       simpleName = classId.shortClassName.asString(),
       packageName = classId.packageFqName.asString(),
       isObject = kind == ClassKind.OBJECT,
       isInterface = kind == ClassKind.INTERFACE,
+      isClass = kind == ClassKind.CLASS,
+      isCompanion = isCompanion,
+      isGeneric = isGeneric,
       propertyNames = properties.distinct(),
       functionNames = functions.distinct(),
     )
@@ -69,7 +85,8 @@ internal fun FirClassSymbol<*>.toClassInfo(): ClassInfo {
   val declarations = (fir as? FirRegularClass)?.declarations.orEmpty()
     .filter { it.origin !is FirDeclarationOrigin.Plugin && it.origin !is FirDeclarationOrigin.Synthetic }
   return ClassInfo.create(
-    classId, classKind,
+    classId, classKind, isCompanion = (this as? FirRegularClassSymbol)?.isCompanion == true,
+    isGeneric = typeParameterSymbols.isNotEmpty(),
     declarations.filterIsInstance<FirProperty>().map { it.name.asString() },
     declarations.filterIsInstance<FirNamedFunction>().map { it.name.asString() },
   )
@@ -84,7 +101,8 @@ internal fun FirSession.findClassInfo(fqName: String): ClassInfo? =
 internal fun IrClass.toClassInfo(): ClassInfo {
   val declarations = declarations.filter { it.isDeclaredMember() }
   return ClassInfo.create(
-    classId ?: error("Local classes are not supported: $name"), kind,
+    classId ?: error("Local classes are not supported: $name"), kind, isCompanion = isCompanion,
+    isGeneric = typeParameters.isNotEmpty(),
     declarations.filterIsInstance<IrProperty>().map { it.name.asString() },
     declarations.filterIsInstance<IrSimpleFunction>().map { it.name.asString() },
   )

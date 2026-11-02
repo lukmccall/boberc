@@ -30,8 +30,6 @@ import org.jetbrains.kotlin.compiler.plugin.CliOption
 import org.jetbrains.kotlin.compiler.plugin.CommandLineProcessor
 import org.jetbrains.kotlin.compiler.plugin.CompilerPluginRegistrar
 import org.jetbrains.kotlin.config.CompilerConfiguration
-import org.jetbrains.kotlin.backend.common.extensions.IrGenerationExtension
-import org.jetbrains.kotlin.fir.extensions.FirExtensionRegistrarAdapter
 import org.jetbrains.kotlin.ir.util.functions
 import org.jetbrains.kotlin.ir.util.parentAsClass
 import org.jetbrains.kotlin.name.CallableId
@@ -212,9 +210,10 @@ class ExamplePluginRegistrar : CompilerPluginRegistrar() {
 
   override fun ExtensionStorage.registerExtensions(configuration: CompilerConfiguration) {
     ExamplePlugin.registerExtensions(this)
-    // A feature written with shapes + templates and registered by hand (see Described.kt).
-    FirExtensionRegistrarAdapter.registerExtension(DescribedFirRegistrar())
-    IrGenerationExtension.registerExtension(DescribedIrGeneration())
+    // A feature written with shapes + templates (see Described.kt).
+    DescribedFeature.registerExtensions(this)
+    // Top-level classes, `ir { }` blocks and siblings (see Generated.kt).
+    GeneratedFeature.registerExtensions(this)
   }
 }
 
