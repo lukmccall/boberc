@@ -18,10 +18,10 @@ class Person
 class NotAGreeter
 
 fun test(p: Person, n: NotAGreeter) {
-    val s: String = p.greet("Bob")
-    val list: List<Int> = p.replicate(1, 2)
-    val self: Person = p.tap { }
-    p.greet(<!ARGUMENT_TYPE_MISMATCH!>42<!>)
-    val wrong: List<String> <!INITIALIZER_TYPE_MISMATCH!>=<!> p.replicate(1, 2)
-    n.<!UNRESOLVED_REFERENCE!>greet<!>("Bob")
+  val s: String = p.greet("Bob")
+  val list: List<Int> = p.replicate(1, 2)
+  val self: Person = p.tap { }
+  p.greet(<!ARGUMENT_TYPE_MISMATCH!>42<!>)
+  val wrong: List<String> <!INITIALIZER_TYPE_MISMATCH!>=<!> p.replicate(1, 2)
+  n.<!UNRESOLVED_REFERENCE!>greet<!>("Bob")
 }

@@ -30,7 +30,7 @@ public fun constructorRef(constructor: IrConstructor): FunctionRef = IrFunctionR
  * constructor parameter by the local holding it), so an expression can be moved into another function.
  */
 public fun exprRef(expression: IrExpression, remap: Map<IrValueDeclaration, IrValueDeclaration> = emptyMap()): ExprRef =
-    IrExprRef(expression, null, remap)
+  IrExprRef(expression, null, remap)
 
 /** A value (parameter or variable): `ref.get<T>()` reads it, `ref.set(x)` assigns it. */
 public fun exprRef(value: IrValueDeclaration): ExprRef = IrExprRef(null, value, emptyMap())
@@ -45,25 +45,25 @@ public fun typeRef(type: IrType): TypeRef = IrTypeRef(type)
 public fun fieldRef(field: IrField): FieldRef = IrFieldRef(field)
 
 internal class IrFunctionRef(val function: IrFunction) : FunctionRef {
-    override fun toString(): String = "FunctionRef(${function.name})"
+  override fun toString(): String = "FunctionRef(${function.name})"
 }
 
 internal class IrExprRef(
-    val expression: IrExpression?,
-    val value: IrValueDeclaration?,
-    val remap: Map<IrValueDeclaration, IrValueDeclaration>,
+  val expression: IrExpression?,
+  val value: IrValueDeclaration?,
+  val remap: Map<IrValueDeclaration, IrValueDeclaration>,
 ) : ExprRef {
-    override fun toString(): String = "ExprRef(${value?.name ?: expression?.render()})"
+  override fun toString(): String = "ExprRef(${value?.name ?: expression?.render()})"
 }
 
 internal class IrExprListRef(val expressions: List<IrExpression>) : ExprListRef {
-    override fun toString(): String = "ExprListRef(${expressions.size})"
+  override fun toString(): String = "ExprListRef(${expressions.size})"
 }
 
 internal class IrTypeRef(val type: IrType) : TypeRef {
-    override fun toString(): String = "TypeRef(${type.render()})"
+  override fun toString(): String = "TypeRef(${type.render()})"
 }
 
 internal class IrFieldRef(val field: IrField) : FieldRef {
-    override fun toString(): String = "FieldRef(${field.name})"
+  override fun toString(): String = "FieldRef(${field.name})"
 }

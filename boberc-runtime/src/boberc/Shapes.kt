@@ -53,6 +53,6 @@ public sealed interface ParameterSplice
  */
 @Suppress("UNUSED_PARAMETER")
 public fun shape(shapeClass: KClass<*>): ClassShape =
-    throw IllegalStateException(
-        "boberc.shape() is a compiler intrinsic. Apply the boberc compiler plugin to the module declaring shapes."
-    )
+  throw IllegalStateException(
+    "boberc.shape() is a compiler intrinsic. Apply the boberc compiler plugin to the module declaring shapes."
+  )

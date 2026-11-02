@@ -57,4 +57,4 @@ public fun <T> Any?.getField(field: FieldRef): T = intrinsic()
 public fun Any?.setField(field: FieldRef, value: Any?): Unit = intrinsic()
 
 private fun intrinsic(): Nothing =
-    throw IllegalStateException("boberc splices can only be used inside templates")
+  throw IllegalStateException("boberc splices can only be used inside templates")

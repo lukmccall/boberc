@@ -16,42 +16,42 @@ import boberc.example.generated.summarize
 
 @Greeter
 class Person(val name: String) {
-    override fun toString(): String = "Person($name)"
+  override fun toString(): String = "Person($name)"
 }
 
 @Greeter
 object Robot
 
 private fun check(actual: Any?, expected: Any?): String? =
-    if (actual == expected) null else "expected <$expected> but was <$actual>"
+  if (actual == expected) null else "expected <$expected> but was <$actual>"
 
 fun box(): String {
-    val ann = Person("Ann")
-    var tapped: Person? = null
-    val failures = listOfNotNull(
-        // splice (class name) + regular parameter
-        check(ann.greet("Bob"), "Hello, Bob! I am Person."),
-        // default argument value comes from the template
-        check(ann.greet(), "Hello, stranger! I am Person."),
-        check(Robot.greet("Bob"), "Hello, Bob! I am Robot."),
-        // `this` of the generated member + lambda with receiver + inline stdlib call
-        check(ann.introduce(), "Person(Ann) says hi!!!"),
-        // generic member function
-        check(ann.replicate("x", 3), listOf("x", "x", "x")),
-        check(Robot.replicate(7, 2), listOf(7, 7)),
-        // `This` in parameter/return types is the owner class
-        check(ann.tap { tapped = it }.name, "Ann"),
-        check(tapped, ann),
-        // top-level functions
-        check(fizzBuzz(15).joinToString(","), "1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,11,Fizz,13,14,FizzBuzz"),
-        check("hey".shout(), "HEY!!!"),
-        check("".shout(), null),
-        check(
-            summarize("a", null, "bb", "cc"),
-            "counts={1=1, -1=1, 2=2} attempts=2 level=WARNING enum=true total=5/10 unit=kotlin.Unit",
-        ),
-        check(platformInfo(), "true:java.lang.String"),
-        check(summarize(), "counts={} attempts=2 level=HIDDEN enum=true total=0/0 unit=kotlin.Unit"),
-    )
-    return if (failures.isEmpty()) "OK" else failures.joinToString("\n")
+  val ann = Person("Ann")
+  var tapped: Person? = null
+  val failures = listOfNotNull(
+    // splice (class name) + regular parameter
+    check(ann.greet("Bob"), "Hello, Bob! I am Person."),
+    // default argument value comes from the template
+    check(ann.greet(), "Hello, stranger! I am Person."),
+    check(Robot.greet("Bob"), "Hello, Bob! I am Robot."),
+    // `this` of the generated member + lambda with receiver + inline stdlib call
+    check(ann.introduce(), "Person(Ann) says hi!!!"),
+    // generic member function
+    check(ann.replicate("x", 3), listOf("x", "x", "x")),
+    check(Robot.replicate(7, 2), listOf(7, 7)),
+    // `This` in parameter/return types is the owner class
+    check(ann.tap { tapped = it }.name, "Ann"),
+    check(tapped, ann),
+    // top-level functions
+    check(fizzBuzz(15).joinToString(","), "1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,11,Fizz,13,14,FizzBuzz"),
+    check("hey".shout(), "HEY!!!"),
+    check("".shout(), null),
+    check(
+      summarize("a", null, "bb", "cc"),
+      "counts={1=1, -1=1, 2=2} attempts=2 level=WARNING enum=true total=5/10 unit=kotlin.Unit",
+    ),
+    check(platformInfo(), "true:java.lang.String"),
+    check(summarize(), "counts={} attempts=2 level=HIDDEN enum=true total=0/0 unit=kotlin.Unit"),
+  )
+  return if (failures.isEmpty()) "OK" else failures.joinToString("\n")
 }

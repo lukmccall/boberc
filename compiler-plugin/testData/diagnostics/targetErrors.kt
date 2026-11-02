@@ -3,7 +3,7 @@ import boberc.*
 
 @Mirror
 interface Unnamed {
-    val x: Int
+  val x: Int
 }
 
 @Template
@@ -11,6 +11,6 @@ fun objectOfUnnamedMirror(): Int = <!UNSUPPORTED_IN_TEMPLATE!>mirror<Unnamed>()<
 
 @Template
 fun targetFunctionAsValue(): String {
-    <!UNSUPPORTED_IN_TEMPLATE!>val target = targetFunction<!>
-    return target.name
+  <!UNSUPPORTED_IN_TEMPLATE!>val target = targetFunction<!>
+  return target.name
 }

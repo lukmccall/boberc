@@ -3,28 +3,28 @@ import boberc.*
 
 @Mirror("com.example.Codec")
 interface CodecMirror<T> {
-    val name: String
-    fun encode(value: T, out: StringBuilder)
+  val name: String
+  fun encode(value: T, out: StringBuilder)
 }
 
 @Shape
 private abstract class CodecShape<T> : CodecMirror<T> {
-    abstract override val name: String
-    abstract override fun encode(value: T, out: StringBuilder)
-    abstract var hits: Int
-    open fun helper(vararg values: T): List<T>? = null
-    private external fun native(pointer: Long, vararg rest: ParameterSplice): T
+  abstract override val name: String
+  abstract override fun encode(value: T, out: StringBuilder)
+  abstract var hits: Int
+  open fun helper(vararg values: T): List<T>? = null
+  private external fun native(pointer: Long, vararg rest: ParameterSplice): T
 }
 
 @Shape
 interface HintShape<M> {
-    fun module(): M
-    val self: This
+  fun module(): M
+  val self: This
 }
 
 @Shape
 private abstract class CompanionShape<T> private constructor(seed: Int) {
-    abstract val codec: CodecMirror<T>
+  abstract val codec: CodecMirror<T>
 }
 
 private val EXPECTED_CODEC = """
@@ -79,14 +79,14 @@ private val EXPECTED_COMPANION = """
 """.trim()
 
 fun box(): String {
-    val codec = shape(CodecShape::class)
-    val hint = shape(HintShape::class)
-    val companion = shape(CompanionShape::class)
-    if (codec.memberNames != listOf("name", "encode", "hits", "helper", "native")) return "Fail: members ${codec.memberNames}"
-    return when {
-        codec.render() != EXPECTED_CODEC -> "Fail, codec rendered:\n${codec.render()}"
-        hint.render() != EXPECTED_HINT -> "Fail, hint rendered:\n${hint.render()}"
-        companion.render() != EXPECTED_COMPANION -> "Fail, companion rendered:\n${companion.render()}"
-        else -> "OK"
-    }
+  val codec = shape(CodecShape::class)
+  val hint = shape(HintShape::class)
+  val companion = shape(CompanionShape::class)
+  if (codec.memberNames != listOf("name", "encode", "hits", "helper", "native")) return "Fail: members ${codec.memberNames}"
+  return when {
+    codec.render() != EXPECTED_CODEC -> "Fail, codec rendered:\n${codec.render()}"
+    hint.render() != EXPECTED_HINT -> "Fail, hint rendered:\n${hint.render()}"
+    companion.render() != EXPECTED_COMPANION -> "Fail, companion rendered:\n${companion.render()}"
+    else -> "OK"
+  }
 }

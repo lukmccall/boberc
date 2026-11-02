@@ -87,8 +87,8 @@ internal interface DescribableMirror
 
 @Mirror("boberc.example.Describer")
 internal interface DescriberMirror<T> {
-    val typeName: String
-    fun describe(value: T): String
+  val typeName: String
+  fun describe(value: T): String
 }
 
 /** Added to every `@Described` class. */
@@ -98,14 +98,14 @@ private interface DescribableShape : DescribableMirror
 /** The nested describer; `T` is the described class. Abstract members are generated final, bodies come from IR. */
 @Shape
 private abstract class DescriberShape<T> : DescriberMirror<T> {
-    abstract override val typeName: String
-    abstract override fun describe(value: T): String
+  abstract override val typeName: String
+  abstract override fun describe(value: T): String
 }
 
 /** Members added to the companion; the private constructor is used when the companion is generated. */
 @Shape
 private abstract class DescribedCompanionShape<T> private constructor() {
-    abstract val describer: DescriberMirror<T>
+  abstract val describer: DescriberMirror<T>
 }
 
 private val describableShape = shape(DescribableShape::class)
@@ -113,167 +113,167 @@ private val describerShape = shape(DescriberShape::class)
 private val companionShape = shape(DescribedCompanionShape::class)
 
 internal object DescribedKey : GeneratedDeclarationKey() {
-    override fun toString(): String = "Described"
+  override fun toString(): String = "Described"
 }
 
 // ---------------------------------------------------------------------------------------------------- FIR
 
 internal class DescribedFirRegistrar : FirExtensionRegistrar() {
-    override fun ExtensionRegistrarContext.configurePlugin() {
-        +::DescribedSupertypeGenerator
-        +::DescribedGenerator
-    }
+  override fun ExtensionRegistrarContext.configurePlugin() {
+    +::DescribedSupertypeGenerator
+    +::DescribedGenerator
+  }
 }
 
 private val describedPredicate = DeclarationPredicate.create { annotated(DESCRIBED) }
 
 private fun FirClassSymbol<*>.isDescribed(session: FirSession): Boolean =
-    classKind == ClassKind.CLASS && typeParameterSymbols.isEmpty() && session.predicateBasedProvider.matches(describedPredicate, this)
+  classKind == ClassKind.CLASS && typeParameterSymbols.isEmpty() && session.predicateBasedProvider.matches(describedPredicate, this)
 
 internal class DescribedSupertypeGenerator(session: FirSession) : FirSupertypeGenerationExtension(session) {
-    override fun FirDeclarationPredicateRegistrar.registerPredicates() {
-        register(describedPredicate)
-    }
+  override fun FirDeclarationPredicateRegistrar.registerPredicates() {
+    register(describedPredicate)
+  }
 
-    override fun needTransformSupertypes(declaration: FirClassLikeDeclaration): Boolean =
-        (declaration.symbol as? FirClassSymbol<*>)?.isDescribed(session) == true
+  override fun needTransformSupertypes(declaration: FirClassLikeDeclaration): Boolean =
+    (declaration.symbol as? FirClassSymbol<*>)?.isDescribed(session) == true
 
-    override fun computeAdditionalSupertypes(
-        classLikeDeclaration: FirClassLikeDeclaration,
-        resolvedSupertypes: List<FirResolvedTypeRef>,
-        typeResolver: TypeResolveService,
-    ) = supertypesOf(describableShape.bind()).filter { added -> resolvedSupertypes.none { it.coneType.classId == added.classId } }
+  override fun computeAdditionalSupertypes(
+    classLikeDeclaration: FirClassLikeDeclaration,
+    resolvedSupertypes: List<FirResolvedTypeRef>,
+    typeResolver: TypeResolveService,
+  ) = supertypesOf(describableShape.bind()).filter { added -> resolvedSupertypes.none { it.coneType.classId == added.classId } }
 }
 
 internal class DescribedGenerator(session: FirSession) : FirDeclarationGenerationExtension(session) {
-    override fun FirDeclarationPredicateRegistrar.registerPredicates() {
-        register(describedPredicate)
+  override fun FirDeclarationPredicateRegistrar.registerPredicates() {
+    register(describedPredicate)
+  }
+
+  @OptIn(SymbolInternals::class) // companionObjectSymbol
+  override fun getNestedClassifiersNames(classSymbol: FirClassSymbol<*>, context: NestedClassGenerationContext): Set<Name> {
+    if (!classSymbol.isDescribed(session)) return emptySet()
+    val hasCompanion = (classSymbol as? FirRegularClassSymbol)?.companionObjectSymbol != null
+    return if (hasCompanion) setOf(DESCRIBER_CLASS) else setOf(DESCRIBER_CLASS, SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT)
+  }
+
+  override fun generateNestedClassLikeDeclaration(
+    owner: FirClassSymbol<*>,
+    name: Name,
+    context: NestedClassGenerationContext,
+  ): FirClassLikeSymbol<*>? {
+    if (!owner.isDescribed(session)) return null
+    return when (name) {
+      DESCRIBER_CLASS -> createNestedClassFromShape(owner, name, describerShape.bind(owner.type()), DescribedKey).symbol
+      SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT ->
+        createCompanionObjectFromShape(owner, companionShape.bind(owner.type()), DescribedKey).symbol
+      else -> null
     }
+  }
 
-    @OptIn(SymbolInternals::class) // companionObjectSymbol
-    override fun getNestedClassifiersNames(classSymbol: FirClassSymbol<*>, context: NestedClassGenerationContext): Set<Name> {
-        if (!classSymbol.isDescribed(session)) return emptySet()
-        val hasCompanion = (classSymbol as? FirRegularClassSymbol)?.companionObjectSymbol != null
-        return if (hasCompanion) setOf(DESCRIBER_CLASS) else setOf(DESCRIBER_CLASS, SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT)
+  override fun getCallableNamesForClass(classSymbol: FirClassSymbol<*>, context: MemberGenerationContext): Set<Name> = when {
+    classSymbol.isGeneratedDescriber() -> describerShape.callableNames
+    // A companion written by the user keeps its own constructor.
+    classSymbol.isDescribedCompanion() -> if (classSymbol.isOurs()) companionShape.callableNames else companionShape.memberNameSet
+    else -> emptySet()
+  }
+
+  override fun generateConstructors(context: MemberGenerationContext): List<FirConstructorSymbol> {
+    val owner = context.owner
+    val described = owner.described() ?: return emptyList()
+    return when {
+      owner.isGeneratedDescriber() -> createConstructorsFromShape(owner, describerShape.bind(described.type()), DescribedKey)
+      owner.isDescribedCompanion() && owner.isOurs() ->
+        createConstructorsFromShape(owner, companionShape.bind(described.type()), DescribedKey, generateDelegatedNoArgConstructorCall = true)
+      else -> emptyList()
+    }.map { it.symbol }
+  }
+
+  override fun generateProperties(callableId: CallableId, context: MemberGenerationContext?): List<FirPropertySymbol> {
+    val owner = context?.owner ?: return emptyList()
+    val described = owner.described() ?: return emptyList()
+    val shape = when {
+      owner.isGeneratedDescriber() -> describerShape
+      owner.isDescribedCompanion() -> companionShape
+      else -> return emptyList()
     }
+    return createPropertiesFromShape(owner, shape.bind(described.type()), callableId.callableName, DescribedKey).map { it.symbol }
+  }
 
-    override fun generateNestedClassLikeDeclaration(
-        owner: FirClassSymbol<*>,
-        name: Name,
-        context: NestedClassGenerationContext,
-    ): FirClassLikeSymbol<*>? {
-        if (!owner.isDescribed(session)) return null
-        return when (name) {
-            DESCRIBER_CLASS -> createNestedClassFromShape(owner, name, describerShape.bind(owner.type()), DescribedKey).symbol
-            SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT ->
-                createCompanionObjectFromShape(owner, companionShape.bind(owner.type()), DescribedKey).symbol
-            else -> null
-        }
-    }
+  override fun generateFunctions(callableId: CallableId, context: MemberGenerationContext?): List<FirNamedFunctionSymbol> {
+    val owner = context?.owner ?: return emptyList()
+    if (!owner.isGeneratedDescriber()) return emptyList()
+    val described = owner.described() ?: return emptyList()
+    return createFunctionsFromShape(owner, describerShape.bind(described.type()), callableId.callableName, DescribedKey).map { it.symbol }
+  }
 
-    override fun getCallableNamesForClass(classSymbol: FirClassSymbol<*>, context: MemberGenerationContext): Set<Name> = when {
-        classSymbol.isGeneratedDescriber() -> describerShape.callableNames
-        // A companion written by the user keeps its own constructor.
-        classSymbol.isDescribedCompanion() -> if (classSymbol.isOurs()) companionShape.callableNames else companionShape.memberNameSet
-        else -> emptySet()
-    }
+  private fun FirClassSymbol<*>.type() = constructType(emptyArray(), isMarkedNullable = false)
 
-    override fun generateConstructors(context: MemberGenerationContext): List<FirConstructorSymbol> {
-        val owner = context.owner
-        val described = owner.described() ?: return emptyList()
-        return when {
-            owner.isGeneratedDescriber() -> createConstructorsFromShape(owner, describerShape.bind(described.type()), DescribedKey)
-            owner.isDescribedCompanion() && owner.isOurs() ->
-                createConstructorsFromShape(owner, companionShape.bind(described.type()), DescribedKey, generateDelegatedNoArgConstructorCall = true)
-            else -> emptyList()
-        }.map { it.symbol }
-    }
+  private fun FirClassSymbol<*>.isOurs() = (origin as? FirDeclarationOrigin.Plugin)?.key == DescribedKey
 
-    override fun generateProperties(callableId: CallableId, context: MemberGenerationContext?): List<FirPropertySymbol> {
-        val owner = context?.owner ?: return emptyList()
-        val described = owner.described() ?: return emptyList()
-        val shape = when {
-            owner.isGeneratedDescriber() -> describerShape
-            owner.isDescribedCompanion() -> companionShape
-            else -> return emptyList()
-        }
-        return createPropertiesFromShape(owner, shape.bind(described.type()), callableId.callableName, DescribedKey).map { it.symbol }
-    }
+  private fun FirClassSymbol<*>.isGeneratedDescriber() = isOurs() && name == DESCRIBER_CLASS
 
-    override fun generateFunctions(callableId: CallableId, context: MemberGenerationContext?): List<FirNamedFunctionSymbol> {
-        val owner = context?.owner ?: return emptyList()
-        if (!owner.isGeneratedDescriber()) return emptyList()
-        val described = owner.described() ?: return emptyList()
-        return createFunctionsFromShape(owner, describerShape.bind(described.type()), callableId.callableName, DescribedKey).map { it.symbol }
-    }
+  private fun FirClassSymbol<*>.isDescribedCompanion() = isCompanion && described() != null
 
-    private fun FirClassSymbol<*>.type() = constructType(emptyArray(), isMarkedNullable = false)
-
-    private fun FirClassSymbol<*>.isOurs() = (origin as? FirDeclarationOrigin.Plugin)?.key == DescribedKey
-
-    private fun FirClassSymbol<*>.isGeneratedDescriber() = isOurs() && name == DESCRIBER_CLASS
-
-    private fun FirClassSymbol<*>.isDescribedCompanion() = isCompanion && described() != null
-
-    /** The `@Described` class this nested class belongs to. */
-    private fun FirClassSymbol<*>.described(): FirClassSymbol<*>? {
-        val outer = classId.outerClassId ?: return null
-        val symbol = session.symbolProvider.getClassLikeSymbolByClassId(outer) as? FirClassSymbol<*> ?: return null
-        return symbol.takeIf { it.isDescribed(session) }
-    }
+  /** The `@Described` class this nested class belongs to. */
+  private fun FirClassSymbol<*>.described(): FirClassSymbol<*>? {
+    val outer = classId.outerClassId ?: return null
+    val symbol = session.symbolProvider.getClassLikeSymbolByClassId(outer) as? FirClassSymbol<*> ?: return null
+    return symbol.takeIf { it.isDescribed(session) }
+  }
 }
 
 // ---------------------------------------------------------------------------------------------------- IR
 
 /** Fills the bodies of everything [DescribedGenerator] declared. */
 internal class DescribedIrGeneration : IrGenerationExtension {
-    override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
-        moduleFragment.acceptChildrenVoid(object : IrVisitorVoid() {
-            override fun visitElement(element: IrElement) = element.acceptChildrenVoid(this)
+  override fun generate(moduleFragment: IrModuleFragment, pluginContext: IrPluginContext) {
+    moduleFragment.acceptChildrenVoid(object : IrVisitorVoid() {
+      override fun visitElement(element: IrElement) = element.acceptChildrenVoid(this)
 
-            override fun visitClass(declaration: IrClass) {
-                if (declaration.hasAnnotation(DESCRIBED)) fill(declaration, pluginContext)
-                super.visitClass(declaration)
+      override fun visitClass(declaration: IrClass) {
+        if (declaration.hasAnnotation(DESCRIBED)) fill(declaration, pluginContext)
+        super.visitClass(declaration)
+      }
+    })
+  }
+
+  private fun fill(described: IrClass, context: IrPluginContext) {
+    val describer = described.declarations.filterIsInstance<IrClass>().single { it.name == DESCRIBER_CLASS }
+    val companion = described.companionObject()!!
+    val typeName = described.name.asString()
+
+    for (declaration in describer.declarations) {
+      if (!declaration.isOurs()) continue
+      when (declaration) {
+        is IrConstructor -> IrTemplates.constructorBody(declaration, null, context)
+        is IrProperty -> IrDeclarations.initializeProperty(declaration, template { -> typeName }, context)
+        is IrSimpleFunction -> IrTemplates.replaceBody(declaration, template { value: Dynamic ->
+          buildString {
+            append(typeName)
+            append("(")
+            var first = true
+            value.forEachProperty { name, propertyValue ->
+              if (!first) append(", ")
+              first = false
+              append("$name=$propertyValue")
             }
-        })
+            append(")")
+          }
+        }, context)
+      }
     }
 
-    private fun fill(described: IrClass, context: IrPluginContext) {
-        val describer = described.declarations.filterIsInstance<IrClass>().single { it.name == DESCRIBER_CLASS }
-        val companion = described.companionObject()!!
-        val typeName = described.name.asString()
-
-        for (declaration in describer.declarations) {
-            if (!declaration.isOurs()) continue
-            when (declaration) {
-                is IrConstructor -> IrTemplates.constructorBody(declaration, null, context)
-                is IrProperty -> IrDeclarations.initializeProperty(declaration, template { -> typeName }, context)
-                is IrSimpleFunction -> IrTemplates.replaceBody(declaration, template { value: Dynamic ->
-                    buildString {
-                        append(typeName)
-                        append("(")
-                        var first = true
-                        value.forEachProperty { name, propertyValue ->
-                            if (!first) append(", ")
-                            first = false
-                            append("$name=$propertyValue")
-                        }
-                        append(")")
-                    }
-                }, context)
-            }
-        }
-
-        val newDescriber = constructorRef(describer.primaryConstructor!!)
-        for (declaration in companion.declarations) {
-            if (!declaration.isOurs()) continue
-            when (declaration) {
-                is IrConstructor -> IrTemplates.constructorBody(declaration, null, context)
-                is IrProperty -> IrDeclarations.initializeProperty(declaration, template { -> newDescriber.call<Dynamic>() }, context)
-            }
-        }
+    val newDescriber = constructorRef(describer.primaryConstructor!!)
+    for (declaration in companion.declarations) {
+      if (!declaration.isOurs()) continue
+      when (declaration) {
+        is IrConstructor -> IrTemplates.constructorBody(declaration, null, context)
+        is IrProperty -> IrDeclarations.initializeProperty(declaration, template { -> newDescriber.call<Dynamic>() }, context)
+      }
     }
+  }
 
-    private fun IrDeclaration.isOurs() =
-        (origin as? IrDeclarationOrigin.GeneratedByPlugin)?.pluginKey == DescribedKey
+  private fun IrDeclaration.isOurs() =
+    (origin as? IrDeclarationOrigin.GeneratedByPlugin)?.pluginKey == DescribedKey
 }

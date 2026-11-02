@@ -14,17 +14,17 @@ import org.jetbrains.kotlin.test.services.KotlinStandardLibrariesPathProvider
  * The IR dump shows the `template(::f)` intrinsic replaced with the embedded model.
  */
 open class AbstractJvmBoxTest : AbstractJvmBlackBoxCodegenTestBase(FirParser.LightTree) {
-    override fun createKotlinStandardLibrariesPathProvider(): KotlinStandardLibrariesPathProvider {
-        return EnvironmentBasedStandardLibrariesPathProvider
-    }
+  override fun createKotlinStandardLibrariesPathProvider(): KotlinStandardLibrariesPathProvider {
+    return EnvironmentBasedStandardLibrariesPathProvider
+  }
 
-    override fun configure(builder: TestConfigurationBuilder) = with(builder) {
-        super.configure(this)
-        defaultDirectives {
-            +CodegenTestDirectives.DUMP_IR
-            +JvmEnvironmentConfigurationDirectives.FULL_JDK
-            +CodegenTestDirectives.IGNORE_DEXING // Avoids loading R8 from the classpath.
-        }
-        configurePlugin()
+  override fun configure(builder: TestConfigurationBuilder) = with(builder) {
+    super.configure(this)
+    defaultDirectives {
+      +CodegenTestDirectives.DUMP_IR
+      +JvmEnvironmentConfigurationDirectives.FULL_JDK
+      +CodegenTestDirectives.IGNORE_DEXING // Avoids loading R8 from the classpath.
     }
+    configurePlugin()
+  }
 }

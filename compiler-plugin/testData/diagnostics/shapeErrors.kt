@@ -9,28 +9,28 @@ class PluginModuleType
 
 @Shape
 abstract class UsesPluginType {
-    <!UNSUPPORTED_IN_TEMPLATE!>abstract val value: PluginModuleType<!>
+  <!UNSUPPORTED_IN_TEMPLATE!>abstract val value: PluginModuleType<!>
 }
 
 @Shape
 abstract class GenericMember {
-    <!UNSUPPORTED_IN_TEMPLATE!>abstract fun <T> generic(value: T): T<!>
+  <!UNSUPPORTED_IN_TEMPLATE!>abstract fun <T> generic(value: T): T<!>
 }
 
 @Shape
 abstract class WithDefault {
-    abstract fun withDefault(<!UNSUPPORTED_IN_TEMPLATE!>x: Int = 1<!>): Int
+  abstract fun withDefault(<!UNSUPPORTED_IN_TEMPLATE!>x: Int = 1<!>): Int
 }
 
 @Shape
 abstract class Nested {
-    <!UNSUPPORTED_IN_TEMPLATE!>class Inner<!>
+  <!UNSUPPORTED_IN_TEMPLATE!>class Inner<!>
 }
 
 @Template
 fun temporaryVar(x: Int): Int {
-    <!UNSUPPORTED_IN_TEMPLATE!>var notVal = temporary(x)<!>
-    return notVal
+  <!UNSUPPORTED_IN_TEMPLATE!>var notVal = temporary(x)<!>
+  return notVal
 }
 
 @Template

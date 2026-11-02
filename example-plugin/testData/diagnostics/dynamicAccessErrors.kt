@@ -8,5 +8,5 @@ package test
 class Point(val x: Int, val y: Int)
 
 <!TEMPLATE_NOT_APPLICABLE!>class X {
-    <!TEMPLATE_NOT_APPLICABLE!>fun toReplace(): String = "original"<!>
+  <!TEMPLATE_NOT_APPLICABLE!>fun toReplace(): String = "original"<!>
 }<!>

@@ -3,10 +3,10 @@ import boberc.*
 
 @Template
 fun This.earlyReturn(): String = buildString {
-    forEachProperty { name, value ->
-        if (value == null) <!UNSUPPORTED_IN_TEMPLATE!>return@forEachProperty<!>
-        append(name)
-    }
+  forEachProperty { name, value ->
+    if (value == null) <!UNSUPPORTED_IN_TEMPLATE!>return@forEachProperty<!>
+    append(name)
+  }
 }
 
 @Template

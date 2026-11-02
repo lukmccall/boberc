@@ -16,21 +16,21 @@ import kotlin.reflect.KClass
  * `if (p.hasAnnotation("..."))` keeps only the branch that applies (the other one is never resolved).
  */
 public sealed interface TemplateParameter {
-    public val name: String
-    public val index: Int
+  public val name: String
+  public val index: Int
 
-    /** The argument passed for this parameter, with the parameter's actual type. */
-    public val value: Any?
+  /** The argument passed for this parameter, with the parameter's actual type. */
+  public val value: Any?
 
-    public fun hasAnnotation(annotationFqName: String): Boolean
+  public fun hasAnnotation(annotationFqName: String): Boolean
 
-    /** [hasAnnotation] with a class literal, when the annotation class is on the plugin's classpath. */
-    public fun hasAnnotation(annotation: KClass<out Annotation>): Boolean
+  /** [hasAnnotation] with a class literal, when the annotation class is on the plugin's classpath. */
+  public fun hasAnnotation(annotation: KClass<out Annotation>): Boolean
 
-    /** Whether the parameter's type is the class [classFqName] or a subtype of it. */
-    public fun isSubtypeOf(classFqName: String): Boolean
+  /** Whether the parameter's type is the class [classFqName] or a subtype of it. */
+  public fun isSubtypeOf(classFqName: String): Boolean
 
-    public fun isSubtypeOf(type: KClass<*>): Boolean
+  public fun isSubtypeOf(type: KClass<*>): Boolean
 }
 
 /** Runs [action] for each regular parameter of the function the template is applied to (unrolled). */
@@ -47,4 +47,4 @@ public fun forEachParameter(action: (parameter: TemplateParameter) -> Unit): Uni
 public fun mapParameters(transform: (parameter: TemplateParameter) -> Any?): Any? = intrinsic()
 
 private fun intrinsic(): Nothing =
-    throw IllegalStateException("boberc parameter functions can only be used inside templates")
+  throw IllegalStateException("boberc parameter functions can only be used inside templates")

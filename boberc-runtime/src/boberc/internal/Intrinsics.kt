@@ -16,9 +16,9 @@ private val templates = ConcurrentHashMap<String, FunctionTemplate>()
 private val shapes = ConcurrentHashMap<String, ClassShape>()
 
 private inline fun <T : Any> ConcurrentHashMap<String, T>.decoded(parts: Array<out String>, decode: (String) -> T): T {
-    // A single part is the class-file constant itself: its hash is cached and lookups hit the identity fast path.
-    val encoded = if (parts.size == 1) parts[0] else parts.joinToString(separator = "")
-    return getOrPut(encoded) { decode(encoded) }
+  // A single part is the class-file constant itself: its hash is cached and lookups hit the identity fast path.
+  val encoded = if (parts.size == 1) parts[0] else parts.joinToString(separator = "")
+  return getOrPut(encoded) { decode(encoded) }
 }
 
 /** `boberc.template(::f)` and `boberc.template("name")`. */
@@ -31,10 +31,10 @@ public fun decodeFunctionTemplate(vararg parts: String): FunctionTemplate = temp
  */
 @BobercInternalApi
 public fun decodeLambdaTemplate(captured: Array<Any?>, vararg parts: String): FunctionTemplate {
-    val template = decodeFunctionTemplate(*parts)
-    val splices = template.spliceParameters
-    require(splices.size == captured.size) { "boberc: expected ${splices.size} captured values, got ${captured.size}" }
-    return template.bindSplices(splices.map { it.name }.zip(captured).toMap())
+  val template = decodeFunctionTemplate(*parts)
+  val splices = template.spliceParameters
+  require(splices.size == captured.size) { "boberc: expected ${splices.size} captured values, got ${captured.size}" }
+  return template.bindSplices(splices.map { it.name }.zip(captured).toMap())
 }
 
 /** `boberc.shape(X::class)`. */

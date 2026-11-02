@@ -11,13 +11,13 @@ import kotlin.reflect.KClass
 
 /** The function the template is applied to (generated or redefined). All members are compile-time constants. */
 public sealed interface TargetFunction {
-    public val name: String
+  public val name: String
 
-    /** Number of regular (value) parameters. */
-    public val parameterCount: Int
+  /** Number of regular (value) parameters. */
+  public val parameterCount: Int
 
-    public fun hasAnnotation(annotationFqName: String): Boolean
-    public fun hasAnnotation(annotation: KClass<out Annotation>): Boolean
+  public fun hasAnnotation(annotationFqName: String): Boolean
+  public fun hasAnnotation(annotation: KClass<out Annotation>): Boolean
 }
 
 /**
@@ -54,4 +54,4 @@ public fun <M : Any> mirror(): M = intrinsic()
 public fun <M : Any> construct(vararg arguments: Any?): M = intrinsic()
 
 private fun intrinsic(): Nothing =
-    throw IllegalStateException("boberc target functions can only be used inside templates")
+  throw IllegalStateException("boberc target functions can only be used inside templates")

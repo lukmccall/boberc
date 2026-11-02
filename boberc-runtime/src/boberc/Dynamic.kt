@@ -96,4 +96,4 @@ public fun Any?.isInstanceOf(classFqName: String): Boolean = intrinsic()
 public fun Any?.castTo(classFqName: String): Dynamic = intrinsic()
 
 private fun intrinsic(): Nothing =
-    throw IllegalStateException("boberc dynamic access functions can only be used inside templates")
+  throw IllegalStateException("boberc dynamic access functions can only be used inside templates")

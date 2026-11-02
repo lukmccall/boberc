@@ -25,11 +25,11 @@ private val EXPECTED = """
 """.trim()
 
 fun box(): String {
-    // A template is still an ordinary function...
-    if (greeting("Bob") != "Hello, Bob!") return "Fail: template is not callable"
-    // ...and template() returns its captured model.
-    val t: FunctionTemplate = template(::greeting)
-    if (t.name != "greeting") return "Fail: name ${t.name}"
-    val rendered = t.render()
-    return if (rendered == EXPECTED) "OK" else "Fail, rendered:\n$rendered"
+  // A template is still an ordinary function...
+  if (greeting("Bob") != "Hello, Bob!") return "Fail: template is not callable"
+  // ...and template() returns its captured model.
+  val t: FunctionTemplate = template(::greeting)
+  if (t.name != "greeting") return "Fail: name ${t.name}"
+  val rendered = t.render()
+  return if (rendered == EXPECTED) "OK" else "Fail, rendered:\n$rendered"
 }

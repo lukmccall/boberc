@@ -72,9 +72,9 @@ public sealed interface This
  */
 @Suppress("UNUSED_PARAMETER")
 public fun template(function: Function<*>): FunctionTemplate =
-    throw IllegalStateException(
-        "boberc.template() is a compiler intrinsic. Apply the boberc compiler plugin to the module declaring templates."
-    )
+  throw IllegalStateException(
+    "boberc.template() is a compiler intrinsic. Apply the boberc compiler plugin to the module declaring templates."
+  )
 
 /**
  * Compiler intrinsic: returns the [FunctionTemplate] model of the `@Template` function named [name].
@@ -86,9 +86,9 @@ public fun template(function: Function<*>): FunctionTemplate =
  */
 @Suppress("UNUSED_PARAMETER")
 public fun template(name: String): FunctionTemplate =
-    throw IllegalStateException(
-        "boberc.template() is a compiler intrinsic. Apply the boberc compiler plugin to the module declaring templates."
-    )
+  throw IllegalStateException(
+    "boberc.template() is a compiler intrinsic. Apply the boberc compiler plugin to the module declaring templates."
+  )
 
 /**
  * In a template, makes the local `val` it initializes a compiler **temporary** (`val result = temporary(call())`):

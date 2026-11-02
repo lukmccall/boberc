@@ -26,37 +26,37 @@ import org.jetbrains.kotlin.ir.util.classId
  */
 @BobercInternalApi
 public object IrSignatures {
-    public fun of(function: IrFunction): String = buildString {
-        append(function.typeParameters.size)
-        append('|')
-        function.parameters
-            .filter { it.kind != IrParameterKind.DispatchReceiver }
-            .joinTo(this, ",") { parameter ->
-                val kind = when (parameter.kind) {
-                    IrParameterKind.Context -> "c"
-                    IrParameterKind.ExtensionReceiver -> "e"
-                    else -> "r"
-                }
-                kind + render(parameter.type)
-            }
-    }
-
-    private fun render(type: IrType): String {
-        val simple = type as? IrSimpleType ?: return "*"
-        val classifier = when (val classifier = simple.classifier) {
-            is IrClassSymbol -> classifier.owner.classIdOrName()
-            // Type parameters are rendered by name only: their bounds may refer back to them.
-            is IrTypeParameterSymbol -> return "#" + classifier.owner.name.asString()
-            else -> return "*"
+  public fun of(function: IrFunction): String = buildString {
+    append(function.typeParameters.size)
+    append('|')
+    function.parameters
+      .filter { it.kind != IrParameterKind.DispatchReceiver }
+      .joinTo(this, ",") { parameter ->
+        val kind = when (parameter.kind) {
+          IrParameterKind.Context -> "c"
+          IrParameterKind.ExtensionReceiver -> "e"
+          else -> "r"
         }
-        if (simple.arguments.isEmpty()) return classifier
-        return simple.arguments.joinToString(",", prefix = "$classifier<", postfix = ">") { argument ->
-            when (argument) {
-                is IrStarProjection -> "*"
-                is IrTypeProjection -> render(argument.type)
-            }
-        }
-    }
+        kind + render(parameter.type)
+      }
+  }
 
-    private fun IrClass.classIdOrName(): String = classId?.asString() ?: name.asString()
+  private fun render(type: IrType): String {
+    val simple = type as? IrSimpleType ?: return "*"
+    val classifier = when (val classifier = simple.classifier) {
+      is IrClassSymbol -> classifier.owner.classIdOrName()
+      // Type parameters are rendered by name only: their bounds may refer back to them.
+      is IrTypeParameterSymbol -> return "#" + classifier.owner.name.asString()
+      else -> return "*"
+    }
+    if (simple.arguments.isEmpty()) return classifier
+    return simple.arguments.joinToString(",", prefix = "$classifier<", postfix = ">") { argument ->
+      when (argument) {
+        is IrStarProjection -> "*"
+        is IrTypeProjection -> render(argument.type)
+      }
+    }
+  }
+
+  private fun IrClass.classIdOrName(): String = classId?.asString() ?: name.asString()
 }
